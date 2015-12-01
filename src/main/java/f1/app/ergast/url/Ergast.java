@@ -14,7 +14,17 @@ import java.nio.charset.Charset;
 
 public class Ergast {
 
-public String callUrlToGetJSONData(String myURL) throws IOException {
+    private Ergast ergast;
+
+    public Ergast getErgast() {
+        return ergast;
+    }
+
+    public void setErgast(Ergast ergast) {
+        this.ergast = ergast;
+    }
+
+    public String callUrlToGetJSONData(String myURL) throws IOException {
     StringBuilder sb = new StringBuilder();
     URLConnection urlConn = null;
     InputStreamReader in = null;

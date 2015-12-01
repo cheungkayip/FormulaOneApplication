@@ -15,4 +15,8 @@ public class ErgastTest {
         System.out.println(output);
     }
 
+    @Test
+    public void testGetJSONandPutInObjects(){
+
+    }
 }
