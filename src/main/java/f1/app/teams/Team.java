@@ -1,6 +1,5 @@
 package f1.app.teams;
 
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 /**

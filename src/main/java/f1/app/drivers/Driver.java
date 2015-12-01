@@ -2,7 +2,6 @@ package f1.app.drivers;
 
 import f1.app.statistics.Statistics;
 import f1.app.teams.Team;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.util.Date;
