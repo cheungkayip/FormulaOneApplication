@@ -1,5 +1,7 @@
+.idea/
+.out/
+.target/
 *.iml
 *.jar
-
 local
-target
+
