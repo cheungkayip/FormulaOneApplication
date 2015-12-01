@@ -1,7 +1,12 @@
-.idea/
-.out/
-.target/
+.idea
+local
+target/
+out/
+target/surefire-reports
+
+*.log
+*.bak
+*.class
 *.iml
 *.jar
-local
-
+*.lst
