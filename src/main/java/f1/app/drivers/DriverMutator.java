@@ -21,6 +21,7 @@ import java.util.Iterator;
 
 /**
  * Created by kayipcheung on 28-11-15.
+ * A mutator for Drivers
  */
 public class DriverMutator {
     private Driver driver;
@@ -48,7 +49,8 @@ return null;
         int driverCount = 0;
             try {
                 String currentDirectory = System.getProperty("user.dir");
-                Object obj = parser.parse(new FileReader("src/resources/Drivers.json"));
+                System.out.println(currentDirectory);
+                Object obj = parser.parse(new FileReader("src/main/resources/Drivers.json"));
                 JSONObject jsonObject = (JSONObject) obj;
                 JSONArray driverJSON = (JSONArray) jsonObject.get("Driver");
 
@@ -71,7 +73,7 @@ return null;
                     // Create the driverDisplay picture
                     String imageString = (String) object.get("driverImage"); // JSON String name
                     BufferedImage bufferedImage;
-                    bufferedImage = ImageIO.read(new File("src/resources/" + imageString));
+                    bufferedImage = ImageIO.read(new File("src/main/resources/" + imageString));
                     Image image = SwingFXUtils.toFXImage(bufferedImage,null);
                     ImageView view = new ImageView();
                     view.setImage(image);
@@ -124,7 +126,7 @@ return null;
 
     public ImageView setTheImage(String imageString) throws IOException {
         BufferedImage bufferedImage;
-        bufferedImage = ImageIO.read(new File("src/resources/" + imageString));
+        bufferedImage = ImageIO.read(new File("src/main/resources/" + imageString));
         Image image = SwingFXUtils.toFXImage(bufferedImage,null);
         ImageView view = new ImageView();
         view.setImage(image);

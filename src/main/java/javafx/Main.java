@@ -14,7 +14,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         try {
-            GridPane page = FXMLLoader.load(Main.class.getResource("Formula1.fxml"));
+            GridPane page = FXMLLoader.load(Main.class.getResource("/Formula1.fxml"));
             page.setPrefSize(1024, 768);
             Scene scene = new Scene(page);
             primaryStage.setScene(scene);
