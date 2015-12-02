@@ -38,7 +38,7 @@ public class DriverStatsTeamTest {
         mutator.getDriver().setBuffer(new StringBuffer());
         System.out.println(mutator.getDriver().toString(mutator.getDriver()));
 }
-    @Ignore
+
     @Test
     public void testDriversFromJSONFile(){
         // Test multiple drivers added to ArrayList + Read From JSON
@@ -51,9 +51,7 @@ public class DriverStatsTeamTest {
         for(Driver list :mutator.getDriverList())
             if(list instanceof Driver) {
                 System.out.println(list);
-
             }
-
     }
 
     @Test
