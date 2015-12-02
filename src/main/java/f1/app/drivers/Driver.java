@@ -20,12 +20,21 @@ public class Driver {
     private String familyName;
     private String nationality;
     private Constructor constructorInfo;
-    private Date dateOfBirth;
+    private String dateOfBirth;
     private String placeOfBirth;
     private Statistics statisticsInfo;
     private ImageView driverImage;
     private ImageView driverFlag;
+    private ImageView driverHelmet;
     private StringBuffer buffer;
+
+    public ImageView getDriverHelmet() {
+        return driverHelmet;
+    }
+
+    public void setDriverHelmet(ImageView driverHelmet) {
+        this.driverHelmet = driverHelmet;
+    }
 
     public String getCode() {
         return code;
@@ -115,11 +124,11 @@ public class Driver {
         this.constructorInfo = constructorInfo;
     }
 
-    public Date getDateOfBirth() {
+    public String getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -145,7 +154,7 @@ public class Driver {
                 "Driver ID: " + driver.getDriverId() + "\n" +
                 "Given Name: " + driver.getGivenName() + "\n" +
                 "Family Name: " + driver.getFamilyName() + "\n" +
-                "Place of Birth: " + driver.getPlaceOfBirth() + "\n" +
+                "Date of Birth: " + driver.getDateOfBirth() + "\n" +
                 "Permanent Number: " + driver.getPermanentNumber() + "\n" +
                 "Nationality" + driver.getNationality() + "\n" +
                 "Weblink URL" + driver.getUrl() + "\n"

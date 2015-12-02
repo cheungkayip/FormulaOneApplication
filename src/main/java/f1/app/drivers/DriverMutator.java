@@ -44,6 +44,11 @@ public class DriverMutator {
         return getDriver();
     }
 
+    public Driver showTheDriver() {
+
+        return getDriver();
+    }
+
     public Driver clearTheDriver() {
         driver = null;
         driverList.clear();
@@ -112,6 +117,9 @@ public class DriverMutator {
                 // Create the Flag image
                 String imageStringFlag = (String) obj.get("driverFlag"); // Driver Flag Image
                 getDriver().setDriverFlag(setTheImage(imageStringFlag));
+                // Create the Flag image
+                String helmet = (String) obj.get("helmet"); // Driver Flag Image
+                getDriver().setDriverHelmet(setTheImage(helmet));
 
                 setConstructor(new Constructor());
                 // Create the Constructor logo image
@@ -175,7 +183,6 @@ public class DriverMutator {
                     if (temp.name().equals(object.get("teamName"))) {
                         getConstructor().setConstructorId(temp);
                         getDriver().setConstructorInfo(getConstructor());
-//                            System.out.println(temp.name() + " and " + object.get("teamName") + " are the same so add them now!");
                         break;
                     }
                 }

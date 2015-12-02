@@ -2,16 +2,19 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.image.ImageView?>
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections ?>
 <GridPane alignment="center" hgap="10" vgap="10" xmlns:fx="http://javafx.com/fxml" fx:controller="javafx.Formula1Controller">
     <padding><Insets top="25" right="25" bottom="10" left="25"/></padding>
     <children>
         <Label text="Driver and Team" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
 
-        <ImageView fx:id="teamLogo" GridPane.columnIndex="1" GridPane.rowIndex="0" disable="false" fitHeight="100.0" fitWidth="200.0" layoutX="69.0" layoutY="322.0" pickOnBounds="true" preserveRatio="true"></ImageView>
+        <ImageView fx:id="teamLogo" GridPane.columnIndex="1" GridPane.rowIndex="0" disable="false" fitHeight="150.0" fitWidth="250.0" layoutX="69.0" layoutY="322.0" pickOnBounds="true" preserveRatio="true"></ImageView>
 
-        <ImageView fx:id="driverFlag" GridPane.columnIndex="2" GridPane.rowIndex="1" disable="false" fitHeight="50.0" fitWidth="50.0" layoutX="69.0" layoutY="322.0" pickOnBounds="true" preserveRatio="true"></ImageView>
+        <ImageView fx:id="driverFlag" GridPane.columnIndex="2" GridPane.rowIndex="1" disable="false" fitHeight="75.0" fitWidth="75.0" layoutX="69.0" layoutY="322.0" pickOnBounds="true" preserveRatio="true"></ImageView>
 
-        <ImageView fx:id="driverImage" GridPane.columnIndex="2" GridPane.rowIndex="0" disable="false" fitHeight="150.0" fitWidth="200.0" layoutX="69.0" layoutY="322.0" pickOnBounds="true" preserveRatio="true"></ImageView>
+        <ImageView fx:id="driverImage" GridPane.columnIndex="2" GridPane.rowIndex="0" disable="false" fitHeight="200.0" fitWidth="250.0" layoutX="69.0" layoutY="322.0" pickOnBounds="true" preserveRatio="true"></ImageView>
+        <ImageView fx:id="driverHelmet" GridPane.columnIndex="3" GridPane.rowIndex="0" disable="false" fitHeight="200.0" fitWidth="250.0" layoutX="69.0" layoutY="322.0" pickOnBounds="true" preserveRatio="true"></ImageView>
 
         <Label text="Code:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
         <TextField fx:id="code" text="Code" GridPane.columnIndex="1" GridPane.rowIndex="1"></TextField>
@@ -25,8 +28,8 @@
         <Label text="Family Name:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
         <TextField fx:id="familyName" text="Family Name" GridPane.columnIndex="1" GridPane.rowIndex="4"></TextField>
 
-        <Label text="Place of Birth:" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
-        <TextField fx:id="placeOfBirth" text="Place of Birth" GridPane.columnIndex="1" GridPane.rowIndex="5"></TextField>
+        <Label text="Date of Birth:" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+        <TextField fx:id="dateOfBirth" text="Date of Birth" GridPane.columnIndex="1" GridPane.rowIndex="5"></TextField>
 
         <Label text="Nationality:" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
         <TextField fx:id="nationality" text="Nationality" GridPane.columnIndex="1" GridPane.rowIndex="6"></TextField>
@@ -55,12 +58,15 @@
         <Label text="Permanent Number:" GridPane.columnIndex="0" GridPane.rowIndex="14"/>
         <TextField fx:id="permanentNumber" text="permanentNumber" GridPane.columnIndex="1" GridPane.rowIndex="14"></TextField>
 
-        <Button fx:id="fillDriversButton" mnemonicParsing="false" text="Get All Drivers" GridPane.columnIndex="0" GridPane.rowIndex="15"/>
-        <Button fx:id="clearButton" mnemonicParsing="false" text="Clear The Fields" GridPane.columnIndex="0" GridPane.rowIndex="16"/>
-        <Button fx:id="changeButton" mnemonicParsing="false" text="Modify Driver" GridPane.columnIndex="1" GridPane.rowIndex="15"/>
-        <Button fx:id="showSelectedDriverButton" mnemonicParsing="false" text="Show Selected Driver" GridPane.columnIndex="1" GridPane.rowIndex="16"/>
+        <Button fx:id="fillDriversButton" mnemonicParsing="false" text="Get All Drivers" GridPane.columnIndex="2" GridPane.rowIndex="4"/>
+        <Button fx:id="clearButton" mnemonicParsing="false" text="Clear The Fields" GridPane.columnIndex="2" GridPane.rowIndex="5"/>
+        <Button fx:id="changeButton" mnemonicParsing="false" text="Modify Driver" GridPane.columnIndex="2" GridPane.rowIndex="6"/>
 
-        <Label text="Added Drivers:" GridPane.columnIndex="0" GridPane.rowIndex="17"/>
-        <TextArea fx:id="addedDrivers" text="Added Drivers" GridPane.columnIndex="1" GridPane.rowIndex="17"></TextArea>
+
+        <ComboBox fx:id="driversCombobox" layoutX="210.0" layoutY="108.0" prefHeight="27.0" GridPane.columnIndex="2" GridPane.rowIndex="8">
+        </ComboBox>
+        <Button fx:id="showSelectedDriverButton" mnemonicParsing="false" text="Show Selected Driver" GridPane.columnIndex="2" GridPane.rowIndex="9"/>
+        <Label text="Added Drivers:" GridPane.columnIndex="0" GridPane.rowIndex="15"/>
+        <TextArea fx:id="addedDrivers" text="Added Drivers" GridPane.columnIndex="1" GridPane.rowIndex="15"></TextArea>
     </children>
 </GridPane>
