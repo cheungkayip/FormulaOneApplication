@@ -1,7 +1,7 @@
 package f1.app.drivers;
 
 import f1.app.statistics.Statistics;
-import f1.app.teams.Team;
+import f1.app.constructor.Constructor;
 import javafx.scene.image.ImageView;
 
 import java.util.Date;
@@ -10,17 +10,54 @@ import java.util.Date;
  * Created by kayipcheung on 28-11-15.
  */
 public class Driver {
-    private String firstName;
+    //http://ergast.com/api/f1/2015/drivers.json
+    private String code;
+    private String driverId;
+    private String permanentNumber;
+    private String url;
+    private String givenName;
     private String middleName;
-    private String lastName;
-    private String country;
-    private Team teamInfo;
+    private String familyName;
+    private String nationality;
+    private Constructor constructorInfo;
     private Date dateOfBirth;
     private String placeOfBirth;
     private Statistics statisticsInfo;
     private ImageView driverImage;
     private ImageView driverFlag;
     private StringBuffer buffer;
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getDriverId() {
+        return driverId;
+    }
+
+    public void setDriverId(String driverId) {
+        this.driverId = driverId;
+    }
+
+    public String getPermanentNumber() {
+        return permanentNumber;
+    }
+
+    public void setPermanentNumber(String permanentNumber) {
+        this.permanentNumber = permanentNumber;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
     public ImageView getDriverFlag() {
         return driverFlag;
@@ -38,12 +75,12 @@ public class Driver {
         this.driverImage = driverImage;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getGivenName() {
+        return givenName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setGivenName(String givenName) {
+        this.givenName = givenName;
     }
 
     public String getMiddleName() {
@@ -54,28 +91,28 @@ public class Driver {
         this.middleName = middleName;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getFamilyName() {
+        return familyName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setFamilyName(String familyName) {
+        this.familyName = familyName;
     }
 
-    public String getCountry() {
-        return country;
+    public String getNationality() {
+        return nationality;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    public void setNationality(String nationality) {
+        this.nationality = nationality;
     }
 
-    public Team getTeamInfo() {
-        return teamInfo;
+    public Constructor getConstructorInfo() {
+        return constructorInfo;
     }
 
-    public void setTeamInfo(Team teamInfo) {
-        this.teamInfo = teamInfo;
+    public void setConstructorInfo(Constructor constructorInfo) {
+        this.constructorInfo = constructorInfo;
     }
 
     public Date getDateOfBirth() {
@@ -104,17 +141,22 @@ public class Driver {
 
 
     public StringBuffer toString(Driver driver){
-        getBuffer().append("First Name: " + driver.getFirstName() + "\n" +
-                "Last Name: " + driver.getLastName() + "\n" +
+        getBuffer().append(
+                "Driver ID: " + driver.getDriverId() + "\n" +
+                "Given Name: " + driver.getGivenName() + "\n" +
+                "Family Name: " + driver.getFamilyName() + "\n" +
                 "Place of Birth: " + driver.getPlaceOfBirth() + "\n" +
-                "Country" + driver.getCountry() + "\n" +
-                "Number of Podiums: " + driver.getStatisticsInfo().getNumberOfPodiums() + "\n" +
-                "Points: " + driver.getStatisticsInfo().getPoints() + "\n" +
-                "Grand Prix Entered: " + driver.getStatisticsInfo().getGrandPrixEntered() + "\n" +
-                "World Championships: " + driver.getStatisticsInfo().getWorldChampionships() + "\n" +
-                "Highest Race Finish: " + driver.getStatisticsInfo().getHighestRaceFinish() + "\n" +
-                "Highest Grid Position: " + driver.getStatisticsInfo().getHighestGridPosition() + "\n" +
-                "Team Name: " + driver.getTeamInfo().getTeamName() + "\n" + "\n");
+                "Permanent Number: " + driver.getPermanentNumber() + "\n" +
+                "Nationality" + driver.getNationality() + "\n" +
+                "Weblink URL" + driver.getUrl() + "\n"
+//                "Number of Podiums: " + driver.getStatisticsInfo().getNumberOfPodiums() + "\n" +
+//                "Points: " + driver.getStatisticsInfo().getPoints() + "\n" +
+//                "Grand Prix Entered: " + driver.getStatisticsInfo().getGrandPrixEntered() + "\n" +
+//                "World Championships: " + driver.getStatisticsInfo().getWorldChampionships() + "\n" +
+//                "Highest Race Finish: " + driver.getStatisticsInfo().getHighestRaceFinish() + "\n" +
+//                "Highest Grid Position: " + driver.getStatisticsInfo().getHighestGridPosition() + "\n" +
+//                "Constructor Name: " + driver.getConstructorInfo().getConstructorId() + "\n" + "\n"
+        );
         return getBuffer();
     }
 

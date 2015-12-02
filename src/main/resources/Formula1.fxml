@@ -6,50 +6,61 @@
     <padding><Insets top="25" right="25" bottom="10" left="25"/></padding>
     <children>
         <Label text="Driver and Team" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+
         <ImageView fx:id="teamLogo" GridPane.columnIndex="1" GridPane.rowIndex="0" disable="false" fitHeight="100.0" fitWidth="200.0" layoutX="69.0" layoutY="322.0" pickOnBounds="true" preserveRatio="true"></ImageView>
-
-        <ImageView fx:id="driverImage" GridPane.columnIndex="2" GridPane.rowIndex="0" disable="false" fitHeight="150.0" fitWidth="200.0" layoutX="69.0" layoutY="322.0" pickOnBounds="true" preserveRatio="true"></ImageView>
-
-        <Label text="First Name:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-        <TextField fx:id="firstName" text="First name" GridPane.columnIndex="1" GridPane.rowIndex="1">First Name</TextField>
 
         <ImageView fx:id="driverFlag" GridPane.columnIndex="2" GridPane.rowIndex="1" disable="false" fitHeight="50.0" fitWidth="50.0" layoutX="69.0" layoutY="322.0" pickOnBounds="true" preserveRatio="true"></ImageView>
 
-        <Label text="Last Name:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-        <TextField fx:id="lastName" text="Last Name" GridPane.columnIndex="1" GridPane.rowIndex="2">Last Name</TextField>
+        <ImageView fx:id="driverImage" GridPane.columnIndex="2" GridPane.rowIndex="0" disable="false" fitHeight="150.0" fitWidth="200.0" layoutX="69.0" layoutY="322.0" pickOnBounds="true" preserveRatio="true"></ImageView>
 
-        <Label text="Place of Birth:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
-        <TextField fx:id="placeOfBirth" text="Place of Birth" GridPane.columnIndex="1" GridPane.rowIndex="3">Place of Birth</TextField>
+        <Label text="Code:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+        <TextField fx:id="code" text="Code" GridPane.columnIndex="1" GridPane.rowIndex="1"></TextField>
 
-        <Label text="Country:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
-        <TextField fx:id="country" text="Country" GridPane.columnIndex="1" GridPane.rowIndex="4">Country</TextField>
+        <Label text="Driver ID:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+        <TextField fx:id="driverId" text="Driver ID" GridPane.columnIndex="1" GridPane.rowIndex="2"></TextField>
 
-        <Label text="numberOfPodiums:" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
-        <TextField fx:id="numberOfPodiums" text="Number Of Podiums" GridPane.columnIndex="1" GridPane.rowIndex="5">Number Of Podiums</TextField>
+        <Label text="Given Name:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+        <TextField fx:id="givenName" text="Given name" GridPane.columnIndex="1" GridPane.rowIndex="3"></TextField>
 
-        <Label text="Points:" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
-        <TextField fx:id="points" text="points" GridPane.columnIndex="1" GridPane.rowIndex="6">Set Points</TextField>
+        <Label text="Family Name:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+        <TextField fx:id="familyName" text="Family Name" GridPane.columnIndex="1" GridPane.rowIndex="4"></TextField>
 
-        <Label text="Grand Prix Entered:" GridPane.columnIndex="0" GridPane.rowIndex="7"/>
-        <TextField fx:id="grandPrixEntered" text="Grand Prix Entered" GridPane.columnIndex="1" GridPane.rowIndex="7">Grand Prix Entered</TextField>
+        <Label text="Place of Birth:" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+        <TextField fx:id="placeOfBirth" text="Place of Birth" GridPane.columnIndex="1" GridPane.rowIndex="5"></TextField>
 
-        <Label text="World Championships:" GridPane.columnIndex="0" GridPane.rowIndex="8"/>
-        <TextField fx:id="worldChampionships" text="World Championships" GridPane.columnIndex="1" GridPane.rowIndex="8">World Championships</TextField>
+        <Label text="Nationality:" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
+        <TextField fx:id="nationality" text="Nationality" GridPane.columnIndex="1" GridPane.rowIndex="6"></TextField>
 
-        <Label text="Highest Race Finish:" GridPane.columnIndex="0" GridPane.rowIndex="9"/>
-        <TextField fx:id="highestRaceFinish" text="Highest Race Finish" GridPane.columnIndex="1" GridPane.rowIndex="9">Highest Race Finish</TextField>
+        <Label text="numberOfPodiums:" GridPane.columnIndex="0" GridPane.rowIndex="7"/>
+        <TextField fx:id="numberOfPodiums" text="Number Of Podiums" GridPane.columnIndex="1" GridPane.rowIndex="7"></TextField>
 
-        <Label text="Highest Grid Position:" GridPane.columnIndex="0" GridPane.rowIndex="10"/>
-        <TextField fx:id="highestGridPosition" text="Highest Grid Position" GridPane.columnIndex="1" GridPane.rowIndex="10">Highest Grid Position</TextField>
+        <Label text="Points:" GridPane.columnIndex="0" GridPane.rowIndex="8"/>
+        <TextField fx:id="points" text="points" GridPane.columnIndex="1" GridPane.rowIndex="8"></TextField>
 
-        <Label text="Team:" GridPane.columnIndex="0" GridPane.rowIndex="11"/>
-        <TextField fx:id="team" text="Team" GridPane.columnIndex="1" GridPane.rowIndex="11">Team</TextField>
+        <Label text="Grand Prix Entered:" GridPane.columnIndex="0" GridPane.rowIndex="9"/>
+        <TextField fx:id="grandPrixEntered" text="Grand Prix Entered" GridPane.columnIndex="1" GridPane.rowIndex="9"></TextField>
 
-        <Button fx:id="showButton" mnemonicParsing="false" text="Show" GridPane.columnIndex="0" GridPane.rowIndex="12"/>
-        <Button fx:id="clearButton" mnemonicParsing="false" text="Clear" GridPane.columnIndex="0" GridPane.rowIndex="13"/>
-        <Button fx:id="changeButton" mnemonicParsing="false" text="Modify" GridPane.columnIndex="1" GridPane.rowIndex="12"/>
+        <Label text="World Championships:" GridPane.columnIndex="0" GridPane.rowIndex="10"/>
+        <TextField fx:id="worldChampionships" text="World Championships" GridPane.columnIndex="1" GridPane.rowIndex="10"></TextField>
 
-        <Label text="Added Drivers:" GridPane.columnIndex="0" GridPane.rowIndex="14"/>
-        <TextArea fx:id="addedDrivers" text="Added Drivers" GridPane.columnIndex="1" GridPane.rowIndex="14"></TextArea>
+        <Label text="Highest Race Finish:" GridPane.columnIndex="0" GridPane.rowIndex="11"/>
+        <TextField fx:id="highestRaceFinish" text="Highest Race Finish" GridPane.columnIndex="1" GridPane.rowIndex="11"></TextField>
+
+        <Label text="Highest Grid Position:" GridPane.columnIndex="0" GridPane.rowIndex="12"/>
+        <TextField fx:id="highestGridPosition" text="Highest Grid Position" GridPane.columnIndex="1" GridPane.rowIndex="12"></TextField>
+
+        <Label text="Constructor:" GridPane.columnIndex="0" GridPane.rowIndex="13"/>
+        <TextField fx:id="constructor" text="Constructor" GridPane.columnIndex="1" GridPane.rowIndex="13"></TextField>
+
+        <Label text="Permanent Number:" GridPane.columnIndex="0" GridPane.rowIndex="14"/>
+        <TextField fx:id="permanentNumber" text="permanentNumber" GridPane.columnIndex="1" GridPane.rowIndex="14"></TextField>
+
+        <Button fx:id="fillDriversButton" mnemonicParsing="false" text="Get All Drivers" GridPane.columnIndex="0" GridPane.rowIndex="15"/>
+        <Button fx:id="clearButton" mnemonicParsing="false" text="Clear The Fields" GridPane.columnIndex="0" GridPane.rowIndex="16"/>
+        <Button fx:id="changeButton" mnemonicParsing="false" text="Modify Driver" GridPane.columnIndex="1" GridPane.rowIndex="15"/>
+        <Button fx:id="showSelectedDriverButton" mnemonicParsing="false" text="Show Selected Driver" GridPane.columnIndex="1" GridPane.rowIndex="16"/>
+
+        <Label text="Added Drivers:" GridPane.columnIndex="0" GridPane.rowIndex="17"/>
+        <TextArea fx:id="addedDrivers" text="Added Drivers" GridPane.columnIndex="1" GridPane.rowIndex="17"></TextArea>
     </children>
 </GridPane>

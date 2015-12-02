@@ -1,8 +1,8 @@
 package f1.app.drivers;
 
+import f1.app.constructor.Constructor;
 import f1.app.ergast.url.Ergast;
 import f1.app.statistics.Statistics;
-import f1.app.teams.Team;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -27,8 +27,17 @@ import java.util.Iterator;
 public class DriverMutator {
     private Driver driver;
     private Statistics statistics;
-    private Team team;
+    private Constructor constructor;
+    private Ergast ergast;
     private ArrayList<Driver> driverList = new ArrayList<Driver>();
+
+    public Ergast getErgast() {
+        return ergast;
+    }
+
+    public void setErgast(Ergast ergast) {
+        this.ergast = ergast;
+    }
 
     public Driver modifyTheDriver() {
         //TODO: IMPLEMENT
@@ -41,34 +50,87 @@ public class DriverMutator {
         return driver;
     }
 
-    public Driver createTheDrivers2() throws IOException, ParseException {
+    public Driver createDriversFromURL() throws IOException, ParseException {
         JSONParser parser = new JSONParser();
-        Ergast ergast = null;
-        ergast.setErgast(new Ergast());
+        setErgast(new Ergast());
         int driverCount = 0;
-        String output = ergast.getErgast().callUrlToGetJSONData("http://ergast.com/api/f1/2015/drivers.json?callback=myParser");
-        Object obj = parser.parse(output);
-        JSONObject jsonObject = (JSONObject) obj;
-        JSONArray driverJSON = (JSONArray) jsonObject.get("Drivers");
+        try {
+            String output = getErgast().callUrlToGetJSONData("http://ergast.com/api/f1/2015/drivers.json");
 
-        Iterator<String> iterator = driverJSON.iterator();
-        while (iterator.hasNext()) {
-            if (iterator.next() == ("" + driverCount)) {
-                break;
+
+            JSONObject json = (JSONObject) new JSONParser().parse(output);
+            JSONObject mrData = (JSONObject) json.get("MRData");
+            JSONObject driverTable = (JSONObject) mrData.get("DriverTable");
+            JSONArray drivers = (JSONArray) driverTable.get("Drivers");
+            Iterator<String> iterator = drivers.iterator();
+            while (iterator.hasNext()) {
+                if (iterator.next() == ("" + driverCount)) {
+                    break;
+                }
+                setDriver(new Driver());
+                JSONObject object = (JSONObject) drivers.get(driverCount);
+
+                // Set the Driver specific details
+                getDriver().setDriverId((String) object.get("driverId"));
+                getDriver().setCode((String) object.get("code"));
+                getDriver().setPermanentNumber((String) object.get("permanentNumber"));
+                getDriver().setNationality((String) object.get("nationality"));
+                getDriver().setGivenName((String) object.get("givenName"));
+                getDriver().setFamilyName((String) object.get("familyName"));
+                getDriver().setPlaceOfBirth((String) object.get("dateOfBirth"));
+                getDriver().setUrl((String) object.get("url"));
+                Object jsonFile = parser.parse(new FileReader("src/main/resources/Drivers.json"));
+
+                // Image related + Constructor Team information
+                selectImageAndConstructorInfo(jsonFile, object);
+
+
+                // Increment the next Driver
+                driverCount++;
+                // Add the driver to our own ArrayList (so you can call it later)
+                driverList.add(getDriver());
             }
-            setDriver(new Driver());
-            JSONObject object = (JSONObject) driverJSON.get(driverCount);
-
-            // Set the Driver specific details
-            getDriver().setFirstName((String) object.get("firstName"));
-            getDriver().setLastName((String) object.get("lastName"));
-            getDriver().setPlaceOfBirth((String) object.get("placeOfBirth"));
-            getDriver().setCountry((String) object.get("country"));
+        }catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
         return getDriver();
     }
 
-    public Driver createTheDrivers() {
+    public Driver selectImageAndConstructorInfo(Object jsonFile, JSONObject jsonURLObject) throws IOException, ParseException {
+        JSONObject jsonObject = (JSONObject) jsonFile;
+        JSONArray driverJSON = (JSONArray) jsonObject.get("Driver");
+        int i = 0;
+        for (Object temp : driverJSON) {
+            JSONObject obj = (JSONObject) driverJSON.get(i);
+            if (obj.get("driverId").toString().equals((String) jsonURLObject.get("code"))) {
+
+                // Create the Display image
+                String driverImage = (String) obj.get("driverImage"); // Driver Display Image
+                getDriver().setDriverImage(setTheImage(driverImage));
+                // Create the Flag image
+                String imageStringFlag = (String) obj.get("driverFlag"); // Driver Flag Image
+                getDriver().setDriverFlag(setTheImage(imageStringFlag));
+
+                setConstructor(new Constructor());
+                // Create the Constructor logo image
+                String teamLogoString = (String) obj.get("teamLogo"); // Constructor Logo Image
+                getConstructor().setTeamLogo(setTheImage(teamLogoString));
+                for (Constructor.ConstructorId cid : Constructor.ConstructorId.values()) {
+                    if (cid.name().equals(obj.get("teamName"))) {
+                        getConstructor().setConstructorId(cid);
+                        getDriver().setConstructorInfo(getConstructor());
+                        break;
+                    }
+                }
+            }
+            i++;
+        }
+        return getDriver();
+    }
+
+    public Driver createDriversFromJSONFile() {
         JSONParser parser = new JSONParser();
         int driverCount = 0;
         try {
@@ -90,10 +152,10 @@ public class DriverMutator {
                 JSONObject object = (JSONObject) driverJSON.get(driverCount);
 
                 // Set the Driver specific details
-                getDriver().setFirstName((String) object.get("firstName"));
-                getDriver().setLastName((String) object.get("lastName"));
+                getDriver().setGivenName((String) object.get("firstName"));
+                getDriver().setFamilyName((String) object.get("lastName"));
                 getDriver().setPlaceOfBirth((String) object.get("placeOfBirth"));
-                getDriver().setCountry((String) object.get("country"));
+                getDriver().setNationality((String) object.get("country"));
                 // Create the driverDisplay picture
                 String imageString = (String) object.get("driverImage"); // JSON String name
                 BufferedImage bufferedImage;
@@ -122,15 +184,15 @@ public class DriverMutator {
                 getDriver().setDriverFlag(setTheImage(imageStringFlag));
 
 
-                setTeam(new Team());
-                // Create the Team logo image
-                String teamLogoString = (String) object.get("teamLogo"); // Team Logo Image
-                getTeam().setTeamLogo(setTheImage(teamLogoString));
+                setConstructor(new Constructor());
+                // Create the Constructor logo image
+                String teamLogoString = (String) object.get("teamLogo"); // Constructor Logo Image
+                getConstructor().setTeamLogo(setTheImage(teamLogoString));
 
-                for (Team.TeamName temp : Team.TeamName.values()) {
+                for (Constructor.ConstructorId temp : Constructor.ConstructorId.values()) {
                     if (temp.name().equals(object.get("teamName"))) {
-                        getTeam().setTeamName(temp);
-                        getDriver().setTeamInfo(getTeam());
+                        getConstructor().setConstructorId(temp);
+                        getDriver().setConstructorInfo(getConstructor());
 //                            System.out.println(temp.name() + " and " + object.get("teamName") + " are the same so add them now!");
                         break;
                     }
@@ -173,12 +235,12 @@ public class DriverMutator {
         this.statistics = statistics;
     }
 
-    public Team getTeam() {
-        return team;
+    public Constructor getConstructor() {
+        return constructor;
     }
 
-    public void setTeam(Team team) {
-        this.team = team;
+    public void setConstructor(Constructor constructor) {
+        this.constructor = constructor;
     }
 
     public ArrayList<Driver> getDriverList() {

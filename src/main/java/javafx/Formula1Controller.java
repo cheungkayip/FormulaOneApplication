@@ -8,27 +8,29 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import org.json.simple.parser.ParseException;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Formula1Controller implements Initializable {
     @FXML
-    private Button showButton; // fx:id="myButton" value injected by FXMLLoader
+    private TextField code;
     @FXML
-    private Button clearButton;
+    private TextField driverId;
     @FXML
-    private Button changeButton;
+    private TextField permanentNumber;
     @FXML
-    private TextField firstName;
+    private TextField givenName;
     @FXML
     private ImageView driverFlag;
     @FXML
-    private TextField lastName;
+    private TextField familyName;
     @FXML
     private TextField placeOfBirth;
     @FXML
-    private TextField country;
+    private TextField nationality;
     @FXML
     private TextField points;
     @FXML
@@ -42,13 +44,21 @@ public class Formula1Controller implements Initializable {
     @FXML
     private TextField highestGridPosition;
     @FXML
-    private TextField team;
+    private TextField constructor;
     @FXML
     private TextArea addedDrivers;
     @FXML
     private ImageView driverImage;
     @FXML
     private ImageView teamLogo;
+    @FXML
+    private Button fillDriversButton; // fx:id="myButton" value injected by FXMLLoader
+    @FXML
+    private Button clearButton;
+    @FXML
+    private Button changeButton;
+    @FXML
+    private Button showSelectedDriverButton;
     DriverMutator mutator = new DriverMutator();
 
     @Override
@@ -62,10 +72,13 @@ public class Formula1Controller implements Initializable {
         // Clear the Object
         mutator.clearTheDriver();
         // Clear Driver details Fields
-        firstName.setText("");
-        lastName.setText("");
+        code.setText("");
+        driverId.setText("");
+        permanentNumber.setText("");
+        givenName.setText("");
+        familyName.setText("");
         placeOfBirth.setText("");
-        country.setText("");
+        nationality.setText("");
         // Clear Statistics Fields
         points.setText("");
         numberOfPodiums.setText("");
@@ -74,7 +87,7 @@ public class Formula1Controller implements Initializable {
         highestRaceFinish.setText("");
         highestGridPosition.setText("");
         // Clear TeamInfo Fields
-        team.setText("");
+        constructor.setText("");
         addedDrivers.setText("");
         // Clear the Image
         driverImage.setImage(null);
@@ -85,31 +98,40 @@ public class Formula1Controller implements Initializable {
     }
 
     public void AddTheDrivers() {
-        assert showButton != null : "fx:id=\"myButton\" was not injected: check your FXML file 'Formula1.fxml'.";
-        showButton.setOnAction(event -> {
-        // Create the Drivers from the JSON File
-        mutator.createTheDrivers();
-        // Get driver specific info
-        firstName.setText(mutator.getDriver().getFirstName());
-        lastName.setText(mutator.getDriver().getLastName());
+        assert fillDriversButton != null : "fx:id=\"myButton\" was not injected: check your FXML file 'Formula1.fxml'.";
+        fillDriversButton.setOnAction(event -> {
+        // Create the Drivers from the JSON URL
+            try {
+                mutator.createDriversFromURL();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            // Get driver specific info
+        code.setText(mutator.getDriver().getCode());
+        driverId.setText(mutator.getDriver().getDriverId());
+        permanentNumber.setText(mutator.getDriver().getPermanentNumber());
+        givenName.setText(mutator.getDriver().getGivenName());
+        familyName.setText(mutator.getDriver().getFamilyName());
         placeOfBirth.setText(mutator.getDriver().getPlaceOfBirth());
-        country.setText(mutator.getDriver().getCountry());
+        nationality.setText(mutator.getDriver().getNationality());
 
         // Get driver statistics
-        points.setText(""+mutator.getDriver().getStatisticsInfo().getPoints());
-        numberOfPodiums.setText(""+mutator.getDriver().getStatisticsInfo().getNumberOfPodiums());
-        grandPrixEntered.setText(""+mutator.getDriver().getStatisticsInfo().getGrandPrixEntered());
-        worldChampionships.setText(""+mutator.getDriver().getStatisticsInfo().getWorldChampionships());
-        highestRaceFinish.setText(""+mutator.getDriver().getStatisticsInfo().getHighestRaceFinish());
-        highestGridPosition.setText(""+mutator.getDriver().getStatisticsInfo().getHighestGridPosition());
+//        points.setText(""+mutator.getDriver().getStatisticsInfo().getPoints());
+//        numberOfPodiums.setText(""+mutator.getDriver().getStatisticsInfo().getNumberOfPodiums());
+//        grandPrixEntered.setText(""+mutator.getDriver().getStatisticsInfo().getGrandPrixEntered());
+//        worldChampionships.setText(""+mutator.getDriver().getStatisticsInfo().getWorldChampionships());
+//        highestRaceFinish.setText(""+mutator.getDriver().getStatisticsInfo().getHighestRaceFinish());
+//        highestGridPosition.setText(""+mutator.getDriver().getStatisticsInfo().getHighestGridPosition());
 
-        // Get Team Info
-        team.setText(""+mutator.getDriver().getTeamInfo().getTeamName());
+        // Get Constructor Info
+        constructor.setText(""+mutator.getDriver().getConstructorInfo().getConstructorId());
 
         // Set Drivers Display Picture + Flag
         driverImage.setImage(mutator.getDriver().getDriverImage().getImage());
         driverFlag.setImage(mutator.getDriver().getDriverFlag().getImage());
-        teamLogo.setImage(mutator.getTeam().getTeamLogo().getImage());
+        teamLogo.setImage(mutator.getConstructor().getTeamLogo().getImage());
         // Display Drivers that were from the JSON File
             String theResult;
         mutator.getDriver().setBuffer(new StringBuffer());

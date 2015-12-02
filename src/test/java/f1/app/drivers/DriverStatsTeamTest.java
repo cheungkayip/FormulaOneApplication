@@ -1,25 +1,27 @@
 package f1.app.drivers;
 
+import f1.app.constructor.Constructor;
 import f1.app.statistics.Statistics;
-import f1.app.teams.Team;
+import org.json.simple.parser.ParseException;
+import org.junit.Ignore;
 import org.junit.Test;
 
-import java.util.ArrayList;
+import java.io.IOException;
 
 /**
  * Created by kayipcheung on 28-11-15.
  */
 public class DriverStatsTeamTest {
     @Test
-    public void DriverClassTest(){
+    public void testASingleDriver(){
         // Test a single driver
         DriverMutator mutator = new DriverMutator();
         mutator.setDriver(new Driver());
 
-        mutator.getDriver().setFirstName("Sebastian");
-        mutator.getDriver().setLastName("Vettel");
+        mutator.getDriver().setGivenName("Sebastian");
+        mutator.getDriver().setFamilyName("Vettel");
         mutator.getDriver().setPlaceOfBirth("Heppenheim, Germany");
-        mutator.getDriver().setCountry("Germany");
+        mutator.getDriver().setNationality("Germany");
 
         mutator.setStatistics(new Statistics());
         mutator.getStatistics().setNumberOfPodiums(79);
@@ -30,18 +32,18 @@ public class DriverStatsTeamTest {
         mutator.getStatistics().setHighestGridPosition(1);
         mutator.getDriver().setStatisticsInfo(mutator.getStatistics());
 
-        mutator.setTeam(new Team());
-        mutator.getTeam().setTeamName(Team.TeamName.FERRARI);
-        mutator.getDriver().setTeamInfo(mutator.getTeam());
+        mutator.setConstructor(new Constructor());
+        mutator.getConstructor().setConstructorId(Constructor.ConstructorId.FERRARI);
+        mutator.getDriver().setConstructorInfo(mutator.getConstructor());
         mutator.getDriver().setBuffer(new StringBuffer());
         System.out.println(mutator.getDriver().toString(mutator.getDriver()));
 }
-
+    @Ignore
     @Test
-    public void getDriversFromJSONFile(){
+    public void testDriversFromJSONFile(){
         // Test multiple drivers added to ArrayList + Read From JSON
         DriverMutator mutator = new DriverMutator();
-        mutator.createTheDrivers();
+        mutator.createDriversFromJSONFile();
         mutator.getDriver().setBuffer(new StringBuffer());
         System.out.println("Results from the Object: \n" + mutator.getDriver().toString(mutator.getDriver()));
         System.out.println("Results from the ArrayList: \n");
@@ -52,6 +54,14 @@ public class DriverStatsTeamTest {
 
             }
 
+    }
+
+    @Test
+    public void testDriversFromUrl() throws IOException, ParseException {
+        DriverMutator mutator = new DriverMutator();
+        mutator.createDriversFromURL();
+        mutator.getDriver().setBuffer(new StringBuffer());
+        System.out.println("Results from the Object: \n" + mutator.getDriver().toString(mutator.getDriver()));
     }
 
 }
