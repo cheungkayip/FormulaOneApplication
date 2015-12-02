@@ -9,14 +9,18 @@ import java.io.IOException;
  */
 public class ErgastTest {
     @Test
-    public void testGetJSONDrivers() throws IOException {
+    public void testDriversJSON() throws IOException {
         Ergast ergast = new Ergast();
-        String output = "\nOutput: \n" + ergast.callUrlToGetJSONData("http://ergast.com/api/f1/2015/drivers.json?callback=myParser");
+        String output = "\n Drivers Output: \n" +
+                ergast.callUrlToGetJSONData("http://ergast.com/api/f1/2015/drivers.json");
         System.out.println(output);
     }
 
     @Test
-    public void testGetJSONandPutInObjects(){
-
+    public void testConstructorsJSON() throws IOException {
+        Ergast ergast = new Ergast();
+        String output = "\n Constructors Output: \n" +
+                ergast.callUrlToGetJSONData("http://ergast.com/api/f1/2015/constructors.json");
+        System.out.println(output);
     }
 }

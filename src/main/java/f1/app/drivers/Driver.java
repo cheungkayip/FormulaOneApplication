@@ -149,12 +149,6 @@ public class Driver {
                 "Permanent Number: " + driver.getPermanentNumber() + "\n" +
                 "Nationality" + driver.getNationality() + "\n" +
                 "Weblink URL" + driver.getUrl() + "\n"
-//                "Number of Podiums: " + driver.getStatisticsInfo().getNumberOfPodiums() + "\n" +
-//                "Points: " + driver.getStatisticsInfo().getPoints() + "\n" +
-//                "Grand Prix Entered: " + driver.getStatisticsInfo().getGrandPrixEntered() + "\n" +
-//                "World Championships: " + driver.getStatisticsInfo().getWorldChampionships() + "\n" +
-//                "Highest Race Finish: " + driver.getStatisticsInfo().getHighestRaceFinish() + "\n" +
-//                "Highest Grid Position: " + driver.getStatisticsInfo().getHighestGridPosition() + "\n" +
 //                "Constructor Name: " + driver.getConstructorInfo().getConstructorId() + "\n" + "\n"
         );
         return getBuffer();

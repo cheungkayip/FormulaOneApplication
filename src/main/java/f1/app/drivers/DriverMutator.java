@@ -79,10 +79,12 @@ public class DriverMutator {
                 getDriver().setFamilyName((String) object.get("familyName"));
                 getDriver().setPlaceOfBirth((String) object.get("dateOfBirth"));
                 getDriver().setUrl((String) object.get("url"));
-                Object jsonFile = parser.parse(new FileReader("src/main/resources/Drivers.json"));
 
                 // Image related + Constructor Team information
-                selectImageAndConstructorInfo(jsonFile, object);
+                Object jsonFile = parser.parse(new FileReader("src/main/resources/Drivers.json"));
+                JSONObject jsonObject = (JSONObject) jsonFile;
+                JSONArray driverJSON = (JSONArray) jsonObject.get("Driver");
+                selectImageAndConstructorInfo(driverJSON, object);
 
 
                 // Increment the next Driver
@@ -98,13 +100,11 @@ public class DriverMutator {
         return getDriver();
     }
 
-    public Driver selectImageAndConstructorInfo(Object jsonFile, JSONObject jsonURLObject) throws IOException, ParseException {
-        JSONObject jsonObject = (JSONObject) jsonFile;
-        JSONArray driverJSON = (JSONArray) jsonObject.get("Driver");
+    public Driver selectImageAndConstructorInfo(JSONArray driverJSON, JSONObject jsonURLObject) throws IOException, ParseException {
         int i = 0;
         for (Object temp : driverJSON) {
             JSONObject obj = (JSONObject) driverJSON.get(i);
-            if (obj.get("driverId").toString().equals((String) jsonURLObject.get("code"))) {
+            if (obj.get("driverId").toString().equals((String) jsonURLObject.get("code")) && obj.get("driverImage") != "") {
 
                 // Create the Display image
                 String driverImage = (String) obj.get("driverImage"); // Driver Display Image
@@ -120,6 +120,7 @@ public class DriverMutator {
                 for (Constructor.ConstructorId cid : Constructor.ConstructorId.values()) {
                     if (cid.name().equals(obj.get("teamName"))) {
                         getConstructor().setConstructorId(cid);
+
                         getDriver().setConstructorInfo(getConstructor());
                         break;
                     }
@@ -134,8 +135,6 @@ public class DriverMutator {
         JSONParser parser = new JSONParser();
         int driverCount = 0;
         try {
-            String currentDirectory = System.getProperty("user.dir");
-            System.out.println(currentDirectory);
             Object obj = parser.parse(new FileReader("src/main/resources/Drivers.json"));
             JSONObject jsonObject = (JSONObject) obj;
             JSONArray driverJSON = (JSONArray) jsonObject.get("Driver");
@@ -151,11 +150,6 @@ public class DriverMutator {
 
                 JSONObject object = (JSONObject) driverJSON.get(driverCount);
 
-                // Set the Driver specific details
-                getDriver().setGivenName((String) object.get("firstName"));
-                getDriver().setFamilyName((String) object.get("lastName"));
-                getDriver().setPlaceOfBirth((String) object.get("placeOfBirth"));
-                getDriver().setNationality((String) object.get("country"));
                 // Create the driverDisplay picture
                 String imageString = (String) object.get("driverImage"); // JSON String name
                 BufferedImage bufferedImage;
@@ -165,24 +159,12 @@ public class DriverMutator {
                 view.setImage(image);
                 getDriver().setDriverImage(view);
 
-                // Create Statistics Object
-                setStatistics(new Statistics());
-                // Set the Driver Statistics from the JSON file
-                getStatistics().setNumberOfPodiums((long) object.get("numberOfPodiums"));
-                getStatistics().setPoints((long) object.get("points"));
-                getStatistics().setGrandPrixEntered((long) object.get("grandPrixEntered"));
-                getStatistics().setWorldChampionships((long) object.get("worldChampionships"));
-                getStatistics().setHighestRaceFinish((long) object.get("highestRaceFinish"));
-                getStatistics().setHighestGridPosition((long) object.get("highestGridPosition"));
-                getDriver().setStatisticsInfo(getStatistics());
-
                 // Create the Display image
                 String driverImage = (String) object.get("driverImage"); // Driver Display Image
                 getDriver().setDriverImage(setTheImage(driverImage));
                 // Create the Flag image
                 String imageStringFlag = (String) object.get("driverFlag"); // Driver Flag Image
                 getDriver().setDriverFlag(setTheImage(imageStringFlag));
-
 
                 setConstructor(new Constructor());
                 // Create the Constructor logo image
