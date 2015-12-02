@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/f1/app/teams/Team.java" afterPath="$PROJECT_DIR$/src/main/java/f1/app/constructor/Constructor.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/f1/app/drivers/Driver.java" afterPath="$PROJECT_DIR$/src/main/java/f1/app/drivers/Driver.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/f1/app/drivers/DriverMutator.java" afterPath="$PROJECT_DIR$/src/main/java/f1/app/drivers/DriverMutator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/javafx/Formula1Controller.java" afterPath="$PROJECT_DIR$/src/main/java/javafx/Formula1Controller.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/Drivers.json" afterPath="$PROJECT_DIR$/src/main/resources/Drivers.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/Formula1.fxml" afterPath="$PROJECT_DIR$/src/main/resources/Formula1.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/f1/app/drivers/DriverStatsTeamTest.java" afterPath="$PROJECT_DIR$/src/test/java/f1/app/drivers/DriverStatsTeamTest.java" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -82,14 +75,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Formula1Controller.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Formula1Controller.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/javafx/Formula1Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4159292">
+            <state vertical-scroll-proportion="0.0">
               <caret line="44" column="42" selection-start-line="44" selection-start-column="42" selection-end-line="44" selection-end-column="42" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.3345725">
+              <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -166,19 +169,6 @@
             <state vertical-scroll-proportion="-15.041667">
               <caret line="95" column="34" selection-start-line="95" selection-start-column="34" selection-end-line="95" selection-end-column="34" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Object.java" pinned="false" current-in-tab="false">
-        <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/src.zip!/java/lang/Object.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="234" column="18" selection-start-line="234" selection-start-column="18" selection-end-line="234" selection-end-column="18" />
-              <folding>
-                <element signature="e#10065#10066#0" expanded="true" />
-                <element signature="e#10148#10149#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -1075,7 +1065,13 @@
       <option name="project" value="LOCAL" />
       <updated>1448988370766</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="- Renamed Classes Constructor&#10;- Refactored DriverMutator to work with URL JSON&#10;- changed Unit Test from JSONFile to JSONURL&#10;- Application gets his data now from JSON url and not JSON file. The Images however are still extracted from Drivers.json">
+      <created>1449071731200</created>
+      <option name="number" value="00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1449071731200</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1115,7 +1111,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1440" y="-60" width="1920" height="1057" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1163,7 +1159,8 @@
     <MESSAGE value="- Reconstructed project to a Maven Structure src/main/java&#10;- Imports corrected&#10;- pom.xml corrected&#10;- Refactored Unit tests" />
     <MESSAGE value="- moved resources folder&#10;- moved Formula1.fxml to resources&#10;- added correct src/main/resources/ directories for Files extraction/reading" />
     <MESSAGE value="Added reading JSON + putting it into Objects" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added reading JSON + putting it into Objects" />
+    <MESSAGE value="- Renamed Classes Constructor&#10;- Refactored DriverMutator to work with URL JSON&#10;- changed Unit Test from JSONFile to JSONURL&#10;- Application gets his data now from JSON url and not JSON file. The Images however are still extracted from Drivers.json" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Renamed Classes Constructor&#10;- Refactored DriverMutator to work with URL JSON&#10;- changed Unit Test from JSONFile to JSONURL&#10;- Application gets his data now from JSON url and not JSON file. The Images however are still extracted from Drivers.json" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1449,14 +1446,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.32315978">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/f1/app/statistics/Statistics.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1578,11 +1567,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/Brazil.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/f1/app/drivers/DriverStatsTeamTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1682,13 +1666,26 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/Brazil.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/javafx/Formula1Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4159292">
+        <state vertical-scroll-proportion="0.0">
           <caret line="44" column="42" selection-start-line="44" selection-start-column="42" selection-end-line="44" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3345725">
+          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
