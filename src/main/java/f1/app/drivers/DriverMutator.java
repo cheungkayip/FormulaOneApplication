@@ -113,18 +113,19 @@ public class DriverMutator {
 
                 // Create the Display image
                 String driverImage = (String) obj.get("driverImage"); // Driver Display Image
-                getDriver().setDriverImage(setTheImage(driverImage));
+                getDriver().setDriverImage(setTheImage("src/main/resources/Drivers/" + driverImage));
                 // Create the Flag image
                 String imageStringFlag = (String) obj.get("driverFlag"); // Driver Flag Image
-                getDriver().setDriverFlag(setTheImage(imageStringFlag));
+                getDriver().setDriverFlag(setTheImage("src/main/resources/Flags/" + imageStringFlag));
                 // Create the Flag image
                 String helmet = (String) obj.get("helmet"); // Driver Flag Image
-                getDriver().setDriverHelmet(setTheImage(helmet));
+                getDriver().setDriverHelmet(setTheImage("src/main/resources/Helmets/" + helmet));
 
-                setConstructor(new Constructor());
                 // Create the Constructor logo image
+                setConstructor(new Constructor());
                 String teamLogoString = (String) obj.get("teamLogo"); // Constructor Logo Image
-                getConstructor().setTeamLogo(setTheImage(teamLogoString));
+                getConstructor().setTeamLogo(setTheImage("src/main/resources/Constructors/" + teamLogoString));
+
                 for (Constructor.ConstructorId cid : Constructor.ConstructorId.values()) {
                     if (cid.name().equals(obj.get("teamName"))) {
                         getConstructor().setConstructorId(cid);
@@ -139,69 +140,9 @@ public class DriverMutator {
         return getDriver();
     }
 
-    public Driver createDriversFromJSONFile() {
-        JSONParser parser = new JSONParser();
-        int driverCount = 0;
-        try {
-            Object obj = parser.parse(new FileReader("src/main/resources/Drivers.json"));
-            JSONObject jsonObject = (JSONObject) obj;
-            JSONArray driverJSON = (JSONArray) jsonObject.get("Driver");
-
-            Iterator<String> iterator = driverJSON.iterator();
-            // Loop through all the JSON Array Objects to create a Driver object for each Driver
-            while (iterator.hasNext()) {
-                if (iterator.next() == ("" + driverCount)) {
-                    break;
-                }
-                // Create Driver Object
-                setDriver(new Driver());
-
-                JSONObject object = (JSONObject) driverJSON.get(driverCount);
-
-                // Create the driverDisplay picture
-                String imageString = (String) object.get("driverImage"); // JSON String name
-                BufferedImage bufferedImage;
-                bufferedImage = ImageIO.read(new File("src/main/resources/" + imageString));
-                Image image = SwingFXUtils.toFXImage(bufferedImage, null);
-                ImageView view = new ImageView();
-                view.setImage(image);
-                getDriver().setDriverImage(view);
-
-                // Create the Display image
-                String driverImage = (String) object.get("driverImage"); // Driver Display Image
-                getDriver().setDriverImage(setTheImage(driverImage));
-                // Create the Flag image
-                String imageStringFlag = (String) object.get("driverFlag"); // Driver Flag Image
-                getDriver().setDriverFlag(setTheImage(imageStringFlag));
-
-                setConstructor(new Constructor());
-                // Create the Constructor logo image
-                String teamLogoString = (String) object.get("teamLogo"); // Constructor Logo Image
-                getConstructor().setTeamLogo(setTheImage(teamLogoString));
-
-                for (Constructor.ConstructorId temp : Constructor.ConstructorId.values()) {
-                    if (temp.name().equals(object.get("teamName"))) {
-                        getConstructor().setConstructorId(temp);
-                        getDriver().setConstructorInfo(getConstructor());
-                        break;
-                    }
-                }
-                driverCount++;
-                getDriver().toString();
-                driverList.add(getDriver());
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return getDriver();
-    }
-
     public ImageView setTheImage(String imageString) throws IOException {
         BufferedImage bufferedImage;
-        bufferedImage = ImageIO.read(new File("src/main/resources/" + imageString));
+        bufferedImage = ImageIO.read(new File(imageString));
         Image image = SwingFXUtils.toFXImage(bufferedImage, null);
         ImageView view = new ImageView();
         view.setImage(image);
@@ -236,4 +177,52 @@ public class DriverMutator {
         return driverList;
     }
 
+    public Driver createDriversFromJSONFile() {
+        JSONParser parser = new JSONParser();
+        int driverCount = 0;
+        try {
+            Object obj = parser.parse(new FileReader("src/main/resources/Drivers.json"));
+            JSONObject jsonObject = (JSONObject) obj;
+            JSONArray driverJSON = (JSONArray) jsonObject.get("Driver");
+
+            Iterator<String> iterator = driverJSON.iterator();
+            // Loop through all the JSON Array Objects to create a Driver object for each Driver
+            while (iterator.hasNext()) {
+                if (iterator.next() == ("" + driverCount)) {
+                    break;
+                }
+                // Create Driver Object
+                setDriver(new Driver());
+                JSONObject object = (JSONObject) driverJSON.get(driverCount);
+                // Create the Display image
+                String driverImage = (String) object.get("driverImage"); // Driver Display Image
+                getDriver().setDriverImage(setTheImage("src/main/resources/Drivers/" + driverImage));
+                // Create the Flag image
+                String imageStringFlag = (String) object.get("driverFlag"); // Driver Flag Image
+                getDriver().setDriverFlag(setTheImage("src/main/resources/Flags/" + imageStringFlag));
+
+                setConstructor(new Constructor());
+                // Create the Constructor logo image
+                String teamLogoString = (String) object.get("teamLogo"); // Constructor Logo Image
+                getConstructor().setTeamLogo(setTheImage("src/main/resources/Constructors/" + teamLogoString));
+
+                for (Constructor.ConstructorId temp : Constructor.ConstructorId.values()) {
+                    if (temp.name().equals(object.get("teamName"))) {
+                        getConstructor().setConstructorId(temp);
+                        getDriver().setConstructorInfo(getConstructor());
+                        break;
+                    }
+                }
+                driverCount++;
+                getDriver().toString();
+                driverList.add(getDriver());
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return getDriver();
+    }
 }
