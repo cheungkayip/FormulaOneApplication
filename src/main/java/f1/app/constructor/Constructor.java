@@ -15,7 +15,7 @@ public class Constructor {
     private String constructorName;
     private String nationality;
     private ImageView teamLogo;
-
+    private StringBuffer buffer;
     public Constructor(){
 
     }
@@ -63,6 +63,20 @@ public class Constructor {
     public void setConstructorId(ConstructorId constructorId) {
         this.constructorId = constructorId;
     }
+    public StringBuffer toString(Constructor constructor){
+        getBuffer().append(
+                "Constructor ID: " + constructor.getConstructorId() + "\n" +
+                        "URL: " + constructor.getConstructorUrl() + "\n" +
+                        "Team Name: " + constructor.getConstructorName() + "\n" +
+                        "Nationality: " + constructor.getNationality() + "\n"
+        );
+        return getBuffer();
+    }
+    public StringBuffer getBuffer() {
+        return buffer;
+    }
 
-
+    public void setBuffer(StringBuffer buffer) {
+        this.buffer = buffer;
+    }
 }

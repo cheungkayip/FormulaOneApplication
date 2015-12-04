@@ -1,5 +1,7 @@
 package javafx;
 
+import f1.app.constructor.Constructor;
+import f1.app.constructor.ConstructorMutator;
 import f1.app.drivers.Driver;
 import f1.app.drivers.DriverMutator;
 import javafx.collections.FXCollections;
@@ -32,18 +34,6 @@ public class DriverController implements Initializable {
     @FXML
     private TextField nationality;
     @FXML
-    private TextField points;
-    @FXML
-    private TextField numberOfPodiums;
-    @FXML
-    private TextField grandPrixEntered;
-    @FXML
-    private TextField worldChampionships;
-    @FXML
-    private TextField highestRaceFinish;
-    @FXML
-    private TextField highestGridPosition;
-    @FXML
     private TextField constructor;
     @FXML
     private TextArea addedDrivers;
@@ -54,22 +44,20 @@ public class DriverController implements Initializable {
     @FXML
     private ImageView driverHelmet;
     @FXML
-    private Button fillDriversButton; // fx:id="myButton" value injected by FXMLLoader
-    @FXML
     private Button clearButton;
     @FXML
     private Button changeButton;
     @FXML
     private Button showSelectedDriverButton;
-
     @FXML
-    public ComboBox driversCombobox;
+    public ChoiceBox driversCombobox;
 
-    DriverMutator mutator = new DriverMutator();
-
+    DriverMutator driverMutator = new DriverMutator();
+    ConstructorMutator constructorMutator = new ConstructorMutator();
+    ArrayList<Constructor> constructorList = new ArrayList<>();
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        getAllDriversButton();
+        preLoadTheApplicationWithData();
         clearButton();
         modifyDriverButton();
         showDriverButton();
@@ -79,10 +67,10 @@ public class DriverController implements Initializable {
         showSelectedDriverButton.setOnAction(event -> {
                     // Get Selected value first
                     String selectedValue = (String) driversCombobox.getValue();
-                    for (Driver driver : mutator.getDriverList()) {
+                    for (Driver driver : driverMutator.getDriverList()) {
                         if (selectedValue.contentEquals(driver.getGivenName() + " " + driver.getFamilyName())) {
-                            mutator.setDriver(driver);
-                            mutator.setConstructor(driver.getConstructorInfo());
+                            driverMutator.setDriver(driver);
+                            driverMutator.setConstructor(driver.getConstructorInfo());
                             fillTheDriverFields();
                             break;
                         }
@@ -94,37 +82,8 @@ public class DriverController implements Initializable {
     public void clearButton() {
         clearButton.setOnAction(event -> {
             // Clear the Object
-            mutator.clearTheDriver();
-            driversCombobox.setItems(FXCollections.observableArrayList());
+            driverMutator.clearTheDriver();
             clearTheDriverFields();
-        });
-    }
-
-    public void getAllDriversButton() {
-        assert fillDriversButton != null : "fx:id=\"myButton\" was not injected: check your FXML file 'Formula1.fxml'.";
-        fillDriversButton.setOnAction(event -> {
-            // Create the Drivers from the JSON URL
-            try {
-                mutator.createDriversFromURL();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-
-            fillTheDriverFields();
-
-            // Fetch the ArrayList + Fill the Choicebox with data
-            ArrayList<Driver> listOfAllDrivers = mutator.getDriverList();
-            ArrayList<String> driverNames = new ArrayList<>();
-            for (int i = 0; i < listOfAllDrivers.size(); i++) {
-                String givenName = listOfAllDrivers.get(i).getGivenName();
-                String familyName = listOfAllDrivers.get(i).getFamilyName();
-                driverNames.add(givenName + " " + familyName);
-            }
-            driversCombobox.setItems(FXCollections.observableArrayList(driverNames));
-            System.out.println(driversCombobox.getItems());
-
         });
     }
 
@@ -132,36 +91,64 @@ public class DriverController implements Initializable {
         //TODO: IMPLEMENT
     }
 
+    public void preLoadTheApplicationWithData(){
+        // Create the Drivers from the JSON URL
+        try {
+            driverMutator.createDriversFromURL();
+            constructorList = constructorMutator.getAllTheConstructorInformation();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        fillTheDriverFields();
+
+        // Fetch the ArrayList + Fill the Choicebox with data
+        ArrayList<Driver> listOfAllDrivers = driverMutator.getDriverList();
+        ArrayList<String> driverNames = new ArrayList<>();
+        for (int i = 0; i < listOfAllDrivers.size(); i++) {
+            String givenName = listOfAllDrivers.get(i).getGivenName();
+            String familyName = listOfAllDrivers.get(i).getFamilyName();
+            driverNames.add(givenName + " " + familyName);
+        }
+        driversCombobox.setItems(FXCollections.observableArrayList(driverNames));
+        System.out.println(driversCombobox.getItems());
+    }
+
     public void fillTheDriverFields() {
         // Get driver specific info
-        code.setText(mutator.getDriver().getCode());
-        driverId.setText(mutator.getDriver().getDriverId());
-        permanentNumber.setText(mutator.getDriver().getPermanentNumber());
-        givenName.setText(mutator.getDriver().getGivenName());
-        familyName.setText(mutator.getDriver().getFamilyName());
-        dateOfBirth.setText(mutator.getDriver().getPlaceOfBirth());
-        nationality.setText(mutator.getDriver().getNationality());
+        code.setText(driverMutator.getDriver().getCode());
+        driverId.setText(driverMutator.getDriver().getDriverId());
+        permanentNumber.setText(driverMutator.getDriver().getPermanentNumber());
+        givenName.setText(driverMutator.getDriver().getGivenName());
+        familyName.setText(driverMutator.getDriver().getFamilyName());
+        dateOfBirth.setText(driverMutator.getDriver().getPlaceOfBirth());
+        nationality.setText(driverMutator.getDriver().getNationality());
 
+        for(Constructor temp: constructorList){
+            if(temp.getConstructorId() != null){
+
+            }
+        }
         // Get Constructor Info
-        constructor.setText("" + mutator.getDriver().getConstructorInfo().getConstructorId());
+//        constructor.setText("" + constructorMutator.getDriver().getConstructorInfo().getConstructorId());
 
         // Set Drivers Display Picture + Flag
-        driverImage.setImage(mutator.getDriver().getDriverImage().getImage());
-        driverFlag.setImage(mutator.getDriver().getDriverFlag().getImage());
-        teamLogo.setImage(mutator.getConstructor().getTeamLogo().getImage());
-        driverHelmet.setImage(mutator.getDriver().getDriverHelmet().getImage());
+        driverImage.setImage(driverMutator.getDriver().getDriverImage().getImage());
+        driverFlag.setImage(driverMutator.getDriver().getDriverFlag().getImage());
+        driverHelmet.setImage(driverMutator.getDriver().getDriverHelmet().getImage());
+        teamLogo.setImage(constructorMutator.getConstructor().getTeamLogo().getImage());
         // Display Drivers that were from the JSON File
-        mutator.getDriver().setBuffer(new StringBuffer());
-        for (Driver temp : mutator.getDriverList()) {
-            mutator.getDriver().toString(temp);
+        driverMutator.getDriver().setBuffer(new StringBuffer());
+        for (Driver temp : driverMutator.getDriverList()) {
+            driverMutator.getDriver().toString(temp);
         }
-        StringBuffer buffer = mutator.getDriver().getBuffer();
+        StringBuffer buffer = driverMutator.getDriver().getBuffer();
         addedDrivers.setText("" + buffer);
     }
 
     public void clearTheDriverFields(){
-        //In case you keep pressing "Get all Drivers" button clear the Combobox first to prevent double values
-        driversCombobox.setItems(FXCollections.observableArrayList());
         // Clear Driver details Fields
         code.setText("");
         driverId.setText("");
@@ -170,13 +157,6 @@ public class DriverController implements Initializable {
         familyName.setText("");
         dateOfBirth.setText("");
         nationality.setText("");
-        // Clear Statistics Fields
-        points.setText("");
-        numberOfPodiums.setText("");
-        grandPrixEntered.setText("");
-        worldChampionships.setText("");
-        highestRaceFinish.setText("");
-        highestGridPosition.setText("");
         // Clear TeamInfo Fields
         constructor.setText("");
         addedDrivers.setText("");
