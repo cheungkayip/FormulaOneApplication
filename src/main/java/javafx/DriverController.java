@@ -126,19 +126,14 @@ public class DriverController implements Initializable {
         dateOfBirth.setText(driverMutator.getDriver().getPlaceOfBirth());
         nationality.setText(driverMutator.getDriver().getNationality());
 
-        for(Constructor temp: constructorList){
-            if(temp.getConstructorId() != null){
-
-            }
-        }
         // Get Constructor Info
-//        constructor.setText("" + constructorMutator.getDriver().getConstructorInfo().getConstructorId());
+        constructor.setText("" + driverMutator.getDriver().getConstructorInfo().getConstructorId());
 
         // Set Drivers Display Picture + Flag
         driverImage.setImage(driverMutator.getDriver().getDriverImage().getImage());
         driverFlag.setImage(driverMutator.getDriver().getDriverFlag().getImage());
         driverHelmet.setImage(driverMutator.getDriver().getDriverHelmet().getImage());
-        teamLogo.setImage(constructorMutator.getConstructor().getTeamLogo().getImage());
+        teamLogo.setImage(driverMutator.getConstructor().getTeamLogo().getImage());
         // Display Drivers that were from the JSON File
         driverMutator.getDriver().setBuffer(new StringBuffer());
         for (Driver temp : driverMutator.getDriverList()) {
