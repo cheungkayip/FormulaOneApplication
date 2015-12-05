@@ -51,7 +51,7 @@
                 <version>8.2.0</version>
                 <configuration>
                     <vendor>DeTesters.nl B.V.</vendor>
-                    <mainClass>javafx.Main</mainClass>
+                    <mainClass>f1.app.main.F1MainApplication</mainClass>
                 </configuration>
             </plugin>
         </plugins>

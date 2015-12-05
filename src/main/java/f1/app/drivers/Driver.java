@@ -21,7 +21,6 @@ public class Driver {
     private String nationality;
     private Constructor constructorInfo;
     private String dateOfBirth;
-    private String placeOfBirth;
     private Statistics statisticsInfo;
     private ImageView driverImage;
     private ImageView driverFlag;
@@ -92,14 +91,6 @@ public class Driver {
         this.givenName = givenName;
     }
 
-    public String getMiddleName() {
-        return middleName;
-    }
-
-    public void setMiddleName(String middleName) {
-        this.middleName = middleName;
-    }
-
     public String getFamilyName() {
         return familyName;
     }
@@ -132,14 +123,6 @@ public class Driver {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public String getPlaceOfBirth() {
-        return placeOfBirth;
-    }
-
-    public void setPlaceOfBirth(String placeOfBirth) {
-        this.placeOfBirth = placeOfBirth;
-    }
-
     public Statistics getStatisticsInfo() {
         return statisticsInfo;
     }
@@ -156,8 +139,8 @@ public class Driver {
                 "Family Name: " + driver.getFamilyName() + "\n" +
                 "Date of Birth: " + driver.getDateOfBirth() + "\n" +
                 "Permanent Number: " + driver.getPermanentNumber() + "\n" +
-                "Nationality" + driver.getNationality() + "\n" +
-                "Weblink URL" + driver.getUrl() + "\n"
+                "Nationality: " + driver.getNationality() + "\n" +
+                "Weblink URL: " + driver.getUrl() + "\n" + "\n"
 //                "Constructor Name: " + driver.getConstructorInfo().getConstructorId() + "\n" + "\n"
         );
         return getBuffer();

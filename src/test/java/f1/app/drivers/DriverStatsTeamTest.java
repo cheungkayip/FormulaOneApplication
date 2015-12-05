@@ -20,7 +20,7 @@ public class DriverStatsTeamTest {
 
         mutator.getDriver().setGivenName("Sebastian");
         mutator.getDriver().setFamilyName("Vettel");
-        mutator.getDriver().setPlaceOfBirth("Heppenheim, Germany");
+        mutator.getDriver().setDateOfBirth("Heppenheim, Germany");
         mutator.getDriver().setNationality("Germany");
 
         mutator.setConstructor(new Constructor());

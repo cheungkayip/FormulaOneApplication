@@ -1,9 +1,14 @@
-package javafx;
+package f1.app.main;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.*;
 import javafx.geometry.Insets;
+import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -11,38 +16,38 @@ import javafx.scene.layout.Priority;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import java.awt.*;
+import java.io.File;
+import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Main extends Application {
+public class F1MainApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
         try {
-            BorderPane root = new BorderPane();
+            primaryStage.setTitle("Formula One Application - Drivers, Constructors, Races, Statistics etc");
 
-            GridPane gridpane = FXMLLoader.load(Main.class.getResource("/Formula1.fxml"));
+            TabPane gridpane = FXMLLoader.load(F1MainApplication.class.getResource("/Formula1.fxml"));
+
             Scene scene = new Scene(gridpane);
-            gridpane.setPrefSize(1024, 768);
-            gridpane.setPadding(new Insets(5));
-            gridpane.setHgap(5);
-            gridpane.setVgap(5);
+            gridpane.setPrefSize(1300, 1000);
+            gridpane.setPadding(new Insets(30,0,0,0));
             ColumnConstraints column1 = new ColumnConstraints(100);
             ColumnConstraints column2 = new ColumnConstraints(50, 150, 300);
             column2.setHgrow(Priority.ALWAYS);
-            gridpane.getColumnConstraints().addAll(column1, column2);
-
+//            gridpane.getColumnConstraints().addAll(column1, column2);
             primaryStage.setScene(scene);
-            primaryStage.setTitle("Formula One Application");
             primaryStage.show();
 
         } catch (Exception ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(F1MainApplication.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     public static void main(String[] args) {
 
-        Application.launch(Main.class, (java.lang.String[])null);
+        Application.launch(F1MainApplication.class, (java.lang.String[])null);
     }
 }

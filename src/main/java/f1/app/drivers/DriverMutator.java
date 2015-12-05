@@ -77,7 +77,7 @@ public class DriverMutator {
                 getDriver().setNationality((String) object.get("nationality"));
                 getDriver().setGivenName((String) object.get("givenName"));
                 getDriver().setFamilyName((String) object.get("familyName"));
-                getDriver().setPlaceOfBirth((String) object.get("dateOfBirth"));
+                getDriver().setDateOfBirth((String) object.get("dateOfBirth"));
                 getDriver().setUrl((String) object.get("url"));
 
 

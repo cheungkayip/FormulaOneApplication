@@ -1,0 +1,70 @@
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<GridPane hgap="5" vgap="5" xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.DriverController">
+    <padding>
+        <Insets top="25" right="25" bottom="10" left="25"/>
+    </padding>
+                <Label maxWidth="-Infinity" text="Driver and Team" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+
+                <ImageView fx:id="teamLogo" GridPane.columnIndex="1" GridPane.rowIndex="0" disable="false"
+                           fitHeight="150.0" fitWidth="250.0" layoutX="69.0" layoutY="322.0" pickOnBounds="true"
+                           preserveRatio="true"/>
+                <ImageView fx:id="driverFlag" GridPane.columnIndex="2" GridPane.rowIndex="1" disable="false"
+                           fitHeight="75.0" fitWidth="75.0" layoutX="69.0" layoutY="322.0" pickOnBounds="true"
+                           preserveRatio="true"/>
+                <ImageView fx:id="driverImage" GridPane.columnIndex="2" GridPane.rowIndex="0" disable="false"
+                           fitHeight="200.0" fitWidth="250.0" layoutX="69.0" layoutY="322.0" pickOnBounds="true"
+                           preserveRatio="true"/>
+                <ImageView fx:id="driverHelmet" GridPane.columnIndex="3" GridPane.rowIndex="0" disable="false"
+                           fitHeight="200.0" fitWidth="250.0" layoutX="69.0" layoutY="322.0" pickOnBounds="true"
+                           preserveRatio="true"/>
+
+                <Label maxWidth="-Infinity" text="Code:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <TextField fx:id="code" text="Code" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+                <Label wrapText="true" text="Permanent Number:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                <TextField fx:id="permanentNumber" text="permanentNumber" GridPane.columnIndex="1"
+                           GridPane.rowIndex="2"/>
+
+                <Label maxWidth="-Infinity" text="Driver ID:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                <TextField fx:id="driverId" text="Driver ID" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+                <Label text="Given Name:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+                <TextField fx:id="givenName" text="Given name" GridPane.columnIndex="1"
+                           GridPane.rowIndex="4"/>
+
+                <Label text="Family Name:" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+                <TextField fx:id="familyName" text="Family Name" GridPane.columnIndex="1"
+                           GridPane.rowIndex="5"/>
+
+                <Label text="Date of Birth:" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
+                <TextField fx:id="dateOfBirth" text="Date of Birth" GridPane.columnIndex="1"
+                           GridPane.rowIndex="6"/>
+
+                <Label text="Nationality:" GridPane.columnIndex="0" GridPane.rowIndex="7"/>
+                <TextField fx:id="nationality" text="Nationality" GridPane.columnIndex="1"
+                           GridPane.rowIndex="7"/>
+
+                <Label text="Constructor:" GridPane.columnIndex="0" GridPane.rowIndex="8"/>
+                <TextField fx:id="constructor" text="Constructor" GridPane.columnIndex="1"
+                           GridPane.rowIndex="8"/>
+
+                <Button fx:id="clearButton" mnemonicParsing="false" text="Clear The Fields" GridPane.columnIndex="2"
+                        GridPane.rowIndex="4"/>
+
+                <Button fx:id="changeButton" mnemonicParsing="false" text="Modify Driver" GridPane.columnIndex="2"
+                        GridPane.rowIndex="5"/>
+
+                <ChoiceBox fx:id="driversCombobox" layoutX="210.0" layoutY="108.0" prefHeight="27.0"
+                           GridPane.columnIndex="2" GridPane.rowIndex="7">
+                </ChoiceBox>
+
+                <Button fx:id="showSelectedDriverButton" mnemonicParsing="false" text="Show Selected Driver"
+                        GridPane.columnIndex="2" GridPane.rowIndex="8"/>
+
+                <Label text="Added Drivers:" GridPane.columnIndex="0" GridPane.rowIndex="9"/>
+                <TextArea fx:id="addedDrivers" text="Added Drivers" GridPane.columnIndex="1"
+                          GridPane.rowIndex="9"/>
+</GridPane>

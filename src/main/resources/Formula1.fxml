@@ -1,52 +1,21 @@
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.*?>
-<GridPane alignment="center" hgap="10" vgap="10" xmlns:fx="http://javafx.com/fxml" fx:controller="javafx.DriverController">
-    <padding><Insets top="25" right="25" bottom="10" left="25"/></padding>
-    <children>
-        <Label text="Driver and Team" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-
-        <ImageView fx:id="teamLogo" GridPane.columnIndex="1" GridPane.rowIndex="0" disable="false" fitHeight="150.0" fitWidth="250.0" layoutX="69.0" layoutY="322.0" pickOnBounds="true" preserveRatio="true"></ImageView>
-        <ImageView fx:id="driverFlag" GridPane.columnIndex="2" GridPane.rowIndex="1" disable="false" fitHeight="75.0" fitWidth="75.0" layoutX="69.0" layoutY="322.0" pickOnBounds="true" preserveRatio="true"></ImageView>
-        <ImageView fx:id="driverImage" GridPane.columnIndex="2" GridPane.rowIndex="0" disable="false" fitHeight="200.0" fitWidth="250.0" layoutX="69.0" layoutY="322.0" pickOnBounds="true" preserveRatio="true"></ImageView>
-        <ImageView fx:id="driverHelmet" GridPane.columnIndex="3" GridPane.rowIndex="0" disable="false" fitHeight="200.0" fitWidth="250.0" layoutX="69.0" layoutY="322.0" pickOnBounds="true" preserveRatio="true"></ImageView>
-
-        <Label text="Code:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-        <TextField fx:id="code" text="Code" GridPane.columnIndex="1" GridPane.rowIndex="1"></TextField>
-
-        <Label text="Permanent Number:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-        <TextField fx:id="permanentNumber" text="permanentNumber" GridPane.columnIndex="1" GridPane.rowIndex="2"></TextField>
-
-        <Label text="Driver ID:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
-        <TextField fx:id="driverId" text="Driver ID" GridPane.columnIndex="1" GridPane.rowIndex="3"></TextField>
-
-        <Label text="Given Name:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
-        <TextField fx:id="givenName" text="Given name" GridPane.columnIndex="1" GridPane.rowIndex="4"></TextField>
-
-        <Label text="Family Name:" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
-        <TextField fx:id="familyName" text="Family Name" GridPane.columnIndex="1" GridPane.rowIndex="5"></TextField>
-
-        <Label text="Date of Birth:" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
-        <TextField fx:id="dateOfBirth" text="Date of Birth" GridPane.columnIndex="1" GridPane.rowIndex="6"></TextField>
-
-        <Label text="Nationality:" GridPane.columnIndex="0" GridPane.rowIndex="7"/>
-        <TextField fx:id="nationality" text="Nationality" GridPane.columnIndex="1" GridPane.rowIndex="7"></TextField>
-
-        <Label text="Constructor:" GridPane.columnIndex="0" GridPane.rowIndex="8"/>
-        <TextField fx:id="constructor" text="Constructor" GridPane.columnIndex="1" GridPane.rowIndex="8"></TextField>
-
-        <Button fx:id="clearButton" mnemonicParsing="false" text="Clear The Fields" GridPane.columnIndex="2" GridPane.rowIndex="4"/>
-
-        <Button fx:id="changeButton" mnemonicParsing="false" text="Modify Driver" GridPane.columnIndex="2" GridPane.rowIndex="5"/>
-
-        <ChoiceBox fx:id="driversCombobox" layoutX="210.0" layoutY="108.0" prefHeight="27.0" GridPane.columnIndex="2" GridPane.rowIndex="7">
-        </ChoiceBox>
-
-        <Button fx:id="showSelectedDriverButton" mnemonicParsing="false" text="Show Selected Driver" GridPane.columnIndex="2" GridPane.rowIndex="8"/>
-
-        <Label text="Added Drivers:" GridPane.columnIndex="0" GridPane.rowIndex="9"/>
-        <TextArea fx:id="addedDrivers" text="Added Drivers" GridPane.columnIndex="1" GridPane.rowIndex="9"></TextArea>
-
-    </children>
-</GridPane>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<TabPane xmlns:fx="http://www.w3.org/1999/XSL/Transform">
+    <tabs>
+        <Tab text="Driver Information">
+            <content>
+                <fx:include fx:id="driverInformationTabPage" source="Driver.fxml"/>
+            </content>
+        </Tab>
+        <Tab text="Driver Standings">
+            <content>
+                <fx:include fx:id="driverStandingsTabPage" source="DriverStandings.fxml"/>
+            </content>
+        </Tab>
+        <Tab text="Constructor Standings">
+            <content>
+                <fx:include fx:id="constructorStandingsTabPage" source="ConstructorStandings.fxml"/>
+            </content>
+        </Tab>
+    </tabs>
+</TabPane>
