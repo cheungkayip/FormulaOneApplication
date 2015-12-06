@@ -58,7 +58,6 @@ public class DriverInfoController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         preLoadTheApplicationWithData();
         clearButton();
-        modifyDriverButton();
         showDriverButton();
     }
 
@@ -86,10 +85,6 @@ public class DriverInfoController implements Initializable {
         });
     }
 
-    public void modifyDriverButton() {
-        //TODO: IMPLEMENT
-    }
-
     public void preLoadTheApplicationWithData() {
         // Create the Drivers from the JSON URL
         try {
@@ -109,6 +104,7 @@ public class DriverInfoController implements Initializable {
             driverNames.add(givenName + " " + familyName);
         }
         driversChoicebox.setItems(FXCollections.observableArrayList(driverNames));
+        driversChoicebox.getSelectionModel().selectFirst();
         System.out.println(driversChoicebox.getItems());
     }
 

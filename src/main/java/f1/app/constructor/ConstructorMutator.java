@@ -70,7 +70,6 @@ public class ConstructorMutator {
             JSONObject mrData = (JSONObject) json.get("MRData");
             JSONObject constructorTable = (JSONObject) mrData.get("ConstructorTable");
             JSONArray constructors = (JSONArray) constructorTable.get("Constructors");
-//            Iterator<String> iterator = constructors.iterator();
             for (int i = 0;i < constructors.size();i++) {
                 if (constructors.size() == (i)) {
                     break;
@@ -83,17 +82,14 @@ public class ConstructorMutator {
                 JSONObject jsonObject = (JSONObject) jsonFile;
                 JSONArray constructorJSON = (JSONArray) jsonObject.get("Driver");
 
-                // Set the Constructor
                 GlobalF1 global = new GlobalF1();
                 // Set the Enum correctly
-                Constructor.ConstructorId id = decideWhichConstructorEnumToSelect((JSONObject) constructors.get(i), getDriver()); // Decide enum in the new method
+                Constructor.ConstructorId id = decideWhichConstructorEnumToSelect((JSONObject) constructors.get(i), getDriver());
                 getConstructor().setConstructorId(id);
                 getConstructor().setConstructorUrl((String) object.get("url"));
                 String idToUppercase = object.get("name").toString().toUpperCase();
                 getConstructor().setConstructorName(idToUppercase);
                 getConstructor().setNationality((String) object.get("nationality"));
-                // TeamLogo
-//                global.selectImagesForDrivers(constructorJSON, object, getDriver());
                 global.selectImagesForConstructor(constructorJSON, getConstructor());
 
                 // Add the driver to our own ArrayList (so you can call it later)

@@ -21,7 +21,6 @@ import java.util.Iterator;
  */
 public class DriverMutator {
     private Driver driver;
-    private Statistics statistics;
     private Constructor constructor;
     private Ergast ergast;
     private ArrayList<Driver> driverList = new ArrayList<Driver>();

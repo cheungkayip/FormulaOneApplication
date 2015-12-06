@@ -49,15 +49,12 @@
     <Button fx:id="clearButton" mnemonicParsing="false" text="Clear The Fields" GridPane.columnIndex="2"
             GridPane.rowIndex="4"/>
 
-    <Button fx:id="changeButton" mnemonicParsing="false" text="Modify Driver" GridPane.columnIndex="2"
-            GridPane.rowIndex="5"/>
-
     <ChoiceBox fx:id="driversChoicebox" layoutX="210.0" layoutY="108.0" prefHeight="27.0"
-               GridPane.columnIndex="2" GridPane.rowIndex="7">
+               GridPane.columnIndex="2" GridPane.rowIndex="2">
     </ChoiceBox>
 
     <Button fx:id="showSelectedDriverButton" mnemonicParsing="false" text="Show Selected Driver"
-            GridPane.columnIndex="2" GridPane.rowIndex="8"/>
+            GridPane.columnIndex="2" GridPane.rowIndex="3"/>
 
     <Label text="Added Drivers:" GridPane.columnIndex="0" GridPane.rowIndex="9"/>
     <TextArea fx:id="addedDrivers" text="Added Drivers" GridPane.columnIndex="1"
