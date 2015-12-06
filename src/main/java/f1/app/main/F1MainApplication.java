@@ -19,7 +19,7 @@ public class F1MainApplication extends Application {
         try {
             primaryStage.setTitle("Formula One Application - Drivers, Constructors, Races, Statistics etc");
 
-            TabPane gridpane = FXMLLoader.load(F1MainApplication.class.getResource("/Formula1.fxml"));
+            TabPane gridpane = FXMLLoader.load(F1MainApplication.class.getResource("/Main.fxml"));
 
             Scene scene = new Scene(gridpane);
             gridpane.setPrefSize(1300, 1000);

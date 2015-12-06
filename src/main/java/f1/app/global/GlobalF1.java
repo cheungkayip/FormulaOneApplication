@@ -20,7 +20,7 @@ import java.io.IOException;
  */
 public class GlobalF1 {
 
-    public Driver selectImagesForDrivers(JSONArray jsonFileArray, JSONObject jsonURLObject, Driver driver) throws IOException, ParseException {
+    public Driver selectImagesForDrivers(JSONArray jsonFileArray, JSONObject jsonURLObject, Driver driver, Constructor constructor) throws IOException, ParseException {
         int i = 0;
         for (Object temp : jsonFileArray) {
 
@@ -36,27 +36,27 @@ public class GlobalF1 {
                     // Create the Flag image
                     String helmet = (String) obj.get("helmet"); // Driver Flag Image
                     driver.setDriverHelmet(setTheImage("src/main/resources/Helmets/" + helmet));
+
+                    // Because the Driver Information page only needs the Teamlogo we add it over here
+                    String teamLogoString = (String) obj.get("teamLogo"); // Constructor Logo Image
+                    constructor.setTeamLogo(setTheImage("src/main/resources/Constructors/" + teamLogoString));
+                    driver.setConstructorInfo(constructor);
+                    driver.getConstructorInfo().setTeamLogo(constructor.getTeamLogo());
             }
             i++;
         }
         return driver;
     }
 
-    public Constructor selectImagesForConstructor(JSONArray jsonFileArray, JSONObject jsonURLObject, Constructor constructor, Driver driver) throws IOException {
-        int i = 0;
-        JSONObject obj = (JSONObject) jsonFileArray.get(i);
-        for (Object temp : jsonFileArray) {
+    public Constructor selectImagesForConstructor(JSONArray jsonFileArray, Constructor constructor) throws IOException {
+
+        JSONObject obj = null;
+        for (int i = 0;i < jsonFileArray.size();i++) {
             // Constructor Related
-
-            String teamLogoString = (String) obj.get("teamLogo"); // Constructor Logo Image
-            constructor.setTeamLogo(setTheImage("src/main/resources/Constructors/" + teamLogoString));
-
-            i++;
-        }
-        for (Constructor.ConstructorId cid : Constructor.ConstructorId.values()) {
-            if (cid.name().equals(obj.get("teamName"))) {
-                constructor.setConstructorId(cid);
-                driver.setConstructorInfo(constructor);
+            obj = (JSONObject) jsonFileArray.get(i);
+            if(obj.get("teamName").toString().equals(constructor.getConstructorId().toString())) {
+                String teamLogoString = (String) obj.get("teamLogo"); // Constructor Logo Image
+                constructor.setTeamLogo(setTheImage("src/main/resources/Constructors/" + teamLogoString));
                 break;
             }
         }

@@ -75,8 +75,8 @@ public class DriverMutator {
                 JSONObject jsonObject = (JSONObject) jsonFile;
                 JSONArray jsonFileArray = (JSONArray) jsonObject.get("Driver");
                 GlobalF1 global = new GlobalF1();
-                global.selectImagesForDrivers(jsonFileArray, object, getDriver()); // Access Global class to set the Images
-                global.selectImagesForConstructor(jsonFileArray, object, getConstructor(),getDriver());
+                global.selectImagesForDrivers(jsonFileArray, object, getDriver(), getConstructor()); // Access Global class to set the Images
+
                 // Increment the next Driver
                 driverCount++;
                 // Add the driver to our own ArrayList (so you can call it later)

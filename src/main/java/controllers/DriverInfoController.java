@@ -37,8 +37,6 @@ public class DriverInfoController implements Initializable {
     @FXML
     private TextField nationality;
     @FXML
-    private TextField constructor;
-    @FXML
     private TextArea addedDrivers;
     @FXML
     private ImageView driverImage;
@@ -51,15 +49,10 @@ public class DriverInfoController implements Initializable {
     @FXML
     private Button showSelectedDriverButton;
     @FXML
-    public ChoiceBox<String> driversCombobox;
+    public ChoiceBox<String> driversChoicebox;
 
     private DriverMutator driverMutator = new DriverMutator();
     private ConstructorMutator constructorMutator = new ConstructorMutator();
-    private ArrayList<Constructor> constructorList = new ArrayList<>();
-
-    public ArrayList<Constructor> getConstructorList() {
-        return constructorList;
-    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -72,7 +65,7 @@ public class DriverInfoController implements Initializable {
     public void showDriverButton() {
         showSelectedDriverButton.setOnAction(event -> {
                     // Get Selected value first
-                    String selectedValue = driversCombobox.getValue();
+                    String selectedValue = driversChoicebox.getValue();
                     for (Driver driver : driverMutator.getDriverList()) {
                         if (selectedValue.contentEquals(driver.getGivenName() + " " + driver.getFamilyName())) {
                             driverMutator.setDriver(driver);
@@ -101,7 +94,6 @@ public class DriverInfoController implements Initializable {
         // Create the Drivers from the JSON URL
         try {
             driverMutator.createDriversFromURL();
-            constructorList = constructorMutator.getAllTheConstructorInformation();
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
@@ -116,8 +108,8 @@ public class DriverInfoController implements Initializable {
             String familyName = listOfAllDriver.getFamilyName();
             driverNames.add(givenName + " " + familyName);
         }
-        driversCombobox.setItems(FXCollections.observableArrayList(driverNames));
-        System.out.println(driversCombobox.getItems());
+        driversChoicebox.setItems(FXCollections.observableArrayList(driverNames));
+        System.out.println(driversChoicebox.getItems());
     }
 
     public void fillTheDriverFields() {
@@ -129,9 +121,6 @@ public class DriverInfoController implements Initializable {
         familyName.setText(driverMutator.getDriver().getFamilyName());
         dateOfBirth.setText(driverMutator.getDriver().getDateOfBirth());
         nationality.setText(driverMutator.getDriver().getNationality());
-
-        // Get Constructor Info
-        constructor.setText("" + driverMutator.getDriver().getConstructorInfo().getConstructorId());
 
         // Set Drivers Display Picture + Flag
         driverImage.setImage(driverMutator.getDriver().getDriverImage().getImage());
@@ -157,7 +146,6 @@ public class DriverInfoController implements Initializable {
         dateOfBirth.setText("");
         nationality.setText("");
         // Clear TeamInfo Fields
-        constructor.setText("");
         addedDrivers.setText("");
         // Clear the Image
         driverImage.setImage(null);

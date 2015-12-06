@@ -8,7 +8,7 @@ import javafx.scene.image.ImageView;
 public class Constructor {
     //http://ergast.com/api/f1/2015/constructors.json
    public enum ConstructorId {
-       FERRARI, MERCEDES, WILLIAMS, RED_BULL, FORCE_INDIA, LOTUS_F1, TORRO_ROSSO, SAUBER, MCLAREN, MARUSSIA
+       FERRARI, MERCEDES, WILLIAMS, RED_BULL, FORCE_INDIA, LOTUS_F1, TORO_ROSSO, SAUBER, MCLAREN, MANOR, MARUSSIA
    }
     private ConstructorId constructorId;
     private String constructorUrl;
@@ -63,11 +63,12 @@ public class Constructor {
     public void setConstructorId(ConstructorId constructorId) {
         this.constructorId = constructorId;
     }
+
     public StringBuffer toString(Constructor constructor){
         getBuffer().append(
                 "Constructor ID: " + constructor.getConstructorId() + "\n" +
                         "URL: " + constructor.getConstructorUrl() + "\n" +
-                        "Team Name: " + constructor.getConstructorName() + "\n" +
+                        "Constructor Name: " + constructor.getConstructorName() + "\n" +
                         "Nationality: " + constructor.getNationality() + "\n"
         );
         return getBuffer();

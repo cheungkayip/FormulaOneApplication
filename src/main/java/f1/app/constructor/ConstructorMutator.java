@@ -54,6 +54,11 @@ public class ConstructorMutator {
         this.ergast = ergast;
     }
 
+
+    public Constructor clearTheConstructor() {
+        constructor = null;
+        return constructor;
+    }
     public ArrayList<Constructor> getAllTheConstructorInformation(){
         JSONParser parser = new JSONParser();
         setErgast(new Ergast());
@@ -88,8 +93,9 @@ public class ConstructorMutator {
                 getConstructor().setConstructorName(idToUppercase);
                 getConstructor().setNationality((String) object.get("nationality"));
                 // TeamLogo
-                global.selectImagesForDrivers(constructorJSON, object, getDriver());
-                global.selectImagesForConstructor(constructorJSON,object,getConstructor(),getDriver());
+//                global.selectImagesForDrivers(constructorJSON, object, getDriver());
+                global.selectImagesForConstructor(constructorJSON, getConstructor());
+
                 // Add the driver to our own ArrayList (so you can call it later)
                 constructorsList.add(getConstructor());
                 setConstructorsList(constructorsList);
