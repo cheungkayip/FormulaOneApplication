@@ -19,7 +19,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class DriverController implements Initializable {
+public class DriverInfoController implements Initializable {
     @FXML
     private TextField code;
     @FXML

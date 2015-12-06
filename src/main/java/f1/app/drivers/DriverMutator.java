@@ -34,16 +34,6 @@ public class DriverMutator {
         this.ergast = ergast;
     }
 
-    public Driver modifyTheDriver() {
-        //TODO: IMPLEMENT
-        return getDriver();
-    }
-
-    public Driver showTheDriver() {
-
-        return getDriver();
-    }
-
     public Driver clearTheDriver() {
         driver = null;
         return driver;
@@ -80,26 +70,25 @@ public class DriverMutator {
                 getDriver().setDateOfBirth((String) object.get("dateOfBirth"));
                 getDriver().setUrl((String) object.get("url"));
 
-
-
                 // Image related + Constructor Team information
                 Object jsonFile = parser.parse(new FileReader("src/main/resources/Drivers.json"));
                 JSONObject jsonObject = (JSONObject) jsonFile;
                 JSONArray jsonFileArray = (JSONArray) jsonObject.get("Driver");
                 GlobalF1 global = new GlobalF1();
-                global.selectImagesForDriversOrConstructor(jsonFileArray, object, getDriver(), getConstructor()); // Access Global class to set the Images
-
+                global.selectImagesForDrivers(jsonFileArray, object, getDriver()); // Access Global class to set the Images
+                global.selectImagesForConstructor(jsonFileArray, object, getConstructor(),getDriver());
                 // Increment the next Driver
                 driverCount++;
                 // Add the driver to our own ArrayList (so you can call it later)
                 driverList.add(getDriver());
+                setDriverList(driverList);
             }
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        return driverList;
+        return getDriverList();
     }
 
     public Driver getDriver() {
@@ -108,14 +97,6 @@ public class DriverMutator {
 
     public void setDriver(Driver driver) {
         this.driver = driver;
-    }
-
-    public Statistics getStatistics() {
-        return statistics;
-    }
-
-    public void setStatistics(Statistics statistics) {
-        this.statistics = statistics;
     }
 
     public Constructor getConstructor() {
@@ -128,5 +109,9 @@ public class DriverMutator {
 
     public ArrayList<Driver> getDriverList() {
         return driverList;
+    }
+
+    public void setDriverList(ArrayList<Driver> driverList) {
+        this.driverList = driverList;
     }
 }

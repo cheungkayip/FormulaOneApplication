@@ -11,7 +11,6 @@ import org.json.simple.parser.ParseException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 /**
  * Created by kayipcheung on 04-12-15.
@@ -58,7 +57,6 @@ public class ConstructorMutator {
     public ArrayList<Constructor> getAllTheConstructorInformation(){
         JSONParser parser = new JSONParser();
         setErgast(new Ergast());
-        int count = 0;
         try {
             String output = getErgast().callUrlToGetJSONData("http://ergast.com/api/f1/2015/Constructors.json");
 
@@ -67,70 +65,52 @@ public class ConstructorMutator {
             JSONObject mrData = (JSONObject) json.get("MRData");
             JSONObject constructorTable = (JSONObject) mrData.get("ConstructorTable");
             JSONArray constructors = (JSONArray) constructorTable.get("Constructors");
-            Iterator<String> iterator = constructors.iterator();
-            while (iterator.hasNext()) {
-                if (iterator.next() == ("" + count)) {
+//            Iterator<String> iterator = constructors.iterator();
+            for (int i = 0;i < constructors.size();i++) {
+                if (constructors.size() == (i)) {
                     break;
                 }
                 setConstructor(new Constructor());
                 setDriver(new Driver());
 
-                JSONObject object = (JSONObject) constructors.get(count);
+                JSONObject object = (JSONObject) constructors.get(i);
                 Object jsonFile = parser.parse(new FileReader("src/main/resources/Drivers.json"));
                 JSONObject jsonObject = (JSONObject) jsonFile;
                 JSONArray constructorJSON = (JSONArray) jsonObject.get("Driver");
 
-                // Set the Driver specific details
-                getConstructor().setConstructorUrl((String) object.get("url"));
-                getConstructor().setNationality((String) object.get("nationality"));
-                // Set the Enum correctly
-                String idToUppercase = object.get("constructorId").toString().toUpperCase();
-                getConstructor().setConstructorName(idToUppercase);
+                // Set the Constructor
                 GlobalF1 global = new GlobalF1();
-
-                Constructor.ConstructorId id = decideWhichConstructorEnumToSelect(constructorJSON,global,getConstructor(), getDriver()); // Decide enum in the new method
+                // Set the Enum correctly
+                Constructor.ConstructorId id = decideWhichConstructorEnumToSelect((JSONObject) constructors.get(i), getDriver()); // Decide enum in the new method
                 getConstructor().setConstructorId(id);
-
-                // Image related + Constructor Team information
-
-                global.selectImagesForDriversOrConstructor(constructorJSON, object, driver, getConstructor());
-
-                // Increment the next Driver
-                count++;
+                getConstructor().setConstructorUrl((String) object.get("url"));
+                String idToUppercase = object.get("name").toString().toUpperCase();
+                getConstructor().setConstructorName(idToUppercase);
+                getConstructor().setNationality((String) object.get("nationality"));
+                // TeamLogo
+                global.selectImagesForDrivers(constructorJSON, object, getDriver());
+                global.selectImagesForConstructor(constructorJSON,object,getConstructor(),getDriver());
                 // Add the driver to our own ArrayList (so you can call it later)
                 constructorsList.add(getConstructor());
+                setConstructorsList(constructorsList);
             }
         }catch (IOException e) {
             e.printStackTrace();
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        return constructorsList;
+        return getConstructorsList();
     }
 
-    public Constructor.ConstructorId decideWhichConstructorEnumToSelect(JSONArray constructorJSON, GlobalF1 global, Constructor constructor, Driver driver) throws IOException {
-
-        JSONObject object = null;
-        for(int i = 0;i < constructorJSON.size();i++){
-            object = (JSONObject) constructorJSON.get(i);
-            if (object.containsKey("teamLogo")){
-                break;
-            }
-        }
-        if(object != null) {
-            String teamLogoString = (String) object.get("teamLogo"); // Constructor Logo Image
-            constructor.setTeamLogo(global.setTheImage("src/main/resources/Constructors/" + teamLogoString));
-
+    public Constructor.ConstructorId decideWhichConstructorEnumToSelect(JSONObject theIdfromArray, Driver driver) throws IOException {
             for (Constructor.ConstructorId temp : Constructor.ConstructorId.values()) {
-                if (temp.name().equals(object.get("teamName"))) {
-                    constructor.setConstructorId(temp);
-                    driver.setConstructorInfo(constructor);
+                String idToUppercase = theIdfromArray.get("constructorId").toString().toUpperCase();
+                if (temp.name().equals(idToUppercase)) {
+                    getConstructor().setConstructorId(temp);
+                    driver.setConstructorInfo(getConstructor());
                     break;
                 }
-            }
-        }else{
-            System.out.println("Something went wrong. Did not find a match for Constructor name");
         }
-        return constructor.getConstructorId();
+        return getConstructor().getConstructorId();
     }
 }

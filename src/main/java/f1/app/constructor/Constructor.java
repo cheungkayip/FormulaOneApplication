@@ -8,7 +8,7 @@ import javafx.scene.image.ImageView;
 public class Constructor {
     //http://ergast.com/api/f1/2015/constructors.json
    public enum ConstructorId {
-       FERRARI, MERCEDES, WILLIAMS, RED_BULL_RACING, FORCE_INDIA, LOTUS, TORRO_ROSSO, SAUBER, MCLAREN, MARUSSIA
+       FERRARI, MERCEDES, WILLIAMS, RED_BULL, FORCE_INDIA, LOTUS_F1, TORRO_ROSSO, SAUBER, MCLAREN, MARUSSIA
    }
     private ConstructorId constructorId;
     private String constructorUrl;

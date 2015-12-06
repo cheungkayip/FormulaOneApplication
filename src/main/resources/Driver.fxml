@@ -2,7 +2,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
-<GridPane hgap="5" vgap="5" xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.DriverController">
+<GridPane hgap="5" vgap="5" xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.DriverInfoController">
     <padding>
         <Insets top="25" right="25" bottom="10" left="25"/>
     </padding>

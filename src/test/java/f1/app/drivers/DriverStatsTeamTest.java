@@ -18,6 +18,8 @@ public class DriverStatsTeamTest {
         DriverMutator mutator = new DriverMutator();
         mutator.setDriver(new Driver());
 
+        mutator.getDriver().setDriverId("5");
+        mutator.getDriver().setUrl("http:\\/\\/en.wikipedia.org\\/wiki\\/Sebastian_Vettel");
         mutator.getDriver().setGivenName("Sebastian");
         mutator.getDriver().setFamilyName("Vettel");
         mutator.getDriver().setDateOfBirth("Heppenheim, Germany");

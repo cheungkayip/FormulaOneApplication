@@ -3,8 +3,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>java.f1.app</groupId>
-    <artifactId>formula-one-app</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <artifactId>formula-one-application</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>Maven Quick Start Archetype</name>

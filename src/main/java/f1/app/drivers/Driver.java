@@ -1,10 +1,7 @@
 package f1.app.drivers;
 
-import f1.app.statistics.Statistics;
 import f1.app.constructor.Constructor;
 import javafx.scene.image.ImageView;
-
-import java.util.Date;
 
 /**
  * Created by kayipcheung on 28-11-15.
@@ -16,12 +13,10 @@ public class Driver {
     private String permanentNumber;
     private String url;
     private String givenName;
-    private String middleName;
     private String familyName;
     private String nationality;
     private Constructor constructorInfo;
     private String dateOfBirth;
-    private Statistics statisticsInfo;
     private ImageView driverImage;
     private ImageView driverFlag;
     private ImageView driverHelmet;
@@ -123,24 +118,15 @@ public class Driver {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public Statistics getStatisticsInfo() {
-        return statisticsInfo;
-    }
-
-    public void setStatisticsInfo(Statistics statisticsInfo) {
-        this.statisticsInfo = statisticsInfo;
-    }
-
-
-    public StringBuffer toString(Driver driver){
+    public StringBuffer toString(Driver driver) {
         getBuffer().append(
                 "Driver ID: " + driver.getDriverId() + "\n" +
-                "Given Name: " + driver.getGivenName() + "\n" +
-                "Family Name: " + driver.getFamilyName() + "\n" +
-                "Date of Birth: " + driver.getDateOfBirth() + "\n" +
-                "Permanent Number: " + driver.getPermanentNumber() + "\n" +
-                "Nationality: " + driver.getNationality() + "\n" +
-                "Weblink URL: " + driver.getUrl() + "\n" + "\n"
+                        "Given Name: " + driver.getGivenName() + "\n" +
+                        "Family Name: " + driver.getFamilyName() + "\n" +
+                        "Date of Birth: " + driver.getDateOfBirth() + "\n" +
+                        "Permanent Number: " + driver.getPermanentNumber() + "\n" +
+                        "Nationality: " + driver.getNationality() + "\n" +
+                        "Weblink URL: " + driver.getUrl() + "\n" + "\n"
 //                "Constructor Name: " + driver.getConstructorInfo().getConstructorId() + "\n" + "\n"
         );
         return getBuffer();
