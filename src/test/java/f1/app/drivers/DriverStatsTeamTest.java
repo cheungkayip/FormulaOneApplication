@@ -36,8 +36,8 @@ public class DriverStatsTeamTest {
     public void testDriversFromUrl() throws IOException, ParseException {
         DriverMutator mutator = new DriverMutator();
         mutator.createDriversFromURL();
-        mutator.getDriver().setBuffer(new StringBuffer());
-        System.out.println("Results from the Object: \n" + mutator.getDriver().toString(mutator.getDriver()));
+//        mutator.getDriver().setBuffer(new StringBuffer());
+//        System.out.println("Results from the Object: \n" + mutator.getDriver().toString(mutator.getDriver()));
     }
 
 }

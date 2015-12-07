@@ -1,6 +1,8 @@
 package f1.app.drivers;
 
+import com.google.gson.Gson;
 import f1.app.constructor.Constructor;
+import f1.app.constructor.ConstructorMutator;
 import f1.app.ergast.url.Ergast;
 import f1.app.global.GlobalF1;
 import f1.app.statistics.Statistics;
@@ -11,8 +13,7 @@ import org.json.simple.parser.ParseException;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.*;
 
 
 /**
@@ -22,8 +23,10 @@ import java.util.Iterator;
 public class DriverMutator {
     private Driver driver;
     private Constructor constructor;
+    private DriverStandings driverStandings;
     private Ergast ergast;
-    private ArrayList<Driver> driverList = new ArrayList<Driver>();
+    private ArrayList<Driver> driverList = new ArrayList<>();
+    private ArrayList<DriverStandings> driverStandingsList = new ArrayList<>();
 
     public Ergast getErgast() {
         return ergast;
@@ -36,6 +39,14 @@ public class DriverMutator {
     public Driver clearTheDriver() {
         driver = null;
         return driver;
+    }
+
+    public DriverStandings getDriverStandings() {
+        return driverStandings;
+    }
+
+    public void setDriverStandings(DriverStandings driverStandings) {
+        this.driverStandings = driverStandings;
     }
 
     public ArrayList<Driver> createDriversFromURL() throws IOException, ParseException {
@@ -80,14 +91,79 @@ public class DriverMutator {
                 driverCount++;
                 // Add the driver to our own ArrayList (so you can call it later)
                 driverList.add(getDriver());
-                setDriverList(driverList);
             }
+            setDriverList(driverList);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ParseException e) {
             e.printStackTrace();
         }
         return getDriverList();
+    }
+
+    public ArrayList<DriverStandings> generateDriverStandings() throws IOException, ParseException {
+        setErgast(new Ergast());
+
+
+        String output = getErgast().callUrlToGetJSONData("http://ergast.com/api/f1/2015/driverStandings.json");
+        JSONObject json = (JSONObject) new JSONParser().parse(output);
+        JSONObject mrData = (JSONObject) json.get("MRData");
+        JSONObject standingsTable = (JSONObject) mrData.get("StandingsTable");
+        JSONArray standingLists = (JSONArray) standingsTable.get("StandingsLists");
+        JSONObject driverStandings = (JSONObject) standingLists.get(0);
+        JSONArray resultsOfADriver = (JSONArray) driverStandings.get("DriverStandings");
+
+        for(int i = 0; i < resultsOfADriver.size();i++){
+            setDriver(new Driver());
+            setConstructor(new Constructor());
+            setDriverStandings(new DriverStandings());
+            JSONObject temp = (JSONObject) resultsOfADriver.get(i);
+            getDriverStandings().setWins(temp.get("wins").toString());
+            getDriverStandings().setPositionText(temp.get("positionText").toString());
+
+            JSONObject driver = (JSONObject) temp.get("Driver");
+            getDriver().setCode(driver.get("code").toString());
+            getDriver().setDriverId(driver.get("driverId").toString());
+            if(!driver.get("code").toString().equals("RSS")){
+                getDriver().setPermanentNumber(driver.get("permanentNumber").toString());
+            }else if (driver.get("code").toString().equals("RSS")){
+                getDriver().setPermanentNumber("");
+            }
+            getDriver().setNationality(driver.get("nationality").toString());
+            getDriver().setGivenName(driver.get("givenName").toString());
+            getDriver().setFamilyName(driver.get("familyName").toString());
+            getDriver().setDateOfBirth(driver.get("dateOfBirth").toString());
+            getDriver().setUrl(driver.get("url").toString());
+            getDriverStandings().setDriver(getDriver());
+
+            JSONArray constructor = (JSONArray) temp.get("Constructors");
+            for(int x = 0; x < constructor.size();x++){
+                JSONObject cons = (JSONObject) constructor.get(x);
+                getConstructor().setNationality(cons.get("nationality").toString());
+                getConstructor().setConstructorName(cons.get("name").toString());
+
+                ConstructorMutator mutator = new ConstructorMutator();
+                getConstructor().setConstructorId(mutator.decideWhichConstructorEnumToSelect(cons,getDriver(), getConstructor()));
+                getConstructor().setConstructorUrl(cons.get("url").toString());
+                getDriverStandings().setConstructor(getConstructor());
+            }
+
+            getDriverStandings().setPosition(temp.get("position").toString());
+            getDriverStandings().setPoints(temp.get("points").toString());
+            driverStandingsList.add(getDriverStandings());
+        }
+        setDriverStandingsList(getDriverStandingsList());
+
+//        System.out.println(driverStandings);
+        return getDriverStandingsList();
+    }
+
+    public ArrayList<DriverStandings> getDriverStandingsList() {
+        return driverStandingsList;
+    }
+
+    public void setDriverStandingsList(ArrayList<DriverStandings> driverStandingsList) {
+        this.driverStandingsList = driverStandingsList;
     }
 
     public Driver getDriver() {

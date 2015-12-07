@@ -84,7 +84,7 @@ public class ConstructorMutator {
 
                 GlobalF1 global = new GlobalF1();
                 // Set the Enum correctly
-                Constructor.ConstructorId id = decideWhichConstructorEnumToSelect((JSONObject) constructors.get(i), getDriver());
+                Constructor.ConstructorId id = decideWhichConstructorEnumToSelect((JSONObject) constructors.get(i), getDriver(), getConstructor());
                 getConstructor().setConstructorId(id);
                 getConstructor().setConstructorUrl((String) object.get("url"));
                 String idToUppercase = object.get("name").toString().toUpperCase();
@@ -104,15 +104,15 @@ public class ConstructorMutator {
         return getConstructorsList();
     }
 
-    public Constructor.ConstructorId decideWhichConstructorEnumToSelect(JSONObject theIdfromArray, Driver driver) throws IOException {
+    public Constructor.ConstructorId decideWhichConstructorEnumToSelect(JSONObject theIdfromArray, Driver driver, Constructor constructor) throws IOException {
             for (Constructor.ConstructorId temp : Constructor.ConstructorId.values()) {
                 String idToUppercase = theIdfromArray.get("constructorId").toString().toUpperCase();
                 if (temp.name().equals(idToUppercase)) {
-                    getConstructor().setConstructorId(temp);
-                    driver.setConstructorInfo(getConstructor());
+                    constructor.setConstructorId(temp);
+                    driver.setConstructorInfo(constructor);
                     break;
                 }
         }
-        return getConstructor().getConstructorId();
+        return constructor.getConstructorId();
     }
 }
