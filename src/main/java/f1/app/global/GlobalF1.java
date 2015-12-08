@@ -25,8 +25,8 @@ public class GlobalF1 {
         int i = 0;
         for (Object temp : jsonFileArray) {
 
-            JSONObject obj = (JSONObject) jsonFileArray.get(i);
-                if (obj.get("driverId").toString().equals((String) jsonURLObject.get("code")) && obj.get("driverImage") != "") {
+            JSONObject obj = (JSONObject) temp;
+                if (obj.get("driverId").toString().equals(jsonURLObject.get("code")) && obj.get("driverImage") != "") {
                     // Driver Related
                     // Create the Display image
                     String driverImage = (String) obj.get("driverImage"); // Driver Display Image
@@ -44,18 +44,18 @@ public class GlobalF1 {
                     driver.setConstructorInfo(constructor);
                     driver.getConstructorInfo().setTeamLogo(constructor.getTeamLogo());
             }
-            i++;
+            i = i++;
         }
         return driver;
     }
 
     public Constructor selectImagesForConstructor(JSONArray jsonFileArray, Constructor constructor) throws IOException {
 
-        JSONObject obj = null;
-        for (int i = 0;i < jsonFileArray.size();i++) {
+        JSONObject obj;
+        for (Object aJsonFileArray : jsonFileArray) {
             // Constructor Related
-            obj = (JSONObject) jsonFileArray.get(i);
-            if(obj.get("teamName").toString().equals(constructor.getConstructorId().toString())) {
+            obj = (JSONObject) aJsonFileArray;
+            if (obj.get("teamName").toString().equals(constructor.getConstructorId().toString())) {
                 String teamLogoString = (String) obj.get("teamLogo"); // Constructor Logo Image
                 constructor.setTeamLogo(setTheImage("src/main/resources/Constructors/" + teamLogoString));
                 break;

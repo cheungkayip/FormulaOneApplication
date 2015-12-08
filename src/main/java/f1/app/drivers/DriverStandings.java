@@ -1,11 +1,6 @@
 package f1.app.drivers;
 
 import f1.app.constructor.Constructor;
-import org.json.simple.JSONObject;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by kayipcheung on 07-12-15.
@@ -18,15 +13,6 @@ public class DriverStandings {
     private Driver driver;
     private Constructor constructor;
     private StringBuffer buffer;
-    private Map<String, JSONObject> driverStandingsList = new HashMap<String, JSONObject>();
-
-    public Map<String, JSONObject> getDriverStandingsList() {
-        return driverStandingsList;
-    }
-
-    public void setDriverStandingsList(Map<String, JSONObject> driverStandingsList) {
-        this.driverStandingsList = driverStandingsList;
-    }
 
     public Constructor getConstructor() {
         return constructor;
@@ -78,7 +64,7 @@ public class DriverStandings {
 
     public StringBuffer toString(DriverStandings standings) {
         getBuffer().append(
-                        "Position: " + standings.getPosition() + "\n" +
+                "Position: " + standings.getPosition() + "\n" +
                         "Driver: " + standings.getDriver().getGivenName() + " " + standings.getDriver().getFamilyName() + "\n" +
                         "Constructor: " + standings.getConstructor().getConstructorName() + "\n" +
                         "Points: " + standings.getPoints() + "\n" +

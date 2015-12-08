@@ -1,11 +1,9 @@
 package f1.app.drivers;
 
-import com.google.gson.Gson;
 import f1.app.constructor.Constructor;
 import f1.app.constructor.ConstructorMutator;
 import f1.app.ergast.url.Ergast;
 import f1.app.global.GlobalF1;
-import f1.app.statistics.Statistics;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -13,7 +11,8 @@ import org.json.simple.parser.ParseException;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 
 /**
@@ -113,20 +112,20 @@ public class DriverMutator {
         JSONObject driverStandings = (JSONObject) standingLists.get(0);
         JSONArray resultsOfADriver = (JSONArray) driverStandings.get("DriverStandings");
 
-        for(int i = 0; i < resultsOfADriver.size();i++){
+        for (Object aResultsOfADriver : resultsOfADriver) {
             setDriver(new Driver());
             setConstructor(new Constructor());
             setDriverStandings(new DriverStandings());
-            JSONObject temp = (JSONObject) resultsOfADriver.get(i);
+            JSONObject temp = (JSONObject) aResultsOfADriver;
             getDriverStandings().setWins(temp.get("wins").toString());
             getDriverStandings().setPositionText(temp.get("positionText").toString());
 
             JSONObject driver = (JSONObject) temp.get("Driver");
             getDriver().setCode(driver.get("code").toString());
             getDriver().setDriverId(driver.get("driverId").toString());
-            if(!driver.get("code").toString().equals("RSS")){
+            if (!driver.get("code").toString().equals("RSS")) {
                 getDriver().setPermanentNumber(driver.get("permanentNumber").toString());
-            }else if (driver.get("code").toString().equals("RSS")){
+            } else if (driver.get("code").toString().equals("RSS")) {
                 getDriver().setPermanentNumber("");
             }
             getDriver().setNationality(driver.get("nationality").toString());
@@ -137,13 +136,13 @@ public class DriverMutator {
             getDriverStandings().setDriver(getDriver());
 
             JSONArray constructor = (JSONArray) temp.get("Constructors");
-            for(int x = 0; x < constructor.size();x++){
-                JSONObject cons = (JSONObject) constructor.get(x);
+            for (Object aConstructor : constructor) {
+                JSONObject cons = (JSONObject) aConstructor;
                 getConstructor().setNationality(cons.get("nationality").toString());
                 getConstructor().setConstructorName(cons.get("name").toString());
 
                 ConstructorMutator mutator = new ConstructorMutator();
-                getConstructor().setConstructorId(mutator.decideWhichConstructorEnumToSelect(cons,getDriver(), getConstructor()));
+                getConstructor().setConstructorId(mutator.decideWhichConstructorEnumToSelect(cons, getDriver(), getConstructor()));
                 getConstructor().setConstructorUrl(cons.get("url").toString());
                 getDriverStandings().setConstructor(getConstructor());
             }
