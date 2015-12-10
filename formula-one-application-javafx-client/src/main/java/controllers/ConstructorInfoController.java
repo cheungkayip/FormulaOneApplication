@@ -3,6 +3,7 @@ package controllers;
 import f1.app.constructor.Constructor;
 import f1.app.constructor.ConstructorMutator;
 import f1.app.drivers.Driver;
+import f1.app.global.GlobalF1;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -44,6 +45,11 @@ public class ConstructorInfoController  implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        assert constructorId != null : "fx:id=\"constructorId\" was not injected: check your FXML file 'ConstructorInfo.fxml'.";
+        assert constructorUrl != null : "fx:id=\"constructorUrl\" was not injected: check your FXML file 'ConstructorInfo.fxml'.";
+        assert constructorName != null : "fx:id=\"constructorName\" was not injected: check your FXML file 'ConstructorInfo.fxml'.";
+        assert constructorNationality != null : "fx:id=\"constructorNationality\" was not injected: check your FXML file 'ConstructorInfo.fxml'.";
+        assert teamLogo != null : "fx:id=\"teamLogo\" was not injected: check your FXML file 'ConstructorInfo.fxml'.";
         preLoadTheApplicationWithData();
         clearButton();
         ShowConstructorButton();
@@ -73,7 +79,7 @@ public class ConstructorInfoController  implements Initializable {
     }
     public void preLoadTheApplicationWithData() {
         // Create the Drivers from the JSON URL
-        constructorMutator.getAllTheConstructorInformation();
+        constructorMutator.getAllTheConstructorInformation(GlobalF1.FORMULA_ONE_RESOURCES_DIR);
 
         fillConstructorFields();
 

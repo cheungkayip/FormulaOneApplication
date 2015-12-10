@@ -27,6 +27,7 @@ public class DriverStandingsController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
+            assert tableView != null : "fx:id=\"tableView\" was not injected: check your FXML file 'DriverStandings.fxml'.";
             generateTheDriversTable();
         } catch (IOException e) {
             e.printStackTrace();
@@ -39,8 +40,8 @@ public class DriverStandingsController implements Initializable {
         driverStandingsArrayList = driverMutator.generateDriverStandings();
         ObservableList<DriverStandings> data = tableView.getItems();
         for(DriverStandings temp: driverStandingsArrayList){
-            data.add(new DriverStandings(temp.getPosition(),temp.getPoints(), temp.getWins(), temp.getDriver(), temp.getConstructor()));
-            System.out.println(temp.getDriver().getGivenName() + " " + temp.getDriver().getFamilyName());
+            data.add(temp);
+            System.out.println(temp.getDriver() + " " + temp.getConstructor());
         }
 
 

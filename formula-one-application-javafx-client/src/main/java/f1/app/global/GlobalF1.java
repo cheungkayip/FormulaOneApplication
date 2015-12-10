@@ -2,6 +2,7 @@ package f1.app.global;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -20,10 +21,13 @@ import javafx.scene.image.ImageView;
  * Created by kayipcheung on 04-12-15.
  */
 public class GlobalF1 {
-
+    public static final String FORMULA_ONE_RESOURCES_TESTDIR = "src/main/resources/";
     public static final String FORMULA_ONE_RESOURCES_DIR = "formula-one-application-javafx-client/src/main/resources/";
+    public static final String DRIVERS_JSON = "http://ergast.com/api/f1/2015/drivers.json";
+    public static final String DRIVER_STANDINGS_JSON = "http://ergast.com/api/f1/2015/driverStandings.json";
+    public static final String CONSTRUCTORS_JSON = "http://ergast.com/api/f1/2015/Constructors.json";
 
-    public Driver selectImagesForDrivers(JSONArray jsonFileArray, JSONObject jsonURLObject, Driver driver, Constructor constructor) throws IOException, ParseException {
+    public Driver selectImagesForDrivers(JSONArray jsonFileArray, JSONObject jsonURLObject, Driver driver, Constructor constructor, String resource) throws IOException, ParseException {
         int i = 0;
         for (Object temp : jsonFileArray) {
 
@@ -32,17 +36,23 @@ public class GlobalF1 {
                     // Driver Related
                     // Create the Display image
                     String driverImage = (String) obj.get("driverImage"); // Driver Display Image
-                    driver.setDriverImage(setTheImage(FORMULA_ONE_RESOURCES_DIR +"Drivers/" + driverImage));
+                    String dir;
+                    if(resource.equals(GlobalF1.FORMULA_ONE_RESOURCES_TESTDIR)){
+                        dir = GlobalF1.FORMULA_ONE_RESOURCES_TESTDIR;
+                    } else{
+                        dir = GlobalF1.FORMULA_ONE_RESOURCES_DIR;
+                    }
+                    driver.setDriverImage(setTheImage(dir +"Drivers/" + driverImage));
                     // Create the Flag image
                     String imageStringFlag = (String) obj.get("driverFlag"); // Driver Flag Image
-                    driver.setDriverFlag(setTheImage(FORMULA_ONE_RESOURCES_DIR +"Flags/" + imageStringFlag));
+                    driver.setDriverFlag(setTheImage(dir +"Flags/" + imageStringFlag));
                     // Create the Flag image
                     String helmet = (String) obj.get("helmet"); // Driver Flag Image
-                    driver.setDriverHelmet(setTheImage(FORMULA_ONE_RESOURCES_DIR +"Helmets/" + helmet));
+                    driver.setDriverHelmet(setTheImage(dir +"Helmets/" + helmet));
 
                     // Because the Driver Information page only needs the Teamlogo we add it over here
                     String teamLogoString = (String) obj.get("teamLogo"); // Constructor Logo Image
-                    constructor.setTeamLogo(setTheImage(FORMULA_ONE_RESOURCES_DIR +"Constructors/" + teamLogoString));
+                    constructor.setTeamLogo(setTheImage(dir +"Constructors/" + teamLogoString));
                     driver.setConstructorInfo(constructor);
                     driver.getConstructorInfo().setTeamLogo(constructor.getTeamLogo());
             }
@@ -51,7 +61,7 @@ public class GlobalF1 {
         return driver;
     }
 
-    public Constructor selectImagesForConstructor(JSONArray jsonFileArray, Constructor constructor) throws IOException {
+    public Constructor selectImagesForConstructor(JSONArray jsonFileArray, Constructor constructor, String source) throws IOException {
 
         JSONObject obj;
         for (Object aJsonFileArray : jsonFileArray) {
@@ -59,7 +69,7 @@ public class GlobalF1 {
             obj = (JSONObject) aJsonFileArray;
             if (obj.get("teamName").toString().equals(constructor.getConstructorId().toString())) {
                 String teamLogoString = (String) obj.get("teamLogo"); // Constructor Logo Image
-                constructor.setTeamLogo(setTheImage(FORMULA_ONE_RESOURCES_DIR+"Constructors/" + teamLogoString));
+                constructor.setTeamLogo(setTheImage(source+"Constructors/" + teamLogoString));
                 break;
             }
         }

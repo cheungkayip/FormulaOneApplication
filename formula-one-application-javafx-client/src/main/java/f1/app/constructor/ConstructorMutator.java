@@ -59,11 +59,11 @@ public class ConstructorMutator {
         constructor = null;
         return constructor;
     }
-    public ArrayList<Constructor> getAllTheConstructorInformation(){
+    public ArrayList<Constructor> getAllTheConstructorInformation(String resource){
         JSONParser parser = new JSONParser();
         setErgast(new Ergast());
         try {
-            String output = getErgast().callUrlToGetJSONData("http://ergast.com/api/f1/2015/Constructors.json");
+            String output = getErgast().callUrlToGetJSONData(GlobalF1.CONSTRUCTORS_JSON);
 
 
             JSONObject json = (JSONObject) new JSONParser().parse(output);
@@ -78,7 +78,7 @@ public class ConstructorMutator {
                 setDriver(new Driver());
 
                 JSONObject object = (JSONObject) constructors.get(i);
-                Object jsonFile = parser.parse(new FileReader(GlobalF1.FORMULA_ONE_RESOURCES_DIR+"Drivers.json"));
+                Object jsonFile = parser.parse(new FileReader(resource+"Drivers.json"));
                 JSONObject jsonObject = (JSONObject) jsonFile;
                 JSONArray constructorJSON = (JSONArray) jsonObject.get("Driver");
 
@@ -90,7 +90,7 @@ public class ConstructorMutator {
                 String idToUppercase = object.get("name").toString().toUpperCase();
                 getConstructor().setConstructorName(idToUppercase);
                 getConstructor().setNationality((String) object.get("nationality"));
-                global.selectImagesForConstructor(constructorJSON, getConstructor());
+                global.selectImagesForConstructor(constructorJSON, getConstructor(), resource);
 
                 // Add the driver to our own ArrayList (so you can call it later)
                 constructorsList.add(getConstructor());

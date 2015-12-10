@@ -1,7 +1,6 @@
 package f1.app.drivers;
 
 import f1.app.constructor.Constructor;
-import f1.app.constructor.ConstructorMutator;
 import f1.app.ergast.url.Ergast;
 import f1.app.global.GlobalF1;
 import org.json.simple.JSONArray;
@@ -48,13 +47,12 @@ public class DriverMutator {
         this.driverStandings = driverStandings;
     }
 
-    public ArrayList<Driver> createDriversFromURL() throws IOException, ParseException {
+    public ArrayList<Driver> createDriversFromURL(String resource) throws IOException, ParseException {
         JSONParser parser = new JSONParser();
         setErgast(new Ergast());
         int driverCount = 0;
         try {
-            String output = getErgast().callUrlToGetJSONData("http://ergast.com/api/f1/2015/drivers.json");
-
+            String output = getErgast().callUrlToGetJSONData(GlobalF1.DRIVERS_JSON);
 
             JSONObject json = (JSONObject) new JSONParser().parse(output);
             JSONObject mrData = (JSONObject) json.get("MRData");
@@ -80,11 +78,18 @@ public class DriverMutator {
                 getDriver().setUrl((String) object.get("url"));
 
                 // Image related + Constructor Team information
-                Object jsonFile = parser.parse(new FileReader(GlobalF1.FORMULA_ONE_RESOURCES_DIR+"Drivers.json"));
+                Object jsonFile;
+                if(resource.equals(GlobalF1.FORMULA_ONE_RESOURCES_TESTDIR)){
+                     jsonFile = parser.parse(new FileReader(GlobalF1.FORMULA_ONE_RESOURCES_TESTDIR+"Drivers.json"));
+                } else{
+                     jsonFile = parser.parse(new FileReader(GlobalF1.FORMULA_ONE_RESOURCES_DIR+"Drivers.json"));
+                }
+
+
                 JSONObject jsonObject = (JSONObject) jsonFile;
                 JSONArray jsonFileArray = (JSONArray) jsonObject.get("Driver");
                 GlobalF1 global = new GlobalF1();
-                global.selectImagesForDrivers(jsonFileArray, object, getDriver(), getConstructor()); // Access Global class to set the Images
+                global.selectImagesForDrivers(jsonFileArray, object, getDriver(), getConstructor(), resource); // Access Global class to set the Images
 
                 // Increment the next Driver
                 driverCount++;
@@ -104,7 +109,7 @@ public class DriverMutator {
         setErgast(new Ergast());
 
 
-        String output = getErgast().callUrlToGetJSONData("http://ergast.com/api/f1/2015/driverStandings.json");
+        String output = getErgast().callUrlToGetJSONData(GlobalF1.DRIVER_STANDINGS_JSON);
         JSONObject json = (JSONObject) new JSONParser().parse(output);
         JSONObject mrData = (JSONObject) json.get("MRData");
         JSONObject standingsTable = (JSONObject) mrData.get("StandingsTable");
@@ -113,47 +118,25 @@ public class DriverMutator {
         JSONArray resultsOfADriver = (JSONArray) driverStandings.get("DriverStandings");
 
         for (Object aResultsOfADriver : resultsOfADriver) {
-            setDriver(new Driver());
-            setConstructor(new Constructor());
             setDriverStandings(new DriverStandings());
+
             JSONObject temp = (JSONObject) aResultsOfADriver;
-            getDriverStandings().setWins(temp.get("wins").toString());
-            getDriverStandings().setPositionText(temp.get("positionText").toString());
-
-            JSONObject driver = (JSONObject) temp.get("Driver");
-            getDriver().setCode(driver.get("code").toString());
-            getDriver().setDriverId(driver.get("driverId").toString());
-            if (!driver.get("code").toString().equals("RSS")) {
-                getDriver().setPermanentNumber(driver.get("permanentNumber").toString());
-            } else if (driver.get("code").toString().equals("RSS")) {
-                getDriver().setPermanentNumber("");
-            }
-            getDriver().setNationality(driver.get("nationality").toString());
-            getDriver().setGivenName(driver.get("givenName").toString());
-            getDriver().setFamilyName(driver.get("familyName").toString());
-            getDriver().setDateOfBirth(driver.get("dateOfBirth").toString());
-            getDriver().setUrl(driver.get("url").toString());
-            getDriverStandings().setDriver(getDriver());
-
-            JSONArray constructor = (JSONArray) temp.get("Constructors");
-            for (Object aConstructor : constructor) {
-                JSONObject cons = (JSONObject) aConstructor;
-                getConstructor().setNationality(cons.get("nationality").toString());
-                getConstructor().setConstructorName(cons.get("name").toString());
-
-                ConstructorMutator mutator = new ConstructorMutator();
-                getConstructor().setConstructorId(mutator.decideWhichConstructorEnumToSelect(cons, getDriver(), getConstructor()));
-                getConstructor().setConstructorUrl(cons.get("url").toString());
-                getDriverStandings().setConstructor(getConstructor());
-            }
 
             getDriverStandings().setPosition(temp.get("position").toString());
             getDriverStandings().setPoints(temp.get("points").toString());
+            getDriverStandings().setWins(temp.get("wins").toString());
+            JSONObject driver = (JSONObject) temp.get("Driver");
+            // Only get the Drivers Name (thats all you need)
+            getDriverStandings().setDriver(driver.get("givenName").toString() + " " + driver.get("familyName").toString());
+            // Only need the Constructor Name (no need for the whole Constructor Object)
+            JSONArray constructor = (JSONArray) temp.get("Constructors");
+            for (Object aConstructor : constructor) {
+                JSONObject cons = (JSONObject) aConstructor;
+                getDriverStandings().setConstructor(cons.get("name").toString());
+            }
             driverStandingsList.add(getDriverStandings());
         }
         setDriverStandingsList(getDriverStandingsList());
-
-//        System.out.println(driverStandings);
         return getDriverStandingsList();
     }
 

@@ -3,6 +3,7 @@ package controllers;
 import f1.app.constructor.ConstructorMutator;
 import f1.app.drivers.Driver;
 import f1.app.drivers.DriverMutator;
+import f1.app.global.GlobalF1;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -55,6 +56,17 @@ public class DriverInfoController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        assert code != null : "fx:id=\"code\" was not injected: check your FXML file 'Driver.fxml'.";
+        assert driverId != null : "fx:id=\"driverId\" was not injected: check your FXML file 'Driver.fxml'.";
+        assert permanentNumber != null : "fx:id=\"permanentNumber\" was not injected: check your FXML file 'Driver.fxml'.";
+        assert givenName != null : "fx:id=\"givenName\" was not injected: check your FXML file 'Driver.fxml'.";
+        assert driverFlag != null : "fx:id=\"driverFlag\" was not injected: check your FXML file 'Driver.fxml'.";
+        assert familyName != null : "fx:id=\"familyName\" was not injected: check your FXML file 'Driver.fxml'.";
+        assert dateOfBirth != null : "fx:id=\"dateOfBirth\" was not injected: check your FXML file 'Driver.fxml'.";
+        assert nationality != null : "fx:id=\"nationality\" was not injected: check your FXML file 'Driver.fxml'.";
+        assert driverImage != null : "fx:id=\"driverImage\" was not injected: check your FXML file 'Driver.fxml'.";
+        assert teamLogo != null : "fx:id=\"teamLogo\" was not injected: check your FXML file 'Driver.fxml'.";
+        assert driverHelmet != null : "fx:id=\"driverHelmet\" was not injected: check your FXML file 'Driver.fxml'.";
         preLoadTheApplicationWithData();
         clearButton();
         showDriverButton();
@@ -87,7 +99,7 @@ public class DriverInfoController implements Initializable {
     public void preLoadTheApplicationWithData() {
         // Create the Drivers from the JSON URL
         try {
-            driverMutator.createDriversFromURL();
+            driverMutator.createDriversFromURL(GlobalF1.FORMULA_ONE_RESOURCES_DIR);
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
