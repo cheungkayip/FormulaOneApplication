@@ -14,6 +14,19 @@ public class DriverStandings {
     private Constructor constructor;
     private StringBuffer buffer;
 
+    public DriverStandings(){
+
+    }
+
+    public DriverStandings(String position, String points, String wins, Driver driver, Constructor constructor){
+        this.position = position;
+        this.points = points;
+        this.wins = wins;
+        this.driver = driver;
+        this.constructor = constructor;
+    }
+
+
     public Constructor getConstructor() {
         return constructor;
     }
@@ -47,6 +60,7 @@ public class DriverStandings {
     }
 
     public Driver getDriver() {
+
         return driver;
     }
 
