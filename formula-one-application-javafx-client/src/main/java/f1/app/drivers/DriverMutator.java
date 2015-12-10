@@ -80,7 +80,7 @@ public class DriverMutator {
                 getDriver().setUrl((String) object.get("url"));
 
                 // Image related + Constructor Team information
-                Object jsonFile = parser.parse(new FileReader("src/main/resources/Drivers.json"));
+                Object jsonFile = parser.parse(new FileReader(GlobalF1.FORMULA_ONE_RESOURCES_DIR+"Drivers.json"));
                 JSONObject jsonObject = (JSONObject) jsonFile;
                 JSONArray jsonFileArray = (JSONArray) jsonObject.get("Driver");
                 GlobalF1 global = new GlobalF1();

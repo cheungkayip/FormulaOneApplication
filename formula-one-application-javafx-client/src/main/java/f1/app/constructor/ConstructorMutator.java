@@ -78,7 +78,7 @@ public class ConstructorMutator {
                 setDriver(new Driver());
 
                 JSONObject object = (JSONObject) constructors.get(i);
-                Object jsonFile = parser.parse(new FileReader("src/main/resources/Drivers.json"));
+                Object jsonFile = parser.parse(new FileReader(GlobalF1.FORMULA_ONE_RESOURCES_DIR+"Drivers.json"));
                 JSONObject jsonObject = (JSONObject) jsonFile;
                 JSONArray constructorJSON = (JSONArray) jsonObject.get("Driver");
 
