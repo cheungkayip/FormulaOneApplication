@@ -26,7 +26,7 @@
                 <cellValueFactory><PropertyValueFactory property="wins" />
                 </cellValueFactory>
             </TableColumn>
-            <TableColumn text="Driver" prefWidth="400">
+            <TableColumn text="Driver" prefWidth="200">
                 <cellValueFactory><PropertyValueFactory property="driver" />
                 </cellValueFactory>
             </TableColumn>

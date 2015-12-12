@@ -20,7 +20,25 @@ public class ConstructorMutator {
     private Ergast ergast;
     private Driver driver;
     private Constructor constructor;
+    private ConstructorStandings standingsObject;
     private ArrayList<Constructor> constructorsList = new ArrayList<>();
+    private ArrayList<ConstructorStandings> standingsList = new ArrayList<>();
+
+    public ConstructorStandings getStandingsObject() {
+        return standingsObject;
+    }
+
+    public void setStandingsObject(ConstructorStandings standingsObject) {
+        this.standingsObject = standingsObject;
+    }
+
+    public ArrayList<ConstructorStandings> getStandingsList() {
+        return standingsList;
+    }
+
+    public void setStandingsList(ArrayList<ConstructorStandings> standingsList) {
+        this.standingsList = standingsList;
+    }
 
     public Driver getDriver() {
         return driver;
@@ -65,7 +83,6 @@ public class ConstructorMutator {
         try {
             String output = getErgast().callUrlToGetJSONData(GlobalF1.CONSTRUCTORS_JSON);
 
-
             JSONObject json = (JSONObject) new JSONParser().parse(output);
             JSONObject mrData = (JSONObject) json.get("MRData");
             JSONObject constructorTable = (JSONObject) mrData.get("ConstructorTable");
@@ -102,6 +119,40 @@ public class ConstructorMutator {
             e.printStackTrace();
         }
         return getConstructorsList();
+    }
+
+    public ArrayList<ConstructorStandings> displayConstructorStandings() throws IOException, ParseException {
+
+        setErgast(new Ergast());
+        String output = getErgast().callUrlToGetJSONData(GlobalF1.CONSTRUCTORS_STANDINGS_JSON);
+
+        JSONObject json = (JSONObject) new JSONParser().parse(output);
+        JSONObject mrData = (JSONObject) json.get("MRData");
+        JSONObject standingsTable = (JSONObject) mrData.get("StandingsTable");
+        JSONArray standingsLists = (JSONArray) standingsTable.get("StandingsLists");
+        JSONArray constructorStandings = null;
+        for(Object temp: standingsLists){
+            JSONObject temp2 = (JSONObject) temp;
+            constructorStandings = (JSONArray) temp2.get("ConstructorStandings");
+            break;
+        }
+if(constructorStandings != null) {
+    for (Object constructorPosition : constructorStandings) {
+        setStandingsObject(new ConstructorStandings());
+
+        JSONObject temp = (JSONObject) constructorPosition;
+
+        getStandingsObject().setPosition(temp.get("position").toString());
+        getStandingsObject().setPoints(temp.get("points").toString());
+        getStandingsObject().setWins(temp.get("wins").toString());
+        JSONObject constructor = (JSONObject) temp.get("Constructor");
+        getStandingsObject().setConstructorName(constructor.get("name").toString());
+
+        standingsList.add(getStandingsObject());
+    }
+}
+        setStandingsList(standingsList);
+        return getStandingsList();
     }
 
     public Constructor.ConstructorId decideWhichConstructorEnumToSelect(JSONObject theIdfromArray, Driver driver, Constructor constructor) throws IOException {

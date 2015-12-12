@@ -38,6 +38,7 @@ public class ConstructorTest {
         }
         Assert.assertTrue(check);
         Assert.assertTrue(check2);
+        Assert.assertTrue(check3);
     }
 
 }

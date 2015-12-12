@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 /**
  * Created by kayipcheung on 04-12-15.
@@ -39,11 +40,7 @@ public class DriverStandingsController implements Initializable {
     public void generateTheDriversTable() throws IOException, ParseException {
         driverStandingsArrayList = driverMutator.generateDriverStandings();
         ObservableList<DriverStandings> data = tableView.getItems();
-        for(DriverStandings temp: driverStandingsArrayList){
-            data.add(temp);
-            System.out.println(temp.getDriver() + " " + temp.getConstructor());
-        }
-
-
+        // Java 8 Streaming
+        data.addAll(driverStandingsArrayList.stream().collect(Collectors.toList()));
     }
 }
