@@ -21,6 +21,8 @@ public class DriverStandingsTest {
         boolean check = false;
         boolean check2 = false;
         for(DriverStandings temp: arrayList){
+            mutator.getDriverStandings().setBuffer(new StringBuffer());
+            System.out.println(mutator.getDriverStandings().toString(temp));
             if(temp.getDriver().equals("Sebastian Vettel") && temp.getConstructor().equals("Ferrari")){
                 check = true;
 

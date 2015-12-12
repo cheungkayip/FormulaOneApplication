@@ -44,16 +44,13 @@ public class Constructor {
         this.nationality = nationality;
     }
 
-    public Constructor(ConstructorId name){
-        this.constructorId = name;
-    }
-
     public ImageView getTeamLogo() {
         return teamLogo;
     }
 
-    public void setTeamLogo(ImageView teamLogo) {
+    public ImageView setTeamLogo(ImageView teamLogo) {
         this.teamLogo = teamLogo;
+        return teamLogo;
     }
 
     public ConstructorId getConstructorId() {

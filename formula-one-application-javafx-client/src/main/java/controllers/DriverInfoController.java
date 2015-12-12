@@ -116,7 +116,6 @@ public class DriverInfoController implements Initializable {
         }
         driversChoicebox.setItems(FXCollections.observableArrayList(driverNames));
         driversChoicebox.getSelectionModel().selectFirst();
-        System.out.println(driversChoicebox.getItems());
     }
 
     public void fillTheDriverFields() {

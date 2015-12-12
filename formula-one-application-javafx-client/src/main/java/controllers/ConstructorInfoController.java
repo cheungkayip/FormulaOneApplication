@@ -92,7 +92,6 @@ public class ConstructorInfoController  implements Initializable {
         }
         constructorsChoicebox.setItems(FXCollections.observableArrayList(cNames));
         constructorsChoicebox.getSelectionModel().selectFirst();
-        System.out.println(constructorsChoicebox.getItems());
     }
 
     public void fillConstructorFields() {

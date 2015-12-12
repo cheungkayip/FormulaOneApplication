@@ -8,7 +8,6 @@ public class ConstructorStandings {
     private String points;
     private String wins;
     private String constructorName;
-    private StringBuffer buffer;
 
     public String getPosition() {
         return position;
@@ -40,13 +39,5 @@ public class ConstructorStandings {
 
     public void setConstructorName(String constructorName) {
         this.constructorName = constructorName;
-    }
-
-    public StringBuffer getBuffer() {
-        return buffer;
-    }
-
-    public void setBuffer(StringBuffer buffer) {
-        this.buffer = buffer;
     }
 }

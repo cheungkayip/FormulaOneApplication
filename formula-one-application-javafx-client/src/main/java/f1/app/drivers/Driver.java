@@ -26,8 +26,9 @@ public class Driver {
         return driverHelmet;
     }
 
-    public void setDriverHelmet(ImageView driverHelmet) {
+    public ImageView setDriverHelmet(ImageView driverHelmet) {
         this.driverHelmet = driverHelmet;
+        return driverHelmet;
     }
 
     public String getCode() {
@@ -66,16 +67,18 @@ public class Driver {
         return driverFlag;
     }
 
-    public void setDriverFlag(ImageView driverFlag) {
+    public ImageView setDriverFlag(ImageView driverFlag) {
         this.driverFlag = driverFlag;
+        return driverFlag;
     }
 
     public ImageView getDriverImage() {
         return driverImage;
     }
 
-    public void setDriverImage(ImageView driverImage) {
+    public ImageView setDriverImage(ImageView driverImage) {
         this.driverImage = driverImage;
+        return driverImage;
     }
 
     public String getGivenName() {
@@ -127,7 +130,6 @@ public class Driver {
                         "Permanent Number: " + driver.getPermanentNumber() + "\n" +
                         "Nationality: " + driver.getNationality() + "\n" +
                         "Weblink URL: " + driver.getUrl() + "\n" + "\n"
-//                "Constructor Name: " + driver.getConstructorInfo().getConstructorId() + "\n" + "\n"
         );
         return getBuffer();
     }
