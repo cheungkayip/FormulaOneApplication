@@ -2,62 +2,74 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
-<GridPane style="-fx-background-color:gray" hgap="5" vgap="5" xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.DriverInfoController">
+
+<GridPane gridLinesVisible="false" style="-fx-background-color:gray" hgap="5" vgap="5" xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.DriverInfoController">
     <padding>
         <Insets top="25" right="25" bottom="10" left="25"/>
     </padding>
-    <Label style="-fx-font: NORMAL 20 Tahoma;" text="Driver Information"
-           GridPane.columnIndex="1" GridPane.rowIndex="0">
-    </Label>
-    <Label maxWidth="-Infinity" text="Driver: " GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-    <ImageView fx:id="driverImage" GridPane.columnIndex="1" GridPane.rowIndex="1" disable="false"
-               fitHeight="200.0" fitWidth="250.0" layoutX="69.0" layoutY="322.0" pickOnBounds="true"
-               preserveRatio="true"/>
-    <ImageView fx:id="driverHelmet" GridPane.columnIndex="2" GridPane.rowIndex="1" disable="false"
-               fitHeight="200.0" fitWidth="250.0" layoutX="69.0" layoutY="322.0" pickOnBounds="true"
-               preserveRatio="true"/>
-    <ImageView fx:id="teamLogo" GridPane.columnIndex="3" GridPane.rowIndex="1" disable="false"
-               fitHeight="150.0" fitWidth="250.0" layoutX="69.0" layoutY="322.0" pickOnBounds="true"
-               preserveRatio="true"/>
-    <ImageView fx:id="driverFlag" GridPane.columnIndex="2" GridPane.rowIndex="2" disable="false"
-               fitHeight="75.0" fitWidth="75.0" layoutX="69.0" layoutY="322.0" pickOnBounds="true"
-               preserveRatio="true"/>
+    <HBox alignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="0">
+    <Label style="-fx-font: NORMAL 20 Tahoma;" text="Driver Information"></Label>
+    </HBox>
+    <HBox alignment="BASELINE_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="0">
+        <ImageView fx:id="teamLogo" disable="false"
+                   fitHeight="150.0" fitWidth="250.0" layoutX="69.0" layoutY="322.0" pickOnBounds="true"
+                   preserveRatio="true"/>
+    </HBox>
+    <Label GridPane.columnIndex="0" GridPane.rowIndex="1" maxWidth="-Infinity" text="Driver: " />
+    <HBox alignment="BASELINE_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="1">
+        <ImageView fx:id="driverImage" disable="false"
+                   fitHeight="200.0" fitWidth="250.0" layoutX="69.0" layoutY="322.0" pickOnBounds="true"
+                   preserveRatio="true"/>
+        <ImageView fx:id="driverHelmet" disable="false"
+                   fitHeight="200.0" fitWidth="250.0" layoutX="69.0" layoutY="322.0" pickOnBounds="true"
+                   preserveRatio="true"/>
+    </HBox>
 
     <Label maxWidth="-Infinity" text="Code:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-    <TextField fx:id="code" text="Code" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+    <HBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="2">
+        <TextField prefWidth="450" fx:id="code" text="Code" />
+        <ChoiceBox fx:id="driversChoicebox" layoutX="210.0" layoutY="108.0" prefHeight="27.0"
+        >
+        </ChoiceBox>
+    </HBox>
 
     <Label wrapText="true" text="Permanent Number:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
-    <TextField fx:id="permanentNumber" text="permanentNumber" GridPane.columnIndex="1"
-               GridPane.rowIndex="3"/>
+
+<HBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="3">
+    <TextField prefWidth="450" fx:id="permanentNumber" text="permanentNumber"/>
+    <Button fx:id="showSelectedDriverButton" mnemonicParsing="false" text="Show Selected Driver"/>
+</HBox>
 
     <Label maxWidth="-Infinity" text="Driver ID:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
-    <TextField fx:id="driverId" text="Driver ID" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+
+<HBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="4">
+    <TextField prefWidth="450" fx:id="driverId" text="Driver ID" />
+    <Button fx:id="clearButton" mnemonicParsing="false" text="Clear The Fields" />
+</HBox>
 
     <Label text="Given Name:" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
-    <TextField fx:id="givenName" text="Given name" GridPane.columnIndex="1"
-               GridPane.rowIndex="5"/>
-
+<HBox GridPane.columnIndex="1" GridPane.rowIndex="5">
+    <TextField prefWidth="450" fx:id="givenName" text="Given name" />
+</HBox>
     <Label text="Family Name:" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
-    <TextField fx:id="familyName" text="Family Name" GridPane.columnIndex="1"
-               GridPane.rowIndex="6"/>
+    <HBox GridPane.columnIndex="1" GridPane.rowIndex="6">
+        <TextField prefWidth="450" fx:id="familyName" text="Family Name" />
+    </HBox>
 
     <Label text="Date of Birth:" GridPane.columnIndex="0" GridPane.rowIndex="7"/>
-    <TextField fx:id="dateOfBirth" text="Date of Birth" GridPane.columnIndex="1"
-               GridPane.rowIndex="7"/>
+    <HBox GridPane.columnIndex="1" GridPane.rowIndex="7">
+        <TextField prefWidth="450" fx:id="dateOfBirth" text="Date of Birth" />
+    </HBox>
+
 
     <Label text="Nationality:" GridPane.columnIndex="0" GridPane.rowIndex="8"/>
-    <TextField fx:id="nationality" text="Nationality" GridPane.columnIndex="1"
-               GridPane.rowIndex="8"/>
-
-    <ChoiceBox fx:id="driversChoicebox" layoutX="210.0" layoutY="108.0" prefHeight="27.0"
-               GridPane.columnIndex="2" GridPane.rowIndex="3">
-    </ChoiceBox>
-
-    <Button fx:id="showSelectedDriverButton" mnemonicParsing="false" text="Show Selected Driver"
-            GridPane.columnIndex="2" GridPane.rowIndex="4"/>
-
-    <Button fx:id="clearButton" mnemonicParsing="false" text="Clear The Fields" GridPane.columnIndex="2"
-            GridPane.rowIndex="5"/>
+    <HBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="8">
+    <TextField prefWidth="150" fx:id="nationality" text="Nationality" />
+        <ImageView fx:id="driverFlag" disable="false"
+                   fitHeight="50.0" fitWidth="50.0" layoutX="69.0" layoutY="322.0" pickOnBounds="true"
+                   preserveRatio="true"/>
+    </HBox>
 
     <Label text="Added Drivers:" GridPane.columnIndex="0" GridPane.rowIndex="9"/>
     <TextArea fx:id="addedDrivers" text="Added Drivers" GridPane.columnIndex="1"
