@@ -1,7 +1,6 @@
 package f1.app.races;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Created by kayipcheung on 12-12-15.
@@ -14,7 +13,7 @@ public class RaceResults {
     private String country;
     private String raceStartDate;
     private String raceStartTime;
-    private String FinishingPosition;
+    private String finishingPosition;
     private int driverNumber;
     private int driverPoints;
     private String givenName;
@@ -41,24 +40,27 @@ public class RaceResults {
         return season;
     }
 
-    public void setSeason(int season) {
+    public String setSeason(int season) {
         this.season = season;
+        return null;
     }
 
     public int getRound() {
         return round;
     }
 
-    public void setRound(int round) {
+    public int setRound(int round) {
         this.round = round;
+        return round;
     }
 
     public String getCircuitName() {
         return circuitName;
     }
 
-    public void setCircuitName(String circuitName) {
+    public String setCircuitName(String circuitName) {
         this.circuitName = circuitName;
+        return circuitName;
     }
 
     public String getLocality() {
@@ -94,11 +96,11 @@ public class RaceResults {
     }
 
     public String getFinishingPosition() {
-        return FinishingPosition;
+        return finishingPosition;
     }
 
     public void setFinishingPosition(String finishingPosition) {
-        FinishingPosition = finishingPosition;
+        finishingPosition = finishingPosition;
     }
 
     public int getDriverNumber() {

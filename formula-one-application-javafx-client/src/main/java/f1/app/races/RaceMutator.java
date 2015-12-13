@@ -17,6 +17,11 @@ public class RaceMutator {
     private Ergast ergast;
     private RaceResults results;
     private ArrayList<RaceResults> raceResultList = new ArrayList<>();
+    private ArrayList<String> circuitInformation = new ArrayList<>();
+
+    public ArrayList<String> getCircuitInformation() {
+        return circuitInformation;
+    }
 
     public Ergast getErgast() {
         return ergast;
@@ -38,15 +43,9 @@ public class RaceMutator {
         return raceResultList;
     }
 
-    public void setRaceResultList(ArrayList<RaceResults> raceResultList) {
-        this.raceResultList = raceResultList;
-    }
-
     public ArrayList<RaceResults> generateRaceResults() throws IOException, ParseException {
-
         ArrayList<String> raceNumberList = new ArrayList<>();
         setErgast(new Ergast());
-
 
         String circuitJSON = getErgast().callUrlToGetJSONData(GlobalF1.CIRCUITS_JSON);
         JSONObject json = (JSONObject) new JSONParser().parse(circuitJSON);
@@ -55,6 +54,7 @@ public class RaceMutator {
         int totalRaces = Integer.parseInt(total);
 
         int raceNumber = 1;
+
         while (raceNumber <= totalRaces) {
             String jsonURL = getErgast().callUrlToGetJSONData(GlobalF1.RACE_RESULTS_DIR+raceNumber+"/results.Json");
             JSONObject json2 = (JSONObject) new JSONParser().parse(jsonURL);
@@ -90,8 +90,6 @@ public class RaceMutator {
                         getResults().setGivenName(json4.get("givenName").toString());
                         getResults().setFamilyName(json4.get("familyName").toString());
                     }
-
-
                     JSONObject constructor = (JSONObject) json3.get("Constructor");
                     getResults().setConstructor(constructor.get("name").toString());
 
@@ -99,13 +97,10 @@ public class RaceMutator {
                     getResults().setDrivenLaps(Integer.parseInt(json3.get("laps").toString()));
                     getResults().setStatus(json3.get("status").toString());
 
-
                     JSONObject innerTime = (JSONObject) json3.get("Time");
                     if(innerTime != null){
                         getResults().setTotalRidingTime(innerTime.get("time").toString());
                     }
-
-
                     JSONObject innerFastestLap = (JSONObject) json3.get("FastestLap");
                     if(innerFastestLap != null) {
                         getResults().setFastestLapRank(Integer.parseInt(innerFastestLap.get("rank").toString()));
@@ -116,16 +111,15 @@ public class RaceMutator {
                         }
                     }
 
-
                     raceResultList.add(getResults());
                 }
+
+                circuitInformation.add("Round: " + getResults().getRound() + " " + "Circuit Name: "  + getResults().getCircuitName());
             }
+
             raceNumberList.add(jsonURL);
             raceNumber++;
-
         }
-
-
         return raceResultList;
     }
 }
