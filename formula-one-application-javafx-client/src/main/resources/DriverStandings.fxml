@@ -15,10 +15,10 @@
         </Label>
     </HBox>
 
-    <TableView prefHeight="600" fx:id="tableView" GridPane.columnIndex="0"
+    <TableView GridPane.hgrow="ALWAYS" prefHeight="600" fx:id="tableView" GridPane.columnIndex="0"
                GridPane.rowIndex="1">
         <columns>
-            <TableColumn text="Position" prefWidth="200">
+            <TableColumn text="Position" prefWidth="100">
                 <cellValueFactory><PropertyValueFactory property="position" />
                 </cellValueFactory>
             </TableColumn>
