@@ -1,14 +1,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>java.f1.app</groupId>
 	<artifactId>formula-one-application</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
-    <name>Formula One App</name>
-    <url>https://github.com/cheungkayip/FormulaOneApplication</url>
+	<name>Formula One App</name>
+	<url>https://github.com/cheungkayip/FormulaOneApplication</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -19,49 +19,67 @@
 		<module>formula-one-application-javafx-client</module>
 	</modules>
 
-    <dependencyManagement>
-	    <dependencies>
-	        <dependency>
-	            <groupId>junit</groupId>
-	            <artifactId>junit</artifactId>
-	            <version>4.8.2</version>
-	        </dependency>
-	        <dependency>
-	            <groupId>com.googlecode.json-simple</groupId>
-	            <artifactId>json-simple</artifactId>
-	            <version>1.1.1</version>
-	        </dependency>
-	        <dependency>
-	            <groupId>org.jboss.resteasy</groupId>
-	            <artifactId>resteasy-jaxrs</artifactId>
-	            <version>2.2.1.GA</version>
-	        </dependency>
-	        <dependency>
-	            <groupId>org.jboss.resteasy</groupId>
-	            <artifactId>resteasy-jackson-provider</artifactId>
-	            <version>2.2.1.GA</version>
-	        </dependency>
-	    </dependencies>
-    </dependencyManagement>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>4.8.2</version>
+			</dependency>
+			<dependency>
+				<groupId>com.googlecode.json-simple</groupId>
+				<artifactId>json-simple</artifactId>
+				<version>1.1.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.resteasy</groupId>
+				<artifactId>resteasy-jaxrs</artifactId>
+				<version>2.2.1.GA</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.resteasy</groupId>
+				<artifactId>resteasy-jackson-provider</artifactId>
+				<version>2.2.1.GA</version>
+			</dependency>
 
-    <build>
-    	<pluginManagement>
-    		<plugins>
-	            <plugin>
-	                <groupId>org.apache.maven.plugins</groupId>
-	                <artifactId>maven-war-plugin</artifactId>
-	            </plugin>
-		        <plugin>
-	                <groupId>org.apache.maven.plugins</groupId>
-	                <artifactId>maven-compiler-plugin</artifactId>
-	                <version>3.3</version>
-	            </plugin>
-	            <plugin>
-	                <groupId>com.zenjava</groupId>
-	                <artifactId>javafx-maven-plugin</artifactId>
-	                <version>8.2.0</version>
-	            </plugin>
-	        </plugins>
-    	</pluginManagement>
-    </build>
+			<!-- JEE Stuff -->
+			<dependency>
+				<groupId>javax</groupId>
+				<artifactId>javaee-api</artifactId>
+				<version>7.0</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>2.6</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.3</version>
+				</plugin>
+				<plugin>
+					<groupId>com.zenjava</groupId>
+					<artifactId>javafx-maven-plugin</artifactId>
+					<version>8.2.0</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>
