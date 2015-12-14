@@ -19,12 +19,15 @@ import java.io.IOException;
  */
 public class GlobalF1 {
     public static final String FORMULA_ONE_RESOURCES_TESTDIR = "src/main/resources/";
+    public static final String SAVED_JSON_DIR_TEST = "src/main/resources/SavedJSON/";
+    public static final String SAVED_JSON_DIR = "formula-one-application-javafx-client/src/main/resources/SavedJSON/";
     public static final String FORMULA_ONE_RESOURCES_DIR = "formula-one-application-javafx-client/src/main/resources/";
+    public static final String RACE_RESULTS_DIR = "http://ergast.com/api/f1/2015/";
+
     public static final String DRIVERS_JSON = "http://ergast.com/api/f1/2015/drivers.json";
     public static final String DRIVER_STANDINGS_JSON = "http://ergast.com/api/f1/2015/driverStandings.json";
     public static final String CONSTRUCTORS_JSON = "http://ergast.com/api/f1/2015/Constructors.json";
     public static final String CONSTRUCTORS_STANDINGS_JSON = "http://ergast.com/api/f1/2015/constructorStandings.json";
-    public static final String RACE_RESULTS_DIR = "http://ergast.com/api/f1/2015/";
     public static final String CIRCUITS_JSON = "http://ergast.com/api/f1/2015/circuits.json";
 
     public Driver selectImagesForDrivers(JSONArray jsonFileArray, JSONObject jsonURLObject, Driver driver, Constructor constructor, String resource) throws IOException, ParseException {

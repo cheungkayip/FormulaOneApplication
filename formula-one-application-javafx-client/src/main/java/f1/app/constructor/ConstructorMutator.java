@@ -77,11 +77,11 @@ public class ConstructorMutator {
         constructor = null;
         return constructor;
     }
-    public ArrayList<Constructor> getAllTheConstructorInformation(String resource){
+    public ArrayList<Constructor> getAllTheConstructorInformation(String resource, String testResource){
         JSONParser parser = new JSONParser();
         setErgast(new Ergast());
         try {
-            String output = getErgast().callUrlToGetJSONData(GlobalF1.CONSTRUCTORS_JSON);
+            String output = getErgast().decideTheRightJSON(testResource,GlobalF1.CONSTRUCTORS_JSON);
 
             JSONObject json = (JSONObject) new JSONParser().parse(output);
             JSONObject mrData = (JSONObject) json.get("MRData");
@@ -121,10 +121,10 @@ public class ConstructorMutator {
         return getConstructorsList();
     }
 
-    public ArrayList<ConstructorStandings> displayConstructorStandings() throws IOException, ParseException {
+    public ArrayList<ConstructorStandings> displayConstructorStandings(String resource) throws IOException, ParseException {
 
         setErgast(new Ergast());
-        String output = getErgast().callUrlToGetJSONData(GlobalF1.CONSTRUCTORS_STANDINGS_JSON);
+        String output = getErgast().decideTheRightJSON(resource, GlobalF1.CONSTRUCTORS_STANDINGS_JSON);
 
         JSONObject json = (JSONObject) new JSONParser().parse(output);
         JSONObject mrData = (JSONObject) json.get("MRData");

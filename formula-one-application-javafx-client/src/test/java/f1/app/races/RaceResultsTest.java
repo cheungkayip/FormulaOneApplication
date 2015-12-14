@@ -1,5 +1,6 @@
 package f1.app.races;
 
+import f1.app.global.GlobalF1;
 import junit.framework.Assert;
 import org.json.simple.parser.ParseException;
 import org.junit.Test;
@@ -17,7 +18,7 @@ public class RaceResultsTest {
     @Test
     public void raceResultsTest() throws IOException, ParseException {
         RaceMutator mutator = new RaceMutator();
-        ArrayList<RaceResults> arrayList = mutator.generateRaceResults();
+        ArrayList<RaceResults> arrayList = mutator.generateRaceResults(GlobalF1.SAVED_JSON_DIR_TEST);
         Assert.assertNotNull(arrayList);
         Assert.assertEquals(378,arrayList.size());
         arrayList.forEach(item->System.out.println(item.getFinishingPosition() + " " + item.getGivenName() + " " + item.getFamilyName() + " " + item.getCircuitName() + " " + item.getCountry()));

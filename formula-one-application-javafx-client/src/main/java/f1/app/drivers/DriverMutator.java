@@ -52,7 +52,7 @@ public class DriverMutator {
         setErgast(new Ergast());
         int driverCount = 0;
         try {
-            String output = getErgast().callUrlToGetJSONData(GlobalF1.DRIVERS_JSON);
+            String output = getErgast().decideTheRightJSON(resource, GlobalF1.DRIVERS_JSON);
 
             JSONObject json = (JSONObject) new JSONParser().parse(output);
             JSONObject mrData = (JSONObject) json.get("MRData");
@@ -79,15 +79,18 @@ public class DriverMutator {
 
                 // Image related + Constructor Team information
                 Object jsonFile;
-                if(resource.equals(GlobalF1.FORMULA_ONE_RESOURCES_TESTDIR)){
+                String resourceNew = "";
+                if(resource.equals(GlobalF1.FORMULA_ONE_RESOURCES_TESTDIR) || resource.equals(GlobalF1.SAVED_JSON_DIR_TEST)){
+                    resourceNew = GlobalF1.FORMULA_ONE_RESOURCES_TESTDIR;
                      jsonFile = parser.parse(new FileReader(GlobalF1.FORMULA_ONE_RESOURCES_TESTDIR+"Drivers.json"));
                 } else{
+                    resourceNew = GlobalF1.FORMULA_ONE_RESOURCES_DIR;
                      jsonFile = parser.parse(new FileReader(GlobalF1.FORMULA_ONE_RESOURCES_DIR+"Drivers.json"));
                 }
                 JSONObject jsonObject = (JSONObject) jsonFile;
                 JSONArray jsonFileArray = (JSONArray) jsonObject.get("Driver");
                 GlobalF1 global = new GlobalF1();
-                global.selectImagesForDrivers(jsonFileArray, object, getDriver(), getConstructor(), resource); // Access Global class to set the Images
+                global.selectImagesForDrivers(jsonFileArray, object, getDriver(), getConstructor(), resourceNew); // Access Global class to set the Images
 
                 // Increment the next Driver
                 driverCount++;

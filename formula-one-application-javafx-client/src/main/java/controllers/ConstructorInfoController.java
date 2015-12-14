@@ -79,7 +79,7 @@ public class ConstructorInfoController  implements Initializable {
     }
     public void preLoadTheApplicationWithData() {
         // Create the Drivers from the JSON URL
-        constructorMutator.getAllTheConstructorInformation(GlobalF1.FORMULA_ONE_RESOURCES_DIR);
+        constructorMutator.getAllTheConstructorInformation(GlobalF1.FORMULA_ONE_RESOURCES_DIR, GlobalF1.SAVED_JSON_DIR);
 
         fillConstructorFields();
 
