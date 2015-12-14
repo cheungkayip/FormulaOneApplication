@@ -100,7 +100,7 @@ public class RaceResults {
     }
 
     public void setFinishingPosition(String finishingPosition) {
-        finishingPosition = finishingPosition;
+        this.finishingPosition = finishingPosition;
     }
 
     public int getDriverNumber() {
