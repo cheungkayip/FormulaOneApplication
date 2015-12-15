@@ -2,12 +2,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
-<GridPane style="-fx-background-color:gray" hgap="5" vgap="5" xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.ConstructorInfoController">
+<GridPane gridLinesVisible="false" style="-fx-background-color:gray" hgap="5" vgap="5" xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.ConstructorInfoController">
     <padding>
         <Insets top="25" right="25" bottom="10" left="25"/>
     </padding>
     <Label style="-fx-font: NORMAL 20 Tahoma;" text="Constructor Information"
-           GridPane.columnIndex="1" GridPane.rowIndex="0">
+           GridPane.columnIndex="0" GridPane.rowIndex="0">
     </Label>
                 <Label maxWidth="-Infinity" text="Constructor Team" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
 
@@ -41,5 +41,5 @@
 
                 <Label text="Added Constructors:" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
                 <TextArea fx:id="addedConstructors" text="Added Constructors" GridPane.columnIndex="1"
-                          GridPane.rowIndex="9"/>
+                          GridPane.rowIndex="6"/>
 </GridPane>
