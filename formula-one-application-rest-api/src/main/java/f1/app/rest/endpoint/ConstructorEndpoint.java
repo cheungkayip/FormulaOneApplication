@@ -13,18 +13,18 @@ import org.apache.commons.io.IOUtils;
 /**
  * @author edwin
  */
-@Path("/drivers")
-public class DriverEndpoint {
+@Path("/constructors")
+public class ConstructorEndpoint {
 
 	/**
-	 * @return The data available on all F1 drivers.
+	 * @return The data available on all F1 constructors.
 	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public String get() throws Exception {
-		final String driversDataURL = "http://ergast.com/api/f1/2015/drivers.json";
+		final String constructorDataURL = "http://ergast.com/api/f1/2015/Constructors.json";
 
-		final InputStream is = new URL(driversDataURL).openStream();
+		final InputStream is = new URL(constructorDataURL).openStream();
 		try {
 			return IOUtils.toString(is);
 		} finally {
@@ -33,15 +33,15 @@ public class DriverEndpoint {
 	}
 
 	/**
-	 * @return The data available on all F1 drivers' standings.
+	 * @return The data available on all F1 constructor's standings.
 	 */
 	@GET
 	@Path("/standings")
 	@Produces(MediaType.APPLICATION_JSON)
 	public String getStandings() throws Exception {
-		final String driversStandingsDataURL = "http://ergast.com/api/f1/2015/driverStandings.json";
+		final String constructorStandingsDataURL = "http://ergast.com/api/f1/2015/constructorStandings.json";
 
-		final InputStream is = new URL(driversStandingsDataURL).openStream();
+		final InputStream is = new URL(constructorStandingsDataURL).openStream();
 		try {
 			return IOUtils.toString(is);
 		} finally {
