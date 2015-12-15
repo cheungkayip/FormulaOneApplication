@@ -2,6 +2,7 @@ package f1.app.constructors;
 
 import f1.app.constructor.ConstructorMutator;
 import f1.app.constructor.ConstructorStandings;
+import f1.app.global.GlobalF1;
 import junit.framework.Assert;
 import org.json.simple.parser.ParseException;
 import org.junit.Test;
@@ -17,7 +18,7 @@ public class ConstructorStandingsTest {
     @Test
     public void testConstructorStandings() throws IOException, ParseException {
         ConstructorMutator mutator = new ConstructorMutator();
-        ArrayList<ConstructorStandings> arrayList = mutator.displayConstructorStandings();
+        ArrayList<ConstructorStandings> arrayList = mutator.displayConstructorStandings(GlobalF1.SAVED_JSON_DIR_TEST);
         Assert.assertNotNull(arrayList);
         Assert.assertEquals(11,arrayList.size());
         boolean check = false;

@@ -18,7 +18,7 @@ public class ConstructorTest {
     @Test
     public void testConstructorInformation() throws IOException, ParseException {
         ConstructorMutator mutator = new ConstructorMutator();
-        ArrayList<Constructor> arrayList = mutator.getAllTheConstructorInformation("src/main/resources/");
+        ArrayList<Constructor> arrayList = mutator.getAllTheConstructorInformation("src/main/resources/", GlobalF1.SAVED_JSON_DIR_TEST);
         GlobalF1 global = new GlobalF1();
         String team = "Team_ScuderiaFerrari.png";
         ImageView image1 = mutator.getConstructor().setTeamLogo(global.setTheImage("src/main/resources/Constructors/" + team));

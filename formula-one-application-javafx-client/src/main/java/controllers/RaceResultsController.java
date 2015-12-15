@@ -98,7 +98,7 @@ public class RaceResultsController implements Initializable {
             assert fastestLapRank != 0 : "fx:id=\"fastestLapRank\" was not injected: check your FXML file 'RaceResults.fxml'.";
             assert fastestLap != 0 : "fx:id=\"fastestLap\" was not injected: check your FXML file 'RaceResults.fxml'.";
             assert fastestLapTime != null : "fx:id=\"fastestLapTime\" was not injected: check your FXML file 'RaceResults.fxml'.";
-            arrayList = mutator.generateRaceResults();
+            arrayList = mutator.generateRaceResults(GlobalF1.SAVED_JSON_DIR);
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }

@@ -1,13 +1,9 @@
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.cell.PropertyValueFactory?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ChoiceBox?>
-<GridPane style="-fx-background-color:gray" alignment="BASELINE_LEFT" xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.RaceResultsController" hgap="10.0" vgap="10.0">
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<GridPane style="-fx-background-color:gray" alignment="BASELINE_LEFT" xmlns:fx="http://javafx.com/fxml"
+          fx:controller="controllers.RaceResultsController" hgap="10.0" vgap="10.0">
     <padding>
         <Insets top="25" right="25" bottom="10" left="25"/>
     </padding>
@@ -15,7 +11,7 @@
         <Label style="-fx-font: NORMAL 20 Tahoma;" text="Race Results"></Label>
     </HBox>
     <HBox spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="1">
-        <Label fx:id="code" text="Select Race: " />
+        <Label fx:id="code" text="Select Race: "/>
         <ChoiceBox fx:id="raceChoiceBox" layoutX="210.0" layoutY="108.0" prefHeight="27.0"
         >
         </ChoiceBox>
@@ -23,83 +19,103 @@
     <TableView prefHeight="600" fx:id="tableView" GridPane.columnIndex="0" GridPane.rowIndex="2">
         <columns>
             <TableColumn text="Season" prefWidth="200">
-                <cellValueFactory><PropertyValueFactory property="season" />
+                <cellValueFactory>
+                    <PropertyValueFactory property="season"/>
                 </cellValueFactory>
             </TableColumn>
             <TableColumn text="Round" prefWidth="100">
-                <cellValueFactory><PropertyValueFactory property="round" />
+                <cellValueFactory>
+                    <PropertyValueFactory property="round"/>
                 </cellValueFactory>
             </TableColumn>
             <TableColumn text="Circuit Name" prefWidth="100">
-                <cellValueFactory><PropertyValueFactory property="circuitName" />
+                <cellValueFactory>
+                    <PropertyValueFactory property="circuitName"/>
                 </cellValueFactory>
             </TableColumn>
             <TableColumn text="Locality" prefWidth="200">
-                <cellValueFactory><PropertyValueFactory property="locality" />
+                <cellValueFactory>
+                    <PropertyValueFactory property="locality"/>
                 </cellValueFactory>
             </TableColumn>
             <TableColumn text="Country" prefWidth="300">
-                <cellValueFactory><PropertyValueFactory property="country" />
+                <cellValueFactory>
+                    <PropertyValueFactory property="country"/>
                 </cellValueFactory>
             </TableColumn>
             <TableColumn text="Race Start Date" prefWidth="300">
-                <cellValueFactory><PropertyValueFactory property="raceStartDate" />
+                <cellValueFactory>
+                    <PropertyValueFactory property="raceStartDate"/>
                 </cellValueFactory>
             </TableColumn>
             <TableColumn text="Race Start Time" prefWidth="300">
-                <cellValueFactory><PropertyValueFactory property="raceStartTime" />
+                <cellValueFactory>
+                    <PropertyValueFactory property="raceStartTime"/>
                 </cellValueFactory>
             </TableColumn>
             <TableColumn text="Finishing Position" prefWidth="300">
-                <cellValueFactory><PropertyValueFactory property="finishingPosition" />
+                <cellValueFactory>
+                    <PropertyValueFactory property="finishingPosition"/>
                 </cellValueFactory>
             </TableColumn>
             <TableColumn text="Driving Number" prefWidth="300">
-                <cellValueFactory><PropertyValueFactory property="driverNumber" />
+                <cellValueFactory>
+                    <PropertyValueFactory property="driverNumber"/>
                 </cellValueFactory>
             </TableColumn>
             <TableColumn text="Driver Points" prefWidth="300">
-                <cellValueFactory><PropertyValueFactory property="driverPoints" />
+                <cellValueFactory>
+                    <PropertyValueFactory property="driverPoints"/>
                 </cellValueFactory>
             </TableColumn>
             <TableColumn text="Give Name" prefWidth="300">
-                <cellValueFactory><PropertyValueFactory property="givenName" />
+                <cellValueFactory>
+                    <PropertyValueFactory property="givenName"/>
                 </cellValueFactory>
             </TableColumn>
             <TableColumn text="Family Name" prefWidth="300">
-                <cellValueFactory><PropertyValueFactory property="familyName" />
+                <cellValueFactory>
+                    <PropertyValueFactory property="familyName"/>
                 </cellValueFactory>
             </TableColumn>
             <TableColumn text="Constructor" prefWidth="300">
-                <cellValueFactory><PropertyValueFactory property="constructor" />
+                <cellValueFactory>
+                    <PropertyValueFactory property="constructor"/>
                 </cellValueFactory>
             </TableColumn>
             <TableColumn text="Starting Grid" prefWidth="300">
-                <cellValueFactory><PropertyValueFactory property="startingGrid" />
+                <cellValueFactory>
+                    <PropertyValueFactory property="startingGrid"/>
                 </cellValueFactory>
             </TableColumn>
             <TableColumn text="Driven Laps" prefWidth="300">
-                <cellValueFactory><PropertyValueFactory property="drivenLaps" />
+                <cellValueFactory>
+                    <PropertyValueFactory property="drivenLaps"/>
                 </cellValueFactory>
             </TableColumn>
             <TableColumn text="Status" prefWidth="300">
-                <cellValueFactory><PropertyValueFactory property="status" />
+                <cellValueFactory>
+                    <PropertyValueFactory property="status"/>
                 </cellValueFactory>
             </TableColumn>
             <TableColumn text="Total Riding Time" prefWidth="300">
-                <cellValueFactory><PropertyValueFactory property="totalRidingTime" />
+                <cellValueFactory>
+                    <PropertyValueFactory property="totalRidingTime"/>
                 </cellValueFactory>
             </TableColumn>
             <TableColumn text="Fastest Lap Rank" prefWidth="300">
-                <cellValueFactory><PropertyValueFactory property="fastestLapRank" />
+                <cellValueFactory>
+                    <PropertyValueFactory property="fastestLapRank"/>
                 </cellValueFactory>
             </TableColumn>
             <TableColumn text="Fastest Lap" prefWidth="300">
-                <cellValueFactory><PropertyValueFactory property="fastestLap" />
+                <cellValueFactory>
+                    <PropertyValueFactory property="fastestLap"/>
                 </cellValueFactory>
             </TableColumn>
             <TableColumn text="Fastest Lap Time" prefWidth="300">
-                <cellValueFactory><PropertyValueFactory property="fastestLapTime" />
+                <cellValueFactory>
+                    <PropertyValueFactory property="fastestLapTime"/>
                 </cellValueFactory>
             </TableColumn>
         </columns>

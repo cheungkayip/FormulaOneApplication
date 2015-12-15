@@ -60,7 +60,7 @@ public class DriverTest {
     @Test
     public void testDriversFromUrl() throws IOException, ParseException {
         DriverMutator mutator = new DriverMutator();
-        ArrayList<Driver> arrayList = mutator.createDriversFromURL(GlobalF1.FORMULA_ONE_RESOURCES_TESTDIR);
+        ArrayList<Driver> arrayList = mutator.createDriversFromURL(GlobalF1.SAVED_JSON_DIR_TEST);
         Assert.assertNotNull(arrayList);
         Assert.assertEquals(22,arrayList.size());
         boolean check = false;

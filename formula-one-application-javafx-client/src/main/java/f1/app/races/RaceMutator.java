@@ -43,11 +43,11 @@ public class RaceMutator {
         return raceResultList;
     }
 
-    public ArrayList<RaceResults> generateRaceResults() throws IOException, ParseException {
+    public ArrayList<RaceResults> generateRaceResults(String resource) throws IOException, ParseException {
         ArrayList<String> raceNumberList = new ArrayList<>();
         setErgast(new Ergast());
 
-        String circuitJSON = getErgast().callUrlToGetJSONData(GlobalF1.CIRCUITS_JSON);
+        String circuitJSON = getErgast().decideTheRightJSON(resource, GlobalF1.CIRCUITS_JSON);
         JSONObject json = (JSONObject) new JSONParser().parse(circuitJSON);
         JSONObject mrData = (JSONObject) json.get("MRData");
         String total = mrData.get("total").toString();
