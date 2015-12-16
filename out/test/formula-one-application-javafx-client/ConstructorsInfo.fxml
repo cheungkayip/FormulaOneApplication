@@ -1,0 +1,45 @@
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<GridPane gridLinesVisible="false" style="-fx-background-color:gray" hgap="5" vgap="5" xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.ConstructorInfoController">
+    <padding>
+        <Insets top="25" right="25" bottom="10" left="25"/>
+    </padding>
+    <Label style="-fx-font: NORMAL 20 Tahoma;" text="Constructor Information"
+           GridPane.columnIndex="0" GridPane.rowIndex="0">
+    </Label>
+                <Label maxWidth="-Infinity" text="Constructor Team" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+
+                <ImageView fx:id="teamLogo" GridPane.columnIndex="1" GridPane.rowIndex="1" disable="false"
+                           fitHeight="150.0" fitWidth="250.0" layoutX="69.0" layoutY="322.0" pickOnBounds="true"
+                           preserveRatio="true"/>
+
+                <Label maxWidth="-Infinity" text="constructorId:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                <TextField fx:id="constructorId" text="constructorId" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+                <Label wrapText="true" text="Constructor WebAddress:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                <TextField fx:id="constructorUrl" text="constructorUrl" GridPane.columnIndex="1"
+                           GridPane.rowIndex="3"/>
+
+                <Label maxWidth="-Infinity" text="Constructor Name:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+                <TextField fx:id="constructorName" text="Constructor Name" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+
+                <Label text="Constructor Nationality:" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+                <TextField fx:id="constructorNationality" text="Constructor Nationality" GridPane.columnIndex="1"
+                           GridPane.rowIndex="5"/>
+
+                <Button fx:id="clearButton" mnemonicParsing="false" text="Clear The Fields" GridPane.columnIndex="2"
+                        GridPane.rowIndex="3"/>
+
+                <ChoiceBox fx:id="constructorsChoicebox" layoutX="210.0" layoutY="108.0" prefHeight="27.0"
+                           GridPane.columnIndex="2" GridPane.rowIndex="4">
+                </ChoiceBox>
+
+                <Button fx:id="showConstructorButton" mnemonicParsing="false" text="Show Selected Constructor"
+                        GridPane.columnIndex="2" GridPane.rowIndex="5"/>
+
+                <Label text="Added Constructors:" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
+                <TextArea fx:id="addedConstructors" text="Added Constructors" GridPane.columnIndex="1"
+                          GridPane.rowIndex="6"/>
+</GridPane>

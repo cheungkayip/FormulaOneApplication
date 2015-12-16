@@ -1,0 +1,35 @@
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<GridPane gridLinesVisible="false" style="-fx-background-color:gray" alignment="BASELINE_LEFT" xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.ConstructorStandingsController" hgap="10.0" vgap="10.0">
+    <padding>
+        <Insets top="25" right="25" bottom="10" left="25"/>
+    </padding>
+    <Label style="-fx-font: NORMAL 20 Tahoma;" text="Constructor Teams Standings"
+           GridPane.columnIndex="0" GridPane.rowIndex="0">
+    </Label>
+    <TableView  prefHeight="325" fx:id="tableView" GridPane.columnIndex="0"
+               GridPane.rowIndex="1">
+        <columns>
+            <TableColumn text="Position" prefWidth="200">
+                <cellValueFactory><PropertyValueFactory property="position" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="Points" prefWidth="100">
+                <cellValueFactory><PropertyValueFactory property="points" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="Wins" prefWidth="100">
+                <cellValueFactory><PropertyValueFactory property="wins" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="Constructor" prefWidth="300">
+                <cellValueFactory><PropertyValueFactory property="constructorName" />
+                </cellValueFactory>
+            </TableColumn>
+        </columns>
+    </TableView>
+</GridPane>
