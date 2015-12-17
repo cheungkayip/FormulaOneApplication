@@ -5,6 +5,8 @@ import f1.app.drivers.DriverStandings;
 import f1.app.global.GlobalF1;
 import f1.app.races.RaceMutator;
 import f1.app.races.RaceResults;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -104,14 +106,23 @@ public class RaceResultsController implements Initializable {
         }
         // Fetch the ArrayList + Fill the Choicebox with data
         ArrayList<String> circuitInformation = mutator.getCircuitInformation();
-        for (String temp : circuitInformation) {
-            String circuit = temp;
-        }
+
         raceChoiceBox.setItems(FXCollections.observableArrayList(circuitInformation));
         raceChoiceBox.getSelectionModel().selectFirst();
+        raceChoiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                // Java 8 Steam Example + Filter + Foreach
+                ArrayList<RaceResults> theList = mutator.decideWhichRaceIsDisplayed(arrayList,newValue);
+                ObservableList<RaceResults> data = tableView.getItems();
+                data.clear();
+                data.addAll(theList.stream().collect(Collectors.toList()));
+            }
+        });
 
-        ObservableList<RaceResults> data = tableView.getItems();
-        // Java 8 Streaming
-        data.addAll(arrayList.stream().collect(Collectors.toList()));
+
+
+
+
     }
 }
