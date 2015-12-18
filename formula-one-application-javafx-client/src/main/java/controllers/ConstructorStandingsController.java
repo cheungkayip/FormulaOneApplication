@@ -2,8 +2,6 @@ package controllers;
 
 import f1.app.constructor.ConstructorMutator;
 import f1.app.constructor.ConstructorStandings;
-import f1.app.drivers.DriverMutator;
-import f1.app.drivers.DriverStandings;
 import f1.app.global.GlobalF1;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

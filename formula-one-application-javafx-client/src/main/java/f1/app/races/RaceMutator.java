@@ -56,19 +56,20 @@ public class RaceMutator {
 
         int raceNumber = 1;
 
+
         while (raceNumber <= totalRaces) {
             String jsonURL = getErgast().callUrlToGetJSONData(GlobalF1.RACE_RESULTS_DIR+raceNumber+"/results.Json");
-            JSONObject json2 = (JSONObject) new JSONParser().parse(jsonURL);
-            JSONObject mrData2 = (JSONObject) json2.get("MRData");
-            JSONObject raceTable = (JSONObject) mrData2.get("RaceTable");
+            JSONObject parsedJsonUrl = (JSONObject) new JSONParser().parse(jsonURL);
+            JSONObject raceResultsMRData = (JSONObject) parsedJsonUrl.get("MRData");
+            JSONObject raceTable = (JSONObject) raceResultsMRData.get("RaceTable");
             JSONArray races = (JSONArray) raceTable.get("Races");
-            for(Object temp: races){
-                JSONObject innerRaces = (JSONObject) temp;
+            races.stream().forEach(raceItem -> {
+                JSONObject innerRaces = (JSONObject) raceItem;
                 JSONObject innerCircuit = (JSONObject)innerRaces.get("Circuit");
                 JSONObject innerLocation = (JSONObject)innerCircuit.get("Location");
                 JSONArray results = (JSONArray) innerRaces.get("Results");
 
-                for(Object temp2: results){
+                results.stream().forEach(resultsItem -> {
                     setResults(new RaceResults());
                     getResults().setSeason(Integer.parseInt(innerRaces.get("season").toString()));
                     getResults().setRound(Integer.parseInt(innerRaces.get("round").toString()));
@@ -78,7 +79,7 @@ public class RaceMutator {
 
                     getResults().setRaceStartDate(innerRaces.get("date").toString());
                     getResults().setRaceStartTime(innerRaces.get("time").toString());
-                    JSONObject json3 = (JSONObject) temp2;
+                    JSONObject json3 = (JSONObject) resultsItem;
                     getResults().setDriverNumber(Integer.parseInt(json3.get("number").toString()));
                     getResults().setFinishingPosition(json3.get("position").toString());
                     getResults().setDriverPoints(Integer.parseInt(json3.get("points").toString()));
@@ -113,10 +114,11 @@ public class RaceMutator {
                     }
 
                     raceResultList.add(getResults());
-                }
+                        }
+                );
 
                 circuitInformation.add("Round: " + getResults().getRound() + " " + "Circuit Name: "  + getResults().getCircuitName());
-            }
+            });
 
             raceNumberList.add(jsonURL);
             raceNumber++;
@@ -131,97 +133,97 @@ public class RaceMutator {
             case "0":
                 list.stream()
                         .filter(s->s.getCircuitName().equals("Albert Park Grand Prix Circuit"))
-                        .forEach(s -> reconstructedList.add(s));
+                        .forEach(reconstructedList::add);
                 break;
             case "1":
                 list.stream()
                         .filter(s->s.getCircuitName().equals("Sepang International Circuit"))
-                        .forEach(s -> reconstructedList.add(s));
+                        .forEach(reconstructedList::add);
                 break;
             case "2":
                 list.stream()
                         .filter(s->s.getCircuitName().equals("Shanghai International Circuit"))
-                        .forEach(s -> reconstructedList.add(s));
+                        .forEach(reconstructedList::add);
                 break;
             case "3":
                 list.stream()
                         .filter(s->s.getCircuitName().equals("Bahrain International Circuit"))
-                        .forEach(s -> reconstructedList.add(s));
+                        .forEach(reconstructedList::add);
                 break;
             case "4":
                 list.stream()
                         .filter(s->s.getCircuitName().equals("Circuit de Catalunya"))
-                        .forEach(s -> reconstructedList.add(s));
+                        .forEach(reconstructedList::add);
                 break;
             case "5":
                 list.stream()
                         .filter(s->s.getCircuitName().equals("Circuit de Monaco"))
-                        .forEach(s -> reconstructedList.add(s));
+                        .forEach(reconstructedList::add);
                 break;
             case "6":
                 list.stream()
                         .filter(s->s.getCircuitName().equals("Circuit Gilles Villeneuve"))
-                        .forEach(s -> reconstructedList.add(s));
+                        .forEach(reconstructedList::add);
                 break;
             case "7":
                 list.stream()
                         .filter(s->s.getCircuitName().equals("Red Bull Ring"))
-                        .forEach(s -> reconstructedList.add(s));
+                        .forEach(reconstructedList::add);
                 break;
             case "8":
                 list.stream()
                         .filter(s->s.getCircuitName().equals("Silverstone Circuit"))
-                        .forEach(s -> reconstructedList.add(s));
+                        .forEach(reconstructedList::add);
                 break;
             case "9":
                 list.stream()
                         .filter(s->s.getCircuitName().equals("Hungaroring"))
-                        .forEach(s -> reconstructedList.add(s));
+                        .forEach(reconstructedList::add);
                 break;
             case "10":
                 list.stream()
                         .filter(s->s.getCircuitName().equals("Circuit de Spa-Francorchamps"))
-                        .forEach(s -> reconstructedList.add(s));
+                        .forEach(reconstructedList::add);
                 break;
             case "11":
                 list.stream()
                         .filter(s->s.getCircuitName().equals("Autodromo Nazionale di Monza"))
-                        .forEach(s -> reconstructedList.add(s));
+                        .forEach(reconstructedList::add);
                 break;
             case "12":
                 list.stream()
                         .filter(s->s.getCircuitName().equals("Marina Bay Street Circuit"))
-                        .forEach(s -> reconstructedList.add(s));
+                        .forEach(reconstructedList::add);
                 break;
             case "13":
                 list.stream()
                         .filter(s->s.getCircuitName().equals("Suzuka Circuit"))
-                        .forEach(s -> reconstructedList.add(s));
+                        .forEach(reconstructedList::add);
                 break;
             case "14":
                 list.stream()
                         .filter(s->s.getCircuitName().equals("Sochi International Street Circuit"))
-                        .forEach(s -> reconstructedList.add(s));
+                        .forEach(reconstructedList::add);
                 break;
             case "15":
                 list.stream()
                         .filter(s->s.getCircuitName().equals("Circuit of the Americas"))
-                        .forEach(s -> reconstructedList.add(s));
+                        .forEach(reconstructedList::add);
                 break;
             case "16":
                 list.stream()
                         .filter(s->s.getCircuitName().equals("Autódromo Hermanos Rodríguez"))
-                        .forEach(s -> reconstructedList.add(s));
+                        .forEach(reconstructedList::add);
                 break;
             case "17":
                 list.stream()
                         .filter(s->s.getCircuitName().equals("Autódromo José Carlos Pace"))
-                        .forEach(s -> reconstructedList.add(s));
+                        .forEach(reconstructedList::add);
                 break;
             case "18":
                 list.stream()
                         .filter(s->s.getCircuitName().equals("Yas Marina Circuit"))
-                        .forEach(s -> reconstructedList.add(s));
+                        .forEach(reconstructedList::add);
                 break;
         }
         return reconstructedList;

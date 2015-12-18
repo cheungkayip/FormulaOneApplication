@@ -17,6 +17,7 @@ import org.json.simple.parser.ParseException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class DriverInfoController implements Initializable {
@@ -74,18 +75,14 @@ public class DriverInfoController implements Initializable {
 
     public void showDriverButton() {
         showSelectedDriverButton.setOnAction(event -> {
-                    // Get Selected value first
-                    String selectedValue = driversChoicebox.getValue();
-                    for (Driver driver : driverMutator.getDriverList()) {
-                        if (selectedValue.contentEquals(driver.getGivenName() + " " + driver.getFamilyName())) {
-                            driverMutator.setDriver(driver);
-                            driverMutator.setConstructor(driver.getConstructorInfo());
-                            fillTheDriverFields();
-                            break;
-                        }
-                    }
-                }
-        );
+            // Get Selected value first
+            String selectedValue = driversChoicebox.getValue();
+            // Java 8 to match the Object
+            Optional<Driver> driver = driverMutator.getDriverList().stream().filter(obj -> selectedValue.contentEquals(obj.getGivenName() + " " + obj.getFamilyName())).findFirst();
+            driverMutator.setDriver(driver.get());
+            driverMutator.setConstructor(driver.get().getConstructorInfo());
+            fillTheDriverFields();
+        });
     }
 
     public void clearButton() {
@@ -109,11 +106,12 @@ public class DriverInfoController implements Initializable {
         // Fetch the ArrayList + Fill the Choicebox with data
         ArrayList<Driver> listOfAllDrivers = driverMutator.getDriverList();
         ArrayList<String> driverNames = new ArrayList<>();
-        for (Driver listOfAllDriver : listOfAllDrivers) {
-            String givenName = listOfAllDriver.getGivenName();
-            String familyName = listOfAllDriver.getFamilyName();
+        // Java 8 Streaming
+        listOfAllDrivers.stream().forEach(driverList -> {
+            String givenName = driverList.getGivenName();
+            String familyName = driverList.getFamilyName();
             driverNames.add(givenName + " " + familyName);
-        }
+        });
         driversChoicebox.setItems(FXCollections.observableArrayList(driverNames));
         driversChoicebox.getSelectionModel().selectFirst();
     }
@@ -135,9 +133,8 @@ public class DriverInfoController implements Initializable {
         teamLogo.setImage(driverMutator.getConstructor().getTeamLogo().getImage());
         // Display Drivers that were from the JSON File
         driverMutator.getDriver().setBuffer(new StringBuffer());
-        for (Driver temp : driverMutator.getDriverList()) {
-            driverMutator.getDriver().toString(temp);
-        }
+        // Java 8 Streaming
+        driverMutator.getDriverList().stream().forEach(driverList -> driverMutator.getDriver().toString(driverList));
         StringBuffer buffer = driverMutator.getDriver().getBuffer();
         addedDrivers.setText("" + buffer);
     }

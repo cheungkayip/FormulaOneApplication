@@ -2,7 +2,6 @@ package controllers;
 
 import f1.app.constructor.Constructor;
 import f1.app.constructor.ConstructorMutator;
-import f1.app.drivers.Driver;
 import f1.app.global.GlobalF1;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -15,6 +14,7 @@ import javafx.scene.image.ImageView;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 /**
@@ -65,18 +65,14 @@ public class ConstructorInfoController  implements Initializable {
 
     public void ShowConstructorButton() {
         showConstructorButton.setOnAction(event -> {
-                    // Get Selected value first
-                    String selectedValue = constructorsChoicebox.getValue();
-                    for (Constructor constructor : constructorMutator.getConstructorsList()) {
-                        if (selectedValue.contentEquals(constructor.getConstructorName())) {
-                            constructorMutator.setConstructor(constructor);
-                            fillConstructorFields();
-                            break;
-                        }
-                    }
-                }
-        );
-    }
+        String selectedValue = constructorsChoicebox.getValue(); // Get Selected value first
+        // Java 8 Streaming
+        Optional<Constructor> constructor = constructorMutator.getConstructorsList().stream().filter(obj -> selectedValue.contentEquals(obj.getConstructorName())).findFirst();
+        constructorMutator.setConstructor(constructor.get());
+        fillConstructorFields();
+        }
+    );
+}
     public void preLoadTheApplicationWithData() {
         // Create the Drivers from the JSON URL
         constructorMutator.getAllTheConstructorInformation(GlobalF1.FORMULA_ONE_RESOURCES_DIR, GlobalF1.SAVED_JSON_DIR);
@@ -86,10 +82,11 @@ public class ConstructorInfoController  implements Initializable {
         // Fetch the ArrayList + Fill the Choicebox with data
         ArrayList<Constructor> listOfAllConstructors = constructorMutator.getConstructorsList();
         ArrayList<String> cNames = new ArrayList<>();
-        for (Constructor c : listOfAllConstructors) {
-            String name = c.getConstructorName();
+        // Java 8 Streaming
+        listOfAllConstructors.stream().forEach(list -> {
+            String name = list.getConstructorName();
             cNames.add(name);
-        }
+        });
         constructorsChoicebox.setItems(FXCollections.observableArrayList(cNames));
         constructorsChoicebox.getSelectionModel().selectFirst();
     }
@@ -103,9 +100,8 @@ public class ConstructorInfoController  implements Initializable {
         teamLogo.setImage(constructorMutator.getConstructor().getTeamLogo().getImage());
         // Display Drivers that were from the JSON File
         constructorMutator.getConstructor().setBuffer(new StringBuffer());
-        for (Constructor temp : constructorMutator.getConstructorsList()) {
-            constructorMutator.getConstructor().toString(temp);
-        }
+        // Java 8 Streaming
+        constructorMutator.getConstructorsList().stream().forEach(constructorList -> constructorMutator.getConstructor().toString(constructorList));
         StringBuffer buffer = constructorMutator.getConstructor().getBuffer();
         addedConstructors.setText("" + buffer);
     }
