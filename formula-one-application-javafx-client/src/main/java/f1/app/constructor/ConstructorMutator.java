@@ -11,8 +11,13 @@ import org.json.simple.parser.ParseException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
+ * A ConstructorMutator for all Constructor Team mutations. This Class will be used
+ * in the Controllers to do specific Business Logic to get Constructor Data.
  * Created by kayipcheung on 04-12-15.
  */
 public class ConstructorMutator {
@@ -77,47 +82,54 @@ public class ConstructorMutator {
         constructor = null;
         return constructor;
     }
-    public ArrayList<Constructor> getAllTheConstructorInformation(String resource, String testResource){
+    public ArrayList<Constructor> getAllTheConstructorInformation(String resource, String testResource) throws IOException, ParseException {
         JSONParser parser = new JSONParser();
         setErgast(new Ergast());
-        try {
+
             String output = getErgast().decideTheRightJSON(testResource,GlobalF1.CONSTRUCTORS_JSON);
 
             JSONObject json = (JSONObject) new JSONParser().parse(output);
             JSONObject mrData = (JSONObject) json.get("MRData");
             JSONObject constructorTable = (JSONObject) mrData.get("ConstructorTable");
             JSONArray constructors = (JSONArray) constructorTable.get("Constructors");
-            for (int i = 0;i < constructors.size();i++) {
-                if (constructors.size() == (i)) {
-                    break;
-                }
+            // Java 8 Streaming
+            constructors.stream().forEach(constructor -> {
                 setConstructor(new Constructor());
                 setDriver(new Driver());
 
-                JSONObject object = (JSONObject) constructors.get(i);
-                Object jsonFile = parser.parse(new FileReader(resource+"Drivers.json"));
+                JSONObject object = (JSONObject) constructor;
+                Object jsonFile = null;
+                try {
+                    jsonFile = parser.parse(new FileReader(resource+"Drivers.json"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
                 JSONObject jsonObject = (JSONObject) jsonFile;
                 JSONArray constructorJSON = (JSONArray) jsonObject.get("Driver");
 
                 GlobalF1 global = new GlobalF1();
                 // Set the Enum correctly
-                Constructor.ConstructorId id = decideWhichConstructorEnumToSelect((JSONObject) constructors.get(i), getDriver(), getConstructor());
+                Constructor.ConstructorId id = null;
+                id = decideWhichConstructorEnumToSelect((JSONObject) constructor, getDriver(), getConstructor());
                 getConstructor().setConstructorId(id);
                 getConstructor().setConstructorUrl((String) object.get("url"));
                 String idToUppercase = object.get("name").toString().toUpperCase();
                 getConstructor().setConstructorName(idToUppercase);
                 getConstructor().setNationality((String) object.get("nationality"));
-                global.selectImagesForConstructor(constructorJSON, getConstructor(), resource);
+                try {
+                    global.selectImagesForConstructor(constructorJSON, getConstructor(), resource);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
                 // Add the driver to our own ArrayList (so you can call it later)
                 constructorsList.add(getConstructor());
                 setConstructorsList(constructorsList);
-            }
-        }catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+            });
+
         return getConstructorsList();
     }
 
@@ -137,26 +149,24 @@ public class ConstructorMutator {
             break;
         }
 if(constructorStandings != null) {
-    for (Object constructorPosition : constructorStandings) {
+    constructorStandings.stream().forEach(constructorPosition -> {
         setStandingsObject(new ConstructorStandings());
-
         JSONObject temp = (JSONObject) constructorPosition;
-
         getStandingsObject().setPosition(temp.get("position").toString());
         getStandingsObject().setPoints(temp.get("points").toString());
         getStandingsObject().setWins(temp.get("wins").toString());
         JSONObject constructor = (JSONObject) temp.get("Constructor");
         getStandingsObject().setConstructorName(constructor.get("name").toString());
-
         standingsList.add(getStandingsObject());
-    }
+    });
 }
         setStandingsList(standingsList);
         return getStandingsList();
     }
 
-    public Constructor.ConstructorId decideWhichConstructorEnumToSelect(JSONObject theIdfromArray, Driver driver, Constructor constructor) throws IOException {
-            for (Constructor.ConstructorId temp : Constructor.ConstructorId.values()) {
+    public Constructor.ConstructorId decideWhichConstructorEnumToSelect(JSONObject theIdfromArray, Driver driver, Constructor constructor) {
+
+        for (Constructor.ConstructorId temp : Constructor.ConstructorId.values()) {
                 String idToUppercase = theIdfromArray.get("constructorId").toString().toUpperCase();
                 if (temp.name().equals(idToUppercase)) {
                     constructor.setConstructorId(temp);

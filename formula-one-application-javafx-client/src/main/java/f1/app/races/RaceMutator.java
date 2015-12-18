@@ -56,7 +56,6 @@ public class RaceMutator {
 
         int raceNumber = 1;
 
-
         while (raceNumber <= totalRaces) {
             String jsonURL = getErgast().callUrlToGetJSONData(GlobalF1.RACE_RESULTS_DIR+raceNumber+"/results.Json");
             JSONObject parsedJsonUrl = (JSONObject) new JSONParser().parse(jsonURL);

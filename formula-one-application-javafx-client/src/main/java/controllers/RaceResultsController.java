@@ -46,6 +46,13 @@ public class RaceResultsController implements Initializable {
 
         raceChoiceBox.setItems(FXCollections.observableArrayList(circuitInformation));
         raceChoiceBox.getSelectionModel().selectFirst();
+        // To default display the first Albert Park Australia Race we set this one time.
+        // The Listener afterwards will decide on your choicebox choice.
+        ArrayList<RaceResults> defaultFirstRace = mutator.decideWhichRaceIsDisplayed(arrayList,0);
+        ObservableList<RaceResults> defaultTable = tableView.getItems();
+        defaultTable.addAll(defaultFirstRace.stream().collect(Collectors.toList()));
+
+        // This is the Listener which will change if you select a different race.
         raceChoiceBox.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
             // Java 8 Steam Example + Filter + Foreach
             ArrayList<RaceResults> theList = mutator.decideWhichRaceIsDisplayed(arrayList, newValue);

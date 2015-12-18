@@ -117,9 +117,8 @@ public class DriverMutator {
         JSONObject driverStandings = (JSONObject) standingLists.get(0);
         JSONArray resultsOfADriver = (JSONArray) driverStandings.get("DriverStandings");
 
-        for (Object aResultsOfADriver : resultsOfADriver) {
+        resultsOfADriver.stream().forEach(aResultsOfADriver -> {
             setDriverStandings(new DriverStandings());
-
             JSONObject temp = (JSONObject) aResultsOfADriver;
 
             getDriverStandings().setPosition(temp.get("position").toString());
@@ -130,12 +129,13 @@ public class DriverMutator {
             getDriverStandings().setDriver(driver.get("givenName").toString() + " " + driver.get("familyName").toString());
             // Only need the Constructor Name (no need for the whole Constructor Object)
             JSONArray constructor = (JSONArray) temp.get("Constructors");
-            for (Object aConstructor : constructor) {
+            constructor.stream().forEach(aConstructor -> {
                 JSONObject cons = (JSONObject) aConstructor;
                 getDriverStandings().setConstructor(cons.get("name").toString());
-            }
+            });
             driverStandingsList.add(getDriverStandings());
-        }
+        });
+
         setDriverStandingsList(getDriverStandingsList());
         return getDriverStandingsList();
     }

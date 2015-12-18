@@ -11,7 +11,9 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import org.json.simple.parser.ParseException;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -50,7 +52,13 @@ public class ConstructorInfoController  implements Initializable {
         assert constructorName != null : "fx:id=\"constructorName\" was not injected: check your FXML file 'ConstructorInfo.fxml'.";
         assert constructorNationality != null : "fx:id=\"constructorNationality\" was not injected: check your FXML file 'ConstructorInfo.fxml'.";
         assert teamLogo != null : "fx:id=\"teamLogo\" was not injected: check your FXML file 'ConstructorInfo.fxml'.";
-        preLoadTheApplicationWithData();
+        try {
+            preLoadTheApplicationWithData();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         clearButton();
         ShowConstructorButton();
     }
@@ -73,7 +81,7 @@ public class ConstructorInfoController  implements Initializable {
         }
     );
 }
-    public void preLoadTheApplicationWithData() {
+    public void preLoadTheApplicationWithData() throws IOException, ParseException {
         // Create the Drivers from the JSON URL
         constructorMutator.getAllTheConstructorInformation(GlobalF1.FORMULA_ONE_RESOURCES_DIR, GlobalF1.SAVED_JSON_DIR);
 
