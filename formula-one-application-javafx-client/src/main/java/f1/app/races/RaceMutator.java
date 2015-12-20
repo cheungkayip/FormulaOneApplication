@@ -111,7 +111,6 @@ public class RaceMutator {
                             getResults().setFastestLapTime(innerTime2.get("time").toString());
                         }
                     }
-
                     raceResultList.add(getResults());
                         }
                 );
@@ -125,104 +124,54 @@ public class RaceMutator {
         return raceResultList;
     }
 
+    public ArrayList<RaceResults> returnTheRightRace(ArrayList<RaceResults> list, ArrayList<RaceResults> reconstructedList, String raceName){
+        list.stream()
+                .filter(s->s.getCircuitName().equals(raceName))
+                .forEach(reconstructedList::add);
+        return reconstructedList;
+    }
+
     public ArrayList<RaceResults> decideWhichRaceIsDisplayed(ArrayList<RaceResults> list, Number raceName){
         ArrayList<RaceResults> reconstructedList = new ArrayList<>();
         String raceRound = String.valueOf(raceName);
         switch(raceRound){
-            case "0":
-                list.stream()
-                        .filter(s->s.getCircuitName().equals("Albert Park Grand Prix Circuit"))
-                        .forEach(reconstructedList::add);
+            case "0": returnTheRightRace(list,reconstructedList,"Albert Park Grand Prix Circuit");
                 break;
-            case "1":
-                list.stream()
-                        .filter(s->s.getCircuitName().equals("Sepang International Circuit"))
-                        .forEach(reconstructedList::add);
+            case "1": returnTheRightRace(list,reconstructedList,"Sepang International Circuit");
                 break;
-            case "2":
-                list.stream()
-                        .filter(s->s.getCircuitName().equals("Shanghai International Circuit"))
-                        .forEach(reconstructedList::add);
+            case "2": returnTheRightRace(list,reconstructedList,"Shanghai International Circuit");
                 break;
-            case "3":
-                list.stream()
-                        .filter(s->s.getCircuitName().equals("Bahrain International Circuit"))
-                        .forEach(reconstructedList::add);
+            case "3": returnTheRightRace(list,reconstructedList,"Bahrain International Circuit");
                 break;
-            case "4":
-                list.stream()
-                        .filter(s->s.getCircuitName().equals("Circuit de Catalunya"))
-                        .forEach(reconstructedList::add);
+            case "4": returnTheRightRace(list,reconstructedList,"Circuit de Catalunya");
                 break;
-            case "5":
-                list.stream()
-                        .filter(s->s.getCircuitName().equals("Circuit de Monaco"))
-                        .forEach(reconstructedList::add);
+            case "5": returnTheRightRace(list,reconstructedList,"Circuit de Monaco");
                 break;
-            case "6":
-                list.stream()
-                        .filter(s->s.getCircuitName().equals("Circuit Gilles Villeneuve"))
-                        .forEach(reconstructedList::add);
+            case "6": returnTheRightRace(list,reconstructedList,"Circuit Gilles Villeneuve");
                 break;
-            case "7":
-                list.stream()
-                        .filter(s->s.getCircuitName().equals("Red Bull Ring"))
-                        .forEach(reconstructedList::add);
+            case "7": returnTheRightRace(list,reconstructedList,"Red Bull Ring");
                 break;
-            case "8":
-                list.stream()
-                        .filter(s->s.getCircuitName().equals("Silverstone Circuit"))
-                        .forEach(reconstructedList::add);
+            case "8": returnTheRightRace(list,reconstructedList,"Silverstone Circuit");
                 break;
-            case "9":
-                list.stream()
-                        .filter(s->s.getCircuitName().equals("Hungaroring"))
-                        .forEach(reconstructedList::add);
+            case "9": returnTheRightRace(list,reconstructedList,"Hungaroring");
                 break;
-            case "10":
-                list.stream()
-                        .filter(s->s.getCircuitName().equals("Circuit de Spa-Francorchamps"))
-                        .forEach(reconstructedList::add);
+            case "10": returnTheRightRace(list,reconstructedList,"Circuit de Spa-Francorchamps");
                 break;
-            case "11":
-                list.stream()
-                        .filter(s->s.getCircuitName().equals("Autodromo Nazionale di Monza"))
-                        .forEach(reconstructedList::add);
+            case "11": returnTheRightRace(list,reconstructedList,"Autodromo Nazionale di Monza");
                 break;
-            case "12":
-                list.stream()
-                        .filter(s->s.getCircuitName().equals("Marina Bay Street Circuit"))
-                        .forEach(reconstructedList::add);
+            case "12": returnTheRightRace(list,reconstructedList,"Marina Bay Street Circuit");
                 break;
-            case "13":
-                list.stream()
-                        .filter(s->s.getCircuitName().equals("Suzuka Circuit"))
-                        .forEach(reconstructedList::add);
+            case "13": returnTheRightRace(list,reconstructedList,"Suzuka Circuit");
                 break;
-            case "14":
-                list.stream()
-                        .filter(s->s.getCircuitName().equals("Sochi International Street Circuit"))
-                        .forEach(reconstructedList::add);
+            case "14": returnTheRightRace(list,reconstructedList,"Sochi International Street Circuit");
                 break;
-            case "15":
-                list.stream()
-                        .filter(s->s.getCircuitName().equals("Circuit of the Americas"))
-                        .forEach(reconstructedList::add);
+            case "15": returnTheRightRace(list,reconstructedList,"Circuit of the Americas");
                 break;
-            case "16":
-                list.stream()
-                        .filter(s->s.getCircuitName().equals("Autódromo Hermanos Rodríguez"))
-                        .forEach(reconstructedList::add);
+            case "16": returnTheRightRace(list,reconstructedList,"Autódromo Hermanos Rodríguez");
                 break;
-            case "17":
-                list.stream()
-                        .filter(s->s.getCircuitName().equals("Autódromo José Carlos Pace"))
-                        .forEach(reconstructedList::add);
+            case "17": returnTheRightRace(list,reconstructedList,"Autódromo José Carlos Pace");
                 break;
-            case "18":
-                list.stream()
-                        .filter(s->s.getCircuitName().equals("Yas Marina Circuit"))
-                        .forEach(reconstructedList::add);
+            case "18": returnTheRightRace(list,reconstructedList,"Yas Marina Circuit");
                 break;
         }
         return reconstructedList;

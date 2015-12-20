@@ -4,7 +4,9 @@ import f1.app.constructor.ConstructorMutator;
 import f1.app.drivers.Driver;
 import f1.app.drivers.DriverMutator;
 import f1.app.global.GlobalF1;
+import f1.app.races.RaceResults;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -19,6 +21,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class DriverInfoController implements Initializable {
     @FXML
@@ -100,9 +103,11 @@ public class DriverInfoController implements Initializable {
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
-
         fillTheDriverFields();
+        loadChoicebox();
+    }
 
+    public void loadChoicebox(){
         // Fetch the ArrayList + Fill the Choicebox with data
         ArrayList<Driver> listOfAllDrivers = driverMutator.getDriverList();
         ArrayList<String> driverNames = new ArrayList<>();
@@ -114,6 +119,14 @@ public class DriverInfoController implements Initializable {
         });
         driversChoicebox.setItems(FXCollections.observableArrayList(driverNames));
         driversChoicebox.getSelectionModel().selectFirst();
+
+        // Get Selected value first
+        String selectedValue = driversChoicebox.getValue();
+        // Java 8 to match the Object
+        Optional<Driver> driver = driverMutator.getDriverList().stream().filter(obj -> selectedValue.contentEquals(obj.getGivenName() + " " + obj.getFamilyName())).findFirst();
+        driverMutator.setDriver(driver.get());
+        driverMutator.setConstructor(driver.get().getConstructorInfo());
+        fillTheDriverFields();
     }
 
     public void fillTheDriverFields() {

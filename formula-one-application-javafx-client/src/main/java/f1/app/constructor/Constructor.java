@@ -6,7 +6,6 @@ import javafx.scene.image.ImageView;
  * Created by kayipcheung on 28-11-15.
  */
 public class Constructor {
-    //http://ergast.com/api/f1/2015/constructors.json
    public enum ConstructorId {
        FERRARI, MERCEDES, WILLIAMS, RED_BULL, FORCE_INDIA, LOTUS_F1, TORO_ROSSO, SAUBER, MCLAREN, MANOR, MARUSSIA
    }

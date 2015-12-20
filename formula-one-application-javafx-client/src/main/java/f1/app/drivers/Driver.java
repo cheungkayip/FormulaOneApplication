@@ -7,7 +7,6 @@ import javafx.scene.image.ImageView;
  * Created by kayipcheung on 28-11-15.
  */
 public class Driver {
-    //http://ergast.com/api/f1/2015/drivers.json
     private String code;
     private String driverId;
     private String permanentNumber;
