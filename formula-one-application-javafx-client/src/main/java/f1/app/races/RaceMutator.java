@@ -16,32 +16,28 @@ import java.util.ArrayList;
 public class RaceMutator {
     private Ergast ergast;
     private RaceResults results;
-    private ArrayList<RaceResults> raceResultList = new ArrayList<>();
-    private ArrayList<String> circuitInformation = new ArrayList<>();
+    private final ArrayList<RaceResults> raceResultList = new ArrayList<>();
+    private final ArrayList<String> circuitInformation = new ArrayList<>();
 
 
     public ArrayList<String> getCircuitInformation() {
         return circuitInformation;
     }
 
-    public Ergast getErgast() {
+    private Ergast getErgast() {
         return ergast;
     }
 
-    public void setErgast(Ergast ergast) {
+    private void setErgast(Ergast ergast) {
         this.ergast = ergast;
     }
 
-    public RaceResults getResults() {
+    private RaceResults getResults() {
         return results;
     }
 
-    public void setResults(RaceResults results) {
+    private void setResults(RaceResults results) {
         this.results = results;
-    }
-
-    public ArrayList<RaceResults> getRaceResultList() {
-        return raceResultList;
     }
 
     public ArrayList<RaceResults> generateRaceResults(String resource) throws IOException, ParseException {
@@ -124,7 +120,7 @@ public class RaceMutator {
         return raceResultList;
     }
 
-    public ArrayList<RaceResults> returnTheRightRace(ArrayList<RaceResults> list, ArrayList<RaceResults> reconstructedList, String raceName){
+    private ArrayList<RaceResults> returnTheRightRace(ArrayList<RaceResults> list, ArrayList<RaceResults> reconstructedList, String raceName){
         list.stream()
                 .filter(s->s.getCircuitName().equals(raceName))
                 .forEach(reconstructedList::add);

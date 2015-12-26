@@ -4,6 +4,7 @@ import f1.app.constructor.Constructor;
 import javafx.scene.image.ImageView;
 
 /**
+ * Driver Information about the drivers of F1 2015
  * Created by kayipcheung on 28-11-15.
  */
 public class Driver {
@@ -121,15 +122,15 @@ public class Driver {
     }
 
     public StringBuffer toString(Driver driver) {
-        getBuffer().append(
-                "Driver ID: " + driver.getDriverId() + "\n" +
-                        "Given Name: " + driver.getGivenName() + "\n" +
-                        "Family Name: " + driver.getFamilyName() + "\n" +
-                        "Date of Birth: " + driver.getDateOfBirth() + "\n" +
-                        "Permanent Number: " + driver.getPermanentNumber() + "\n" +
-                        "Nationality: " + driver.getNationality() + "\n" +
-                        "Weblink URL: " + driver.getUrl() + "\n" + "\n"
-        );
+        getBuffer().append("Driver ID: ")
+                .append(driver.getDriverId()).append("\n")
+                .append("Given Name: ").append(driver.getGivenName()).append("\n")
+                .append("Family Name: ").append(driver.getFamilyName()).append("\n")
+                .append("Date of Birth: ").append(driver.getDateOfBirth()).append("\n")
+                .append("Permanent Number: ").append(driver.getPermanentNumber()).append("\n")
+                .append("Nationality: ").append(driver.getNationality()).append("\n")
+                .append("Weblink URL: ").append(driver.getUrl()).append("\n")
+                .append("\n");
         return getBuffer();
     }
 

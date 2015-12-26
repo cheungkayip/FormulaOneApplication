@@ -38,8 +38,4 @@
 
                 <Button fx:id="showConstructorButton" mnemonicParsing="false" text="Show Selected Constructor"
                         GridPane.columnIndex="2" GridPane.rowIndex="5"/>
-
-                <Label text="Added Constructors:" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
-                <TextArea fx:id="addedConstructors" text="Added Constructors" GridPane.columnIndex="1"
-                          GridPane.rowIndex="6"/>
 </GridPane>

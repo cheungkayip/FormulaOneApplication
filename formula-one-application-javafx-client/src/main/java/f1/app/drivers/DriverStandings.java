@@ -53,13 +53,11 @@ public class DriverStandings {
     }
 
     public StringBuffer toString(DriverStandings standings) {
-        getBuffer().append(
-                "Position: " + standings.getPosition() + "\n" +
-                        "Driver: " + standings.getDriver() + " " + "\n" +
-                        "Constructor: " + standings.getConstructor() + "\n" +
-                        "Points: " + standings.getPoints() + "\n" +
-                        "Wins: " + standings.getWins() + "\n"
-        );
+        getBuffer().append("Position: ").append(standings.getPosition()).append("\n")
+                .append("Driver: ").append(standings.getDriver()).append(" ").append("\n")
+                .append("Constructor: ").append(standings.getConstructor()).append("\n")
+                .append("Points: ").append(standings.getPoints()).append("\n")
+                .append("Wins: ").append(standings.getWins()).append("\n");
         return getBuffer();
     }
 

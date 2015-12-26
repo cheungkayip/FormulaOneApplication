@@ -11,7 +11,6 @@ import org.json.simple.parser.ParseException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -79,8 +78,7 @@ public class ConstructorMutator {
 
 
     public Constructor clearTheConstructor() {
-        constructor = null;
-        return constructor;
+        return constructor = null;
     }
     public ArrayList<Constructor> getAllTheConstructorInformation(String resource, String testResource) throws IOException, ParseException {
         JSONParser parser = new JSONParser();
@@ -101,14 +99,12 @@ public class ConstructorMutator {
                 Object jsonFile = null;
                 try {
                     jsonFile = parser.parse(new FileReader(resource+"Drivers.json"));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (ParseException e) {
+                } catch (IOException | ParseException e) {
                     e.printStackTrace();
                 }
 
                 JSONObject jsonObject = (JSONObject) jsonFile;
-                JSONArray constructorJSON = (JSONArray) jsonObject.get("Driver");
+                JSONArray constructorJSON = (JSONArray) (jsonObject != null ? jsonObject.get("Driver") : null);
 
                 GlobalF1 global = new GlobalF1();
                 // Set the Enum correctly

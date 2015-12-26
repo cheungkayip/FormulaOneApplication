@@ -70,8 +70,4 @@
                    fitHeight="50.0" fitWidth="50.0" layoutX="69.0" layoutY="322.0" pickOnBounds="true"
                    preserveRatio="true"/>
     </HBox>
-
-    <Label text="Added Drivers:" GridPane.columnIndex="0" GridPane.rowIndex="9"/>
-    <TextArea fx:id="addedDrivers" text="Added Drivers" GridPane.columnIndex="1"
-              GridPane.rowIndex="9"/>
 </GridPane>

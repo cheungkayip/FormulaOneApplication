@@ -1,27 +1,20 @@
 package controllers;
 
-import f1.app.constructor.ConstructorMutator;
 import f1.app.drivers.Driver;
 import f1.app.drivers.DriverMutator;
 import f1.app.global.GlobalF1;
-import f1.app.races.RaceResults;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import org.json.simple.parser.ParseException;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
 
 public class DriverInfoController implements Initializable {
     @FXML
@@ -41,8 +34,6 @@ public class DriverInfoController implements Initializable {
     @FXML
     private TextField nationality;
     @FXML
-    private TextArea addedDrivers;
-    @FXML
     private ImageView driverImage;
     @FXML
     private ImageView teamLogo;
@@ -55,8 +46,7 @@ public class DriverInfoController implements Initializable {
     @FXML
     public ChoiceBox<String> driversChoicebox;
 
-    private DriverMutator driverMutator = new DriverMutator();
-    private ConstructorMutator constructorMutator = new ConstructorMutator();
+    private final DriverMutator driverMutator = new DriverMutator();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -76,7 +66,7 @@ public class DriverInfoController implements Initializable {
         showDriverButton();
     }
 
-    public void showDriverButton() {
+    private void showDriverButton() {
         showSelectedDriverButton.setOnAction(event -> {
             // Get Selected value first
             String selectedValue = driversChoicebox.getValue();
@@ -88,7 +78,7 @@ public class DriverInfoController implements Initializable {
         });
     }
 
-    public void clearButton() {
+    private void clearButton() {
         clearButton.setOnAction(event -> {
             // Clear the Object
             driverMutator.clearTheDriver();
@@ -96,18 +86,14 @@ public class DriverInfoController implements Initializable {
         });
     }
 
-    public void preLoadTheApplicationWithData() {
+    private void preLoadTheApplicationWithData() {
         // Create the Drivers from the JSON URL
-        try {
-            driverMutator.createDriversFromURL(GlobalF1.FORMULA_ONE_RESOURCES_DIR);
-        } catch (IOException | ParseException e) {
-            e.printStackTrace();
-        }
+        driverMutator.createDriversFromURL(GlobalF1.FORMULA_ONE_RESOURCES_DIR);
         fillTheDriverFields();
         loadChoicebox();
     }
 
-    public void loadChoicebox(){
+    private void loadChoicebox(){
         // Fetch the ArrayList + Fill the Choicebox with data
         ArrayList<Driver> listOfAllDrivers = driverMutator.getDriverList();
         ArrayList<String> driverNames = new ArrayList<>();
@@ -129,7 +115,7 @@ public class DriverInfoController implements Initializable {
         fillTheDriverFields();
     }
 
-    public void fillTheDriverFields() {
+    private void fillTheDriverFields() {
         // Get driver specific info
         code.setText(driverMutator.getDriver().getCode());
         driverId.setText(driverMutator.getDriver().getDriverId());
@@ -149,7 +135,6 @@ public class DriverInfoController implements Initializable {
         // Java 8 Streaming
         driverMutator.getDriverList().stream().forEach(driverList -> driverMutator.getDriver().toString(driverList));
         StringBuffer buffer = driverMutator.getDriver().getBuffer();
-        addedDrivers.setText("" + buffer);
     }
 
     public void clearTheDriverFields() {
@@ -161,15 +146,12 @@ public class DriverInfoController implements Initializable {
         familyName.setText("");
         dateOfBirth.setText("");
         nationality.setText("");
-        // Clear TeamInfo Fields
-        addedDrivers.setText("");
         // Clear the Image
         driverImage.setImage(null);
         driverFlag.setImage(null);
         teamLogo.setImage(null);
         driverHelmet.setImage(null);
         driverHelmet.setImage(null);
-        addedDrivers.setText(null);
     }
 
 

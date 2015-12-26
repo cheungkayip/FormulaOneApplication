@@ -22,22 +22,20 @@ public class ConstructorStandingsController implements Initializable {
     @FXML
     private TableView<ConstructorStandings> tableView;
 
-    ConstructorMutator constructorMutator = new ConstructorMutator();
-    ArrayList<ConstructorStandings> standingsList = new ArrayList<>();
+    private final ConstructorMutator constructorMutator = new ConstructorMutator();
+    private ArrayList<ConstructorStandings> standingsList = new ArrayList<>();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
             assert tableView != null : "fx:id=\"tableView\" was not injected: check your FXML file 'ConstructorStandings.fxml'.";
             generateConstructorStandings();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
+        } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
     }
 
-    public void generateConstructorStandings() throws IOException, ParseException {
+    private void generateConstructorStandings() throws IOException, ParseException {
         standingsList = constructorMutator.displayConstructorStandings(GlobalF1.SAVED_JSON_DIR);
         ObservableList<ConstructorStandings> data = tableView.getItems();
         // Java 8 Streaming

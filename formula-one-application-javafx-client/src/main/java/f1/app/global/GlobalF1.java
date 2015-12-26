@@ -30,7 +30,7 @@ public class GlobalF1 {
     public static final String CONSTRUCTORS_STANDINGS_JSON = "http://ergast.com/api/f1/2015/constructorStandings.json";
     public static final String CIRCUITS_JSON = "http://ergast.com/api/f1/2015/circuits.json";
 
-    public Driver selectImagesForDrivers(JSONArray jsonFileArray, JSONObject jsonURLObject, Driver driver, Constructor constructor, String resource) throws IOException, ParseException {
+    public Driver selectImagesForDrivers(JSONArray jsonFileArray, JSONObject jsonURLObject, Driver driver, Constructor constructor, String resource) throws IOException {
         int i = 0;
         for (Object temp : jsonFileArray) {
 

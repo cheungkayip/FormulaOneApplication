@@ -26,15 +26,15 @@ public class RaceResultsController implements Initializable {
     private ChoiceBox<String> raceChoiceBox;
     @FXML
     private TableView<RaceResults> tableView;
-    RaceMutator mutator = new RaceMutator();
-    ArrayList<RaceResults> arrayList = new ArrayList<>();
+    private final RaceMutator mutator = new RaceMutator();
+    private ArrayList<RaceResults> arrayList = new ArrayList<>();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         generateTheRaceChoiceBox();
     }
 
-    public void generateTheRaceChoiceBox() {
+    private void generateTheRaceChoiceBox() {
         // Create the Drivers from the JSON URL
         try {
             arrayList = mutator.generateRaceResults(GlobalF1.SAVED_JSON_DIR);

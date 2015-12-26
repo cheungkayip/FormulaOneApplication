@@ -21,22 +21,20 @@ public class DriverStandingsController implements Initializable {
     @FXML
     private TableView<DriverStandings> tableView;
 
-    DriverMutator driverMutator = new DriverMutator();
-    ArrayList<DriverStandings> driverStandingsArrayList = new ArrayList<>();
+    private final DriverMutator driverMutator = new DriverMutator();
+    private ArrayList<DriverStandings> driverStandingsArrayList = new ArrayList<>();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
             assert tableView != null : "fx:id=\"tableView\" was not injected: check your FXML file 'DriverStandings.fxml'.";
             generateTheDriversTable();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
+        } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
     }
 
-    public void generateTheDriversTable() throws IOException, ParseException {
+    private void generateTheDriversTable() throws IOException, ParseException {
         driverStandingsArrayList = driverMutator.generateDriverStandings();
         ObservableList<DriverStandings> data = tableView.getItems();
         // Java 8 Streaming

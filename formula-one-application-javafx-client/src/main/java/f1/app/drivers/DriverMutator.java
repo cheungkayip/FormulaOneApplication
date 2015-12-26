@@ -11,8 +11,6 @@ import org.json.simple.parser.ParseException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
-
 
 /**
  * Created by kayipcheung on 28-11-15.
@@ -35,8 +33,7 @@ public class DriverMutator {
     }
 
     public Driver clearTheDriver() {
-        driver = null;
-        return driver;
+        return driver = null;
     }
 
     public DriverStandings getDriverStandings() {
@@ -47,7 +44,7 @@ public class DriverMutator {
         this.driverStandings = driverStandings;
     }
 
-    public ArrayList<Driver> createDriversFromURL(String resource) throws IOException, ParseException {
+    public ArrayList<Driver> createDriversFromURL(String resource) {
         JSONParser parser = new JSONParser();
         setErgast(new Ergast());
         int driverCount = 0;
@@ -58,9 +55,8 @@ public class DriverMutator {
             JSONObject mrData = (JSONObject) json.get("MRData");
             JSONObject driverTable = (JSONObject) mrData.get("DriverTable");
             JSONArray drivers = (JSONArray) driverTable.get("Drivers");
-            Iterator<String> iterator = drivers.iterator();
-            while (iterator.hasNext()) {
-                if (iterator.next() == ("" + driverCount)) {
+            for (Object driver1 : drivers) {
+                if (driver1 == ("" + driverCount)) {
                     break;
                 }
                 setDriver(new Driver());
@@ -79,13 +75,13 @@ public class DriverMutator {
 
                 // Image related + Constructor Team information
                 Object jsonFile;
-                String resourceNew = "";
-                if(resource.equals(GlobalF1.FORMULA_ONE_RESOURCES_TESTDIR) || resource.equals(GlobalF1.SAVED_JSON_DIR_TEST)){
+                String resourceNew;
+                if (resource.equals(GlobalF1.FORMULA_ONE_RESOURCES_TESTDIR) || resource.equals(GlobalF1.SAVED_JSON_DIR_TEST)) {
                     resourceNew = GlobalF1.FORMULA_ONE_RESOURCES_TESTDIR;
-                     jsonFile = parser.parse(new FileReader(GlobalF1.FORMULA_ONE_RESOURCES_TESTDIR+"Drivers.json"));
-                } else{
+                    jsonFile = parser.parse(new FileReader(GlobalF1.FORMULA_ONE_RESOURCES_TESTDIR + "Drivers.json"));
+                } else {
                     resourceNew = GlobalF1.FORMULA_ONE_RESOURCES_DIR;
-                     jsonFile = parser.parse(new FileReader(GlobalF1.FORMULA_ONE_RESOURCES_DIR+"Drivers.json"));
+                    jsonFile = parser.parse(new FileReader(GlobalF1.FORMULA_ONE_RESOURCES_DIR + "Drivers.json"));
                 }
                 JSONObject jsonObject = (JSONObject) jsonFile;
                 JSONArray jsonFileArray = (JSONArray) jsonObject.get("Driver");
@@ -98,9 +94,7 @@ public class DriverMutator {
                 driverList.add(getDriver());
             }
             setDriverList(driverList);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
+        } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
         return getDriverList();

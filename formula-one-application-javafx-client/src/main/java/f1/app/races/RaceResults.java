@@ -26,23 +26,13 @@ public class RaceResults {
     private int fastestLapRank;
     private int fastestLap;
     private String fastestLapTime;
-    private ArrayList<String> completeList = new ArrayList<>();
-
-    public ArrayList<String> getCompleteList() {
-        return completeList;
-    }
-
-    public void setCompleteList(ArrayList<String> completeList) {
-        this.completeList = completeList;
-    }
 
     public int getSeason() {
         return season;
     }
 
-    public String setSeason(int season) {
+    public void setSeason(int season) {
         this.season = season;
-        return null;
     }
 
     public int getRound() {

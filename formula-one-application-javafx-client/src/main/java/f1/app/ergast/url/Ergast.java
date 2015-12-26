@@ -27,15 +27,15 @@ public class Ergast {
             if (urlConn != null && urlConn.getInputStream() != null) {
                 in = new InputStreamReader(urlConn.getInputStream(), Charset.defaultCharset());
                 BufferedReader bufferedReader = new BufferedReader(in);
-                if (bufferedReader != null) {
-                    int cp;
-                    while ((cp = bufferedReader.read()) != -1) {
-                        sb.append((char) cp);
-                    }
-                    bufferedReader.close();
+                int cp;
+                while ((cp = bufferedReader.read()) != -1) {
+                    sb.append((char) cp);
                 }
+                bufferedReader.close();
             }
-            in.close();
+            if (in != null) {
+                in.close();
+            }
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -88,9 +88,9 @@ public class Ergast {
         return output;
     }
 
-    public String checkFile(String incomingJSONUrl, String fileName) throws IOException {
+    private String checkFile(String incomingJSONUrl, String fileName) throws IOException {
         File file = new File(fileName);
-        String result = "";
+        String result;
         if (file.exists()) {
             System.out.println(fileName + " File existed so the data is read from the JSON File");
             // read from JSON File instead of URL

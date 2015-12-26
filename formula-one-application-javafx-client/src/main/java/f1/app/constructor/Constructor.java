@@ -61,12 +61,10 @@ public class Constructor {
     }
 
     public StringBuffer toString(Constructor constructor){
-        getBuffer().append(
-                "Constructor ID: " + constructor.getConstructorId() + "\n" +
-                        "URL: " + constructor.getConstructorUrl() + "\n" +
-                        "Constructor Name: " + constructor.getConstructorName() + "\n" +
-                        "Nationality: " + constructor.getNationality() + "\n"
-        );
+        getBuffer().append("Constructor ID: ").append(constructor.getConstructorId()).append("\n")
+                .append("URL: ").append(constructor.getConstructorUrl()).append("\n")
+                .append("Constructor Name: ").append(constructor.getConstructorName()).append("\n")
+                .append("Nationality: ").append(constructor.getNationality()).append("\n");
         return getBuffer();
     }
     public StringBuffer getBuffer() {
