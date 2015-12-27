@@ -1,4 +1,4 @@
-package f1.app.constructor;
+package f1.app.pojo;
 
 /**
  * Created by kayipcheung on 12-12-15.

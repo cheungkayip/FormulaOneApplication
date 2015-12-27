@@ -1,4 +1,4 @@
-package f1.app.drivers;
+package f1.app.pojo;
 
 /**
  * Created by kayipcheung on 07-12-15.

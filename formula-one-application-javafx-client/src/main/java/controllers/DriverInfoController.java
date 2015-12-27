@@ -1,7 +1,7 @@
 package controllers;
 
-import f1.app.drivers.Driver;
-import f1.app.drivers.DriverMutator;
+import f1.app.pojo.Driver;
+import f1.app.mutator.DriverMutator;
 import f1.app.global.GlobalF1;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;

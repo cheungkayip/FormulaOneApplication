@@ -1,4 +1,4 @@
-package f1.app.constructor;
+package f1.app.pojo;
 
 import javafx.scene.image.ImageView;
 

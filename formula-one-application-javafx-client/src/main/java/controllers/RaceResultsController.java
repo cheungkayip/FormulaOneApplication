@@ -1,8 +1,8 @@
 package controllers;
 
 import f1.app.global.GlobalF1;
-import f1.app.races.RaceMutator;
-import f1.app.races.RaceResults;
+import f1.app.mutator.RaceMutator;
+import f1.app.pojo.RaceResults;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

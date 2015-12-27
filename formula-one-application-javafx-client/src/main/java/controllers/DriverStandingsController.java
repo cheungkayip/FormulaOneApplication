@@ -1,7 +1,7 @@
 package controllers;
 
-import f1.app.drivers.DriverMutator;
-import f1.app.drivers.DriverStandings;
+import f1.app.mutator.DriverMutator;
+import f1.app.pojo.DriverStandings;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

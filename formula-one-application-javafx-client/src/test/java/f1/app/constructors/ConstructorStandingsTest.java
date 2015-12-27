@@ -1,7 +1,7 @@
 package f1.app.constructors;
 
-import f1.app.constructor.ConstructorMutator;
-import f1.app.constructor.ConstructorStandings;
+import f1.app.mutator.ConstructorMutator;
+import f1.app.pojo.ConstructorStandings;
 import f1.app.global.GlobalF1;
 import junit.framework.Assert;
 import org.json.simple.parser.ParseException;

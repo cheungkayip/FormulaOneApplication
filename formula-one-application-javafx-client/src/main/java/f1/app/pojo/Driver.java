@@ -1,6 +1,5 @@
-package f1.app.drivers;
+package f1.app.pojo;
 
-import f1.app.constructor.Constructor;
 import javafx.scene.image.ImageView;
 
 /**

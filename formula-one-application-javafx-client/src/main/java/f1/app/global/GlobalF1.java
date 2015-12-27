@@ -1,13 +1,12 @@
 package f1.app.global;
 
-import f1.app.constructor.Constructor;
-import f1.app.drivers.Driver;
+import f1.app.pojo.Constructor;
+import f1.app.pojo.Driver;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.ParseException;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;

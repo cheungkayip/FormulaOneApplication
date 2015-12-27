@@ -1,4 +1,4 @@
-package f1.app.races;
+package f1.app.pojo;
 
 import java.util.ArrayList;
 

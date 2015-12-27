@@ -1,7 +1,7 @@
 package controllers;
 
-import f1.app.constructor.ConstructorMutator;
-import f1.app.constructor.ConstructorStandings;
+import f1.app.mutator.ConstructorMutator;
+import f1.app.pojo.ConstructorStandings;
 import f1.app.global.GlobalF1;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
