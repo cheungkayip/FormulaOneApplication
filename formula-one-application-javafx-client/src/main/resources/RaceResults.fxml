@@ -2,21 +2,28 @@
 <?import javafx.scene.control.cell.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<GridPane style="-fx-background-color:gray" alignment="BASELINE_LEFT" xmlns:fx="http://javafx.com/fxml"
+<?import javafx.scene.image.ImageView?>
+<GridPane alignment="BASELINE_LEFT" xmlns:fx="http://javafx.com/fxml"
           fx:controller="controllers.RaceResultsController" hgap="10.0" vgap="10.0">
     <padding>
         <Insets top="25" right="25" bottom="10" left="25"/>
     </padding>
     <HBox spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="0">
-        <Label style="-fx-font: NORMAL 20 Tahoma;" text="Race Results"></Label>
+        <Label style="-fx-font: NORMAL 20 Tahoma;" text="Race Results 2015"></Label>
     </HBox>
     <HBox spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="1">
         <Label fx:id="code" text="Select Race: "/>
-        <ChoiceBox fx:id="raceChoiceBox" layoutX="210.0" layoutY="108.0" prefHeight="27.0"
-        >
-        </ChoiceBox>
+        <ImageView fx:id="circuitFlag" disable="false"
+                   fitHeight="45.0" fitWidth="45.0" layoutX="69.0" layoutY="322.0" pickOnBounds="true"
+                   preserveRatio="true"/>
+        <ChoiceBox fx:id="raceChoiceBox" layoutX="210.0" layoutY="108.0" prefHeight="27.0"></ChoiceBox>
     </HBox>
-    <TableView  prefHeight="600" fx:id="tableView" GridPane.columnIndex="0" GridPane.rowIndex="2">
+    <HBox alignment="BASELINE_LEFT" GridPane.columnIndex="0" GridPane.rowIndex="2">
+        <ImageView fx:id="circuitName" disable="false"
+                   fitHeight="300.0" fitWidth="400.0" layoutX="69.0" layoutY="322.0" pickOnBounds="true"
+                   preserveRatio="true"/>
+    </HBox>
+    <TableView  prefHeight="600" fx:id="tableView" GridPane.columnIndex="0" GridPane.rowIndex="3">
         <columns>
             <TableColumn text="Position" prefWidth="60">
                 <cellValueFactory>
@@ -75,4 +82,7 @@
             </TableColumn>
         </columns>
     </TableView>
+    <Label fx:id="disclaimer" GridPane.columnIndex="0" GridPane.rowIndex="4">* Disclaimer: The circuit images are taken from http://www.formula1.com.</Label>
+    <Label fx:id="disclaimer2" GridPane.columnIndex="0" GridPane.rowIndex="5">All the copyright and credits for the images goes to http://www.formula1.com.</Label>
+    <Label fx:id="disclaimer3" GridPane.columnIndex="0" GridPane.rowIndex="6">I do not own or have the right over these images. Non-commercial use purpose only.</Label>
 </GridPane>

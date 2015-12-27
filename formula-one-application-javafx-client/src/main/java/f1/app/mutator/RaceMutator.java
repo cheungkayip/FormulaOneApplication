@@ -8,6 +8,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -44,7 +45,7 @@ public class RaceMutator {
     public ArrayList<RaceResults> generateRaceResults(String resource) throws IOException, ParseException {
         ArrayList<String> raceNumberList = new ArrayList<>();
         setErgast(new Ergast());
-
+        JSONParser parser = new JSONParser();
         String circuitJSON = getErgast().decideTheRightJSON(resource, GlobalF1.CIRCUITS_JSON);
         JSONObject json = (JSONObject) new JSONParser().parse(circuitJSON);
         JSONObject mrData = (JSONObject) json.get("MRData");
@@ -123,7 +124,7 @@ public class RaceMutator {
 
     private ArrayList<RaceResults> returnTheRightRace(ArrayList<RaceResults> list, ArrayList<RaceResults> reconstructedList, String raceName){
         list.stream()
-                .filter(s->s.getCircuitName().equals(raceName))
+                .filter(s-> s.getCircuitName().equals(raceName))
                 .forEach(reconstructedList::add);
         return reconstructedList;
     }

@@ -1,6 +1,6 @@
 package f1.app.pojo;
 
-import java.util.ArrayList;
+import javafx.scene.image.ImageView;
 
 /**
  * Created by kayipcheung on 12-12-15.

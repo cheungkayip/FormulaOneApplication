@@ -1,0 +1,84 @@
+{
+  "Circuit": [
+    {
+      "circuitFlag": "Australia_Flag.jpg",
+      "circuitName": "Australia_Melbourne.png"
+    },
+    {
+      "circuitFlag": "UAE_Flag.jpg",
+      "circuitName": "UAE_YasMarinaCircuit.png"
+    },
+    {
+      "circuitFlag": "USA_Flag.jpg",
+      "circuitName": "USA_Austin.png"
+    },
+    {
+      "circuitFlag": "Austria_Flag.gif",
+      "circuitName": "Austria_Spielberg.png"
+    },
+    {
+      "circuitFlag": "Bahrain_Flag.jpg",
+      "circuitName": "Bahrain_Sakhir.png"
+    },
+    {
+      "circuitFlag": "Belgium_Flag.jpg",
+      "circuitName": "Belgium_SpaFrancorchamps.png"
+    },
+    {
+      "circuitFlag": "Brazil_Flag.jpg",
+      "circuitName": "Brazil_Interlagos.png"
+    },
+    {
+      "circuitFlag": "Canada_Flag.png",
+      "circuitName": "Canada_MontReal.png"
+    },
+    {
+      "circuitFlag": "China_Flag.gif",
+      "circuitName": "China_Shanghai.png"
+    },
+    {
+      "circuitFlag": "UK_Flag.gif",
+      "circuitName": "UK_Silverstone.png"
+    },
+    {
+      "circuitFlag": "Germany_Flag.gif",
+      "circuitName": "Germany_Hockenheim.png"
+    },
+    {
+      "circuitFlag": "Hungary_Flag.gif",
+      "circuitName": "Hungary_Hungaroring.png"
+    },
+    {
+      "circuitFlag": "Italy_Flag.jpg",
+      "circuitName": "Italy_Monza.png"
+    },
+    {
+      "circuitFlag": "Japan_Flag.jpg",
+      "circuitName": "Japan_Suzuka.png"
+    },
+    {
+      "circuitFlag": "Malaysia_Flag.jpg",
+      "circuitName": "Malaysia_KualaLumpur.png"
+    },
+    {
+      "circuitFlag": "Mexico_Flag.png",
+      "circuitName": "Mexico_MexicoCity.png"
+    },
+    {
+      "circuitFlag": "Monaco_Flag.jpg",
+      "circuitName": "Monaco_MonteCarlo.png"
+    },
+    {
+      "circuitFlag": "Russia_Flag.jpg",
+      "circuitName": "Russia_Sochi.png"
+    },
+    {
+      "circuitFlag": "Singapore_Flag.jpg",
+      "circuitName": "Singapore_Singapore.png"
+    },
+    {
+      "circuitFlag": "Spain_Flag.gif",
+      "circuitName": "Spain_Catalunya.png"
+    }
+  ]
+}

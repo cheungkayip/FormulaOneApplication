@@ -3,12 +3,12 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 
-<GridPane gridLinesVisible="false" style="-fx-background-color:gray" hgap="5" vgap="5" xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.DriverInfoController">
+<GridPane gridLinesVisible="false" hgap="5" vgap="5" xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.DriverInfoController">
     <padding>
         <Insets top="25" right="25" bottom="10" left="25"/>
     </padding>
     <HBox alignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="0">
-    <Label style="-fx-font: NORMAL 20 Tahoma;" text="Driver Information"></Label>
+    <Label style="-fx-font: NORMAL 20 Tahoma;" text="Driver Information 2015"></Label>
     </HBox>
     <HBox alignment="BASELINE_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="0">
         <ImageView fx:id="teamLogo" disable="false"
@@ -67,7 +67,10 @@
     <HBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="8">
     <TextField prefWidth="150" fx:id="nationality" text="Nationality" />
         <ImageView fx:id="driverFlag" disable="false"
-                   fitHeight="50.0" fitWidth="50.0" layoutX="69.0" layoutY="322.0" pickOnBounds="true"
+                   fitHeight="45.0" fitWidth="45.0" layoutX="69.0" layoutY="322.0" pickOnBounds="true"
                    preserveRatio="true"/>
     </HBox>
+        <Label fx:id="disclaimer" GridPane.columnIndex="1" GridPane.rowIndex="9">* Disclaimer: The Driver, Helmet and Team images are taken from http://www.formula1.com.</Label>
+        <Label fx:id="disclaimer2" GridPane.columnIndex="1" GridPane.rowIndex="10">All the copyright and credits for the images goes to http://www.formula1.com.</Label>
+        <Label fx:id="disclaimer3" GridPane.columnIndex="1" GridPane.rowIndex="11">I do not own or have the right over these images. Non-commercial use purpose only.</Label>
 </GridPane>

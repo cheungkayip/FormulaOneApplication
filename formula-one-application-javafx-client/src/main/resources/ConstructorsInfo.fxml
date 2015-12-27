@@ -2,11 +2,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
-<GridPane gridLinesVisible="false" style="-fx-background-color:gray" hgap="5" vgap="5" xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.ConstructorInfoController">
+<GridPane gridLinesVisible="false" hgap="5" vgap="5" xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.ConstructorInfoController">
     <padding>
         <Insets top="25" right="25" bottom="10" left="25"/>
     </padding>
-    <Label style="-fx-font: NORMAL 20 Tahoma;" text="Constructor Information"
+    <Label style="-fx-font: NORMAL 20 Tahoma;" text="Constructor Information 2015"
            GridPane.columnIndex="0" GridPane.rowIndex="0">
     </Label>
                 <Label maxWidth="-Infinity" text="Constructor Team" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
@@ -38,4 +38,7 @@
 
                 <Button fx:id="showConstructorButton" mnemonicParsing="false" text="Show Selected Constructor"
                         GridPane.columnIndex="2" GridPane.rowIndex="5"/>
+    <Label fx:id="disclaimer" GridPane.columnIndex="1" GridPane.rowIndex="6">* Disclaimer: The team images are taken from http://www.formula1.com.</Label>
+    <Label fx:id="disclaimer2" GridPane.columnIndex="1" GridPane.rowIndex="7">All the copyright and credits for the images goes to http://www.formula1.com.</Label>
+    <Label fx:id="disclaimer3" GridPane.columnIndex="1" GridPane.rowIndex="8">I do not own or have the right over these images. Non-commercial use purpose only.</Label>
 </GridPane>

@@ -18,7 +18,8 @@ public class F1MainApplication extends Application {
             TabPane tabPane = FXMLLoader.load(F1MainApplication.class.getResource("/Main.fxml"));
 
             Scene scene = new Scene(tabPane);
-            scene.getStylesheets().add("DarkTheme.css");
+            setUserAgentStylesheet(STYLESHEET_CASPIAN);
+//            scene.getStylesheets().add("DarkTheme.css");
             tabPane.setPrefSize(1300, 1000);
             primaryStage.setScene(scene);
             primaryStage.show();

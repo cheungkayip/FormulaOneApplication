@@ -1,7 +1,9 @@
 package f1.app.global;
 
+import f1.app.pojo.Circuit;
 import f1.app.pojo.Constructor;
 import f1.app.pojo.Driver;
+import f1.app.pojo.RaceResults;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
