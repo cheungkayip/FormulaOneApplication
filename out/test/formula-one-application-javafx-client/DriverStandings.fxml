@@ -5,7 +5,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.HBox?>
-<GridPane style="-fx-background-color:gray" alignment="BASELINE_LEFT" xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.DriverStandingsController" hgap="10.0" vgap="10.0">
+<GridPane style="-fx-background-color:gray" alignment="BASELINE_LEFT" xmlns:fx="http://javafx.com/fxml" fx:controller="f1.app.controllers.DriverStandingsController" hgap="10.0" vgap="10.0">
     <padding>
         <Insets top="25" right="25" bottom="10" left="25"/>
     </padding>

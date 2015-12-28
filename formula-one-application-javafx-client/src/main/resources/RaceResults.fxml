@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.image.ImageView?>
 <GridPane alignment="BASELINE_LEFT" xmlns:fx="http://javafx.com/fxml"
-          fx:controller="controllers.RaceResultsController" hgap="10.0" vgap="10.0">
+          fx:controller="f1.app.controllers.RaceResultsController" hgap="10.0" vgap="10.0">
     <padding>
         <Insets top="25" right="25" bottom="10" left="25"/>
     </padding>

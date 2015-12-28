@@ -1,4 +1,4 @@
-package controllers;
+package f1.app.controllers;
 
 import f1.app.mutator.DriverMutator;
 import f1.app.pojo.DriverStandings;
