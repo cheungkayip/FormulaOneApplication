@@ -32,20 +32,11 @@
 				<artifactId>junit</artifactId>
 				<version>4.8.2</version>
 			</dependency>
+			<!-- Json -->
 			<dependency>
 				<groupId>com.googlecode.json-simple</groupId>
 				<artifactId>json-simple</artifactId>
 				<version>1.1.1</version>
-			</dependency>
-			<dependency>
-				<groupId>org.jboss.resteasy</groupId>
-				<artifactId>resteasy-jaxrs</artifactId>
-				<version>2.2.1.GA</version>
-			</dependency>
-			<dependency>
-				<groupId>org.jboss.resteasy</groupId>
-				<artifactId>resteasy-jackson-provider</artifactId>
-				<version>2.2.1.GA</version>
 			</dependency>
 
 			<!-- JEE Stuff -->

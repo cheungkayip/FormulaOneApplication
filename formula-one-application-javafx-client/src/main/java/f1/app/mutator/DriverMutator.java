@@ -1,5 +1,10 @@
 package f1.app.mutator;
 
+import com.company.speedment.test.f1app.F1appApplication;
+import com.company.speedment.test.f1app.db0.f1app.drivers.Drivers;
+import com.company.speedment.test.f1app.db0.f1app.imagesdrivers.ImagesDrivers;
+import com.speedment.Manager;
+import com.speedment.Speedment;
 import f1.app.pojo.Constructor;
 import f1.app.ergast.url.Ergast;
 import f1.app.global.GlobalF1;
@@ -13,6 +18,8 @@ import org.json.simple.parser.ParseException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by kayipcheung on 28-11-15.
@@ -44,6 +51,38 @@ public class DriverMutator {
 
     public void setDriverStandings(DriverStandings driverStandings) {
         this.driverStandings = driverStandings;
+    }
+
+    public List<ImagesDrivers> speedmentDataLoader(){
+        Speedment speedment = new F1appApplication().withPassword("root").build();
+        Manager<ImagesDrivers> imagesDrivers = speedment.managerOf(ImagesDrivers.class);
+
+        List<ImagesDrivers> aRossiDisplay = imagesDrivers
+                .stream()
+                .filter(v -> v.getDriverImageId().toString().contains("1"))
+                .collect(Collectors.toList());
+
+        System.out.println("DriverImageId: " + aRossiDisplay.get(0).getDriverImageId());
+        System.out.println("DriverDisplayImage: " + aRossiDisplay.get(0).getDriverDisplayImage());
+        System.out.println("DriverHelmet: " + aRossiDisplay.get(0).getDriverHelmet());
+        return aRossiDisplay;
+    }
+
+    public List<Drivers> speedmentDriverLoader(){
+        Speedment speedment = new F1appApplication().withPassword("root").build();
+        Manager<Drivers> drivers = speedment.managerOf(Drivers.class);
+
+        List<Drivers> lewisInfo = drivers
+                .stream()
+                .filter(d -> d.getForename().toString().contains("Lewis"))
+                .collect(Collectors.toList());
+
+        System.out.println("ForeName: " + lewisInfo.get(0).getForename());
+        System.out.println("SurName: " + lewisInfo.get(0).getSurname());
+//        System.out.println("Nationality: " + lewisInfo.get(0).getNationality().toString());
+        System.out.println("DriverRef: " + lewisInfo.get(0).getDriverRef());
+        System.out.println("DriverUrl: " + lewisInfo.get(0).getUrl());
+        return lewisInfo;
     }
 
     public ArrayList<Driver> createDriversFromURL(String resource) {
