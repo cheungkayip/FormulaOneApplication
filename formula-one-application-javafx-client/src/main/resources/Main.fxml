@@ -2,27 +2,27 @@
 <?import javafx.scene.control.TabPane?>
 <TabPane xmlns:fx="http://www.w3.org/1999/XSL/Transform">
     <tabs>
-        <Tab text="Driver Information">
+        <Tab closable="false" text="Driver Information">
             <content>
                 <fx:include fx:id="driverInformationTabPage" source="Driver.fxml"/>
             </content>
         </Tab>
-        <Tab text="Driver Standings">
+        <Tab closable="false" text="Driver Standings">
             <content>
                 <fx:include fx:id="driverStandingsTabPage" source="DriverStandings.fxml"/>
             </content>
         </Tab>
-        <Tab text="Constructor Team Information">
+        <Tab closable="false" text="Constructor Team Information">
             <content>
                 <fx:include fx:id="constructorInformationTabPage" source="ConstructorsInfo.fxml"/>
             </content>
         </Tab>
-        <Tab text="Constructor Standings">
+        <Tab closable="false" text="Constructor Standings">
             <content>
                 <fx:include fx:id="constructorStandingsTabPage" source="ConstructorStandings.fxml"/>
             </content>
         </Tab>
-        <Tab text="Race Results">
+        <Tab closable="false" text="Race Results">
             <content>
                 <fx:include fx:id="raceResultsTab" source="RaceResults.fxml"/>
             </content>
