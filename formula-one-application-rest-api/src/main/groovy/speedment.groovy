@@ -32,17 +32,6 @@ dbms {
             expanded = false;
             column {
                 columnCompressionType = ColumnCompressionType.INHERIT;
-                databaseType = java.lang.Integer.class;
-                fieldStorageType = FieldStorageType.INHERIT;
-                name = "driverImageId";
-                typeMapper = com.speedment.internal.core.config.mapper.identity.IntegerIdentityMapper.class;
-                autoincrement = false;
-                enabled = true;
-                expanded = true;
-                nullable = false;
-            }
-            column {
-                columnCompressionType = ColumnCompressionType.INHERIT;
                 databaseType = java.lang.String.class;
                 fieldStorageType = FieldStorageType.INHERIT;
                 name = "driverDisplayImage";
@@ -57,6 +46,39 @@ dbms {
                 databaseType = java.lang.String.class;
                 fieldStorageType = FieldStorageType.INHERIT;
                 name = "driverHelmet";
+                typeMapper = com.speedment.internal.core.config.mapper.identity.StringIdentityMapper.class;
+                autoincrement = false;
+                enabled = true;
+                expanded = true;
+                nullable = true;
+            }
+            column {
+                columnCompressionType = ColumnCompressionType.INHERIT;
+                databaseType = java.lang.String.class;
+                fieldStorageType = FieldStorageType.INHERIT;
+                name = "LastName";
+                typeMapper = com.speedment.internal.core.config.mapper.identity.StringIdentityMapper.class;
+                autoincrement = false;
+                enabled = true;
+                expanded = true;
+                nullable = true;
+            }
+            column {
+                columnCompressionType = ColumnCompressionType.INHERIT;
+                databaseType = java.lang.String.class;
+                fieldStorageType = FieldStorageType.INHERIT;
+                name = "driverImageId";
+                typeMapper = com.speedment.internal.core.config.mapper.identity.StringIdentityMapper.class;
+                autoincrement = false;
+                enabled = true;
+                expanded = true;
+                nullable = false;
+            }
+            column {
+                columnCompressionType = ColumnCompressionType.INHERIT;
+                databaseType = java.lang.String.class;
+                fieldStorageType = FieldStorageType.INHERIT;
+                name = "driverFlag";
                 typeMapper = com.speedment.internal.core.config.mapper.identity.StringIdentityMapper.class;
                 autoincrement = false;
                 enabled = true;
