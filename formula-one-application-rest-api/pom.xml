@@ -22,12 +22,6 @@
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<!-- Java 8 Speedment for reading databases -->
-		<dependency>
-			<groupId>com.speedment</groupId>
-			<artifactId>speedment</artifactId>
-			<version>2.2.3</version>
-		</dependency>
 		<!-- JEE Stuff -->
 		<dependency>
 			<groupId>javax</groupId>
@@ -38,11 +32,6 @@
 
 	<build>
 		<plugins>
-            <!-- Java 8 Speedment for reading databases -->
-			<plugin>
-				<groupId>com.speedment</groupId>
-				<artifactId>speedment-maven-plugin</artifactId>
-			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>

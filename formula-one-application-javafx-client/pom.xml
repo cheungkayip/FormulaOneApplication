@@ -42,6 +42,11 @@
 
     <build>
         <plugins>
+            <!-- Java 8 Speedment for reading databases -->
+            <plugin>
+                <groupId>com.speedment</groupId>
+                <artifactId>speedment-maven-plugin</artifactId>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
