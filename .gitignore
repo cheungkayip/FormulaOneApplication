@@ -11,3 +11,7 @@ bin
 .lst
 .classpath
 .project
+
+#speedment ignores
+speedment.groovy
+/formula-one-application-rest-api/src/main/java/com
