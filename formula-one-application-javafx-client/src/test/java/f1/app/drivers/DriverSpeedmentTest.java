@@ -18,7 +18,7 @@ public class DriverSpeedmentTest {
     public void testDriversImagesFromDB() throws IOException, ParseException {
         DriverMutator mutator = new DriverMutator();
         List<ImagesDrivers> list = mutator.speedmentDataLoader();
-        Assert.assertEquals("1", list.get(0).getDriverImageId().toString());
+        Assert.assertEquals("ALO", list.get(0).getDriverImageId().toString());
     }
 
     @Test
