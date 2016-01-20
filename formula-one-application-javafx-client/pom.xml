@@ -33,11 +33,6 @@
             <artifactId>speedment</artifactId>
             <version>2.2.3</version>
         </dependency>
-        <dependency>
-            <groupId>java.f1.app</groupId>
-            <artifactId>formula-one-application-rest-api</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
     </dependencies>
 
     <build>
